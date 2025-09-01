@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { HeroSection } from '../../components/home/hero-section/hero-section';
 import { SobreNosSection } from '../../components/home/sobre-nos-section/sobre-nos-section';
-import { Header } from '../../shared/header/header';
 
 @Component({
   selector: 'app-home',
-  imports: [HeroSection, SobreNosSection, Header],
+  imports: [HeroSection, SobreNosSection],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

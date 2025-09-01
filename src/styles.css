@@ -2,39 +2,35 @@
 
 @font-face {
     font-family: 'csamerta-regular';
-    src: url(/fonts/CSAmerta-Regular.otf);
+    src: url(assets/fonts/CSAmerta-Regular.otf);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'montreal-light';
-    src: url(/fonts/MontrealLight.ttf);
+    src: url(assets/fonts/MontrealLight.ttf);
     font-weight: light;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'montreal-regular';
-    src: url(/fonts/MontrealLight.ttf);
+    src: url(assets/fonts/MontrealLight.ttf);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'montreal-thin';
-    src: url(/fonts/MontrealThin.ttf);
+    src: url(assets/fonts/MontrealThin.ttf);
     font-weight: thin;
     font-style: normal;
 }
 
-
-* {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+:root {
+    --white: #ffffff;
+    --MediumGray: #535353;
 }
 
 body::-webkit-scrollbar {
@@ -46,5 +42,15 @@ html {
     scrollbar-width: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    min-height: 100%; 
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: var(--white);
+}

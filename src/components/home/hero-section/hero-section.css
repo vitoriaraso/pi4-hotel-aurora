@@ -48,8 +48,8 @@
     letter-spacing: -12px;
     filter: blur(12px);
     transition: ease-in-out 0.75s;
-    line-height: 1;
-    overflow: hidden;
+    line-height: .75;
+    margin: auto;
 }
 
 .hero-content h1:hover {

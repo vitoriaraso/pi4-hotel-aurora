@@ -1,6 +1,14 @@
-<!-- <div id="header">
-    <div class="header-menu">icon do menu</div>
+<div id="header" [class.visible]="headerIsVisible">
+    <div class="header-menu">
+        <mat-icon>menu</mat-icon>
+    </div>
     <div class="header-logo">logo</div>
-    <div class="header-carrinho">carrinho</div>
-    <div class="header-loginlogout">loginlogout</div>
-</div> -->
+    <div class="header-cart-and-login">
+        <div class="header-cart">
+            <mat-icon>shopping_bag</mat-icon>
+        </div>
+        <div class="header-loginlogout">
+            <mat-icon>login</mat-icon>
+        </div>
+    </div>
+</div>
