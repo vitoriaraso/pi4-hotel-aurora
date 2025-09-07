@@ -43,7 +43,6 @@ export class App {
     ).subscribe(data => {
       // Finalmente, atualizamos nossa variável 'showHeader' com o valor
       // que definimos no arquivo de rotas.
-      console.log('Dados da rota:', data); // Ótimo para debugar!
       this.showHeader = data['showHeader'] ?? true; // Usa 'true' como padrão
     });
   }

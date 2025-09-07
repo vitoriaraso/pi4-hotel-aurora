@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { SidenavComponent } from '../sidenav.component/sidenav.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatIconModule, SidenavComponent],
+  imports: [MatIconModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

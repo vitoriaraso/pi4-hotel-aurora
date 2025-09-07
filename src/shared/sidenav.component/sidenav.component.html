@@ -1,3 +1,52 @@
 <div class="sidenav-content">
-  <a routerLink="/home" (click)="linkClicked.emit()">Apresentação</a>
+  <mat-nav-list aria-label="Menu de navegação">
+
+    <h2>Hotel</h2>
+
+    <a mat-list-item
+      routerLink="/home"
+      (click)="linkClicked.emit()">
+      <mat-icon matListItemIcon>room_service</mat-icon>
+      Apresentação
+    </a>
+
+    <!-- A FAZER -->
+
+    <a mat-list-item
+      routerLink="/"
+      (click)="linkClicked.emit()">
+      <mat-icon matListItemIcon>bed</mat-icon>
+      Quartos & Suítes
+    </a>
+
+    <a mat-list-item
+      routerLink="/"
+      (click)="linkClicked.emit()">
+      <mat-icon matListItemIcon>meeting_room</mat-icon>
+      Salas de Conferência
+    </a>
+
+    <a mat-list-item
+      routerLink="/"
+      (click)="linkClicked.emit()">
+      <mat-icon matListItemIcon>spa</mat-icon>
+      Spa
+    </a>
+
+    <a mat-list-item
+      routerLink="/"
+      (click)="linkClicked.emit()">
+      <mat-icon matListItemIcon>event</mat-icon>
+      Eventos
+    </a>
+
+    <a mat-list-item
+      routerLink="/"
+      (click)="linkClicked.emit()">
+      Outros
+    </a>
+
+    <mat-divider></mat-divider>
+
+  </mat-nav-list>
 </div>
