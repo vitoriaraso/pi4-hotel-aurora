@@ -1,7 +1,80 @@
+#sidenav {
+  background-color: var(--almostWhite);
+  height: 100%;
+}
+
 .sidenav-content {
   display: flex;
   flex-direction: column;
-  height: 100%;        /* ocupa toda altura da sidenav */
-  overflow-y: auto;    /* rolagem interna se tiver muitos links */
-  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.sidenav-heading {
+  padding-left: 10px;
+}
+
+.sidenav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-links a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 0 10px;
+  color: var(--mediumGray);
+  height: 45px;
+  margin: 5px 0;
+}
+
+.sidenav-links p {
+  font-size: 1.15em;
+}
+
+.sidenav-links a mat-icon {
+  color: var(--mediumGray);
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav-links a:hover, .sidenav-links a:hover mat-icon {
+  color: var(--darkBrown);
+}
+
+.sidenav-login {
+  background-color: var(--white);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 25px;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  gap: 10px;
+  background-color: var(--white);
+  border: 1px solid var(--lightGray);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.login p {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--mediumGray);
+}
+
+.login:hover {
+  background-color: var(--almostWhite);
 }

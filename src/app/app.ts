@@ -7,11 +7,19 @@ import { filter, map } from 'rxjs';
 import { HeaderComponent } from '../shared/header.component/header.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from '../shared/sidenav.component/sidenav.component';
+import { CartSidenavComponent } from '../shared/cart-sidenav.component/cart-sidenav.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, MatSidenavModule, SidenavComponent], 
+  imports: [
+    CommonModule, 
+    RouterOutlet, 
+    HeaderComponent, 
+    MatSidenavModule, 
+    SidenavComponent, 
+    CartSidenavComponent
+  ], 
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -45,12 +53,6 @@ export class App {
       // que definimos no arquivo de rotas.
       this.showHeader = data['showHeader'] ?? true; // Usa 'true' como padrão
     });
-  }
-
-  @ViewChild('sidenav') sidenav!: MatSidenav;
-
-  toggleSidenav() {
-    this.sidenav.toggle();
   }
   
 }

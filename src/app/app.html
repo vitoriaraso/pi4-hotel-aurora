@@ -4,10 +4,14 @@
     <app-sidenav (linkClicked)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
 
+  <mat-sidenav #cardSidenav mode="over" position="end" [fixedInViewport]="true" class="sidenav">
+    <app-cart-sidenav></app-cart-sidenav>
+  </mat-sidenav>
+
   <mat-sidenav-content>
     
     @if (showHeader) {
-      <app-header (menuClick)="sidenav.toggle()"></app-header>
+      <app-header (menuClick)="sidenav.toggle()" (cartClick)="cardSidenav.toggle()"></app-header>
     }
 
     <main [style.paddingTop]="showHeader ? 'var(--headerHeight)' : '0'">

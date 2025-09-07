@@ -1,52 +1,49 @@
-<div class="sidenav-content">
-  <mat-nav-list aria-label="Menu de navegação">
-
-    <h2>Hotel</h2>
-
-    <a mat-list-item
-      routerLink="/home"
+<div id="sidenav">
+  
+  <div class="sidenav-login">
+    <button class="login">
+      <mat-icon>person</mat-icon>
+      <p>Entrar</p>
+    </button>
+  </div>
+  
+  <div class="sidenav-content">
+    <div class="sidenav-heading">
+      <h3>Hotel</h3>
+      <mat-divider></mat-divider>
+    </div>
+    
+    <div class="sidenav-links">
+      <a routerLink="/home"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>room_service</mat-icon>
-      Apresentação
+      <p>Apresentação</p>
     </a>
-
-    <!-- A FAZER -->
-
-    <a mat-list-item
-      routerLink="/"
+    
+      <a routerLink="/"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>bed</mat-icon>
-      Quartos & Suítes
+      <p>Quartos & Suítes</p>
     </a>
-
-    <a mat-list-item
-      routerLink="/"
+  
+      <a routerLink="/"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>meeting_room</mat-icon>
-      Salas de Conferência
+      <p>Salas de Conferência</p>
     </a>
 
-    <a mat-list-item
-      routerLink="/"
-      (click)="linkClicked.emit()">
+      <a routerLink="/"
+     (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>spa</mat-icon>
-      Spa
+      <p>Spa</p>
     </a>
 
-    <a mat-list-item
-      routerLink="/"
+      <a routerLink="/"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>event</mat-icon>
-      Eventos
+      <p>Eventos</p>
     </a>
 
-    <a mat-list-item
-      routerLink="/"
-      (click)="linkClicked.emit()">
-      Outros
-    </a>
-
-    <mat-divider></mat-divider>
-
-  </mat-nav-list>
+  </div>
+</div>
 </div>

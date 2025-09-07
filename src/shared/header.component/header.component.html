@@ -3,15 +3,15 @@
     <div class="header-content">
 
         <button (click)="onMenuClick()" aria-label="Abre o menu de opções">
-            <span class="material-symbols-outlined">menu</span>
+            <mat-icon>menu</mat-icon>
         </button>
 
-        <span class="logo">
-            <span class="material-symbols-outlined">hotel_class</span>
-        </span>
+        <button aria-label="Logo do Hotel">
+            <mat-icon>hotel_class</mat-icon>
+        </button>
 
-        <button aria-label="Carrinho de compras">
-            <span class="material-symbols-outlined">shopping_bag</span>
+        <button (click)="onCartClick()" aria-label="Carrinho de compras">
+            <mat-icon>shopping_bag</mat-icon>
         </button>
 
     </div>

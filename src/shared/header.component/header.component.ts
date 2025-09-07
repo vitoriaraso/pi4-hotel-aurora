@@ -4,14 +4,21 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [
+    MatIconModule
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   @Output() menuClick = new EventEmitter<void>();
+  @Output() cartClick = new EventEmitter<void>();
   
   onMenuClick() {
     this.menuClick.emit();
+  }
+
+  onCartClick() {
+    this.cartClick.emit();
   }
 }

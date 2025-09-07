@@ -1,0 +1,16 @@
+#cart-sidenav {
+  background-color: var(--almostWhite);
+  height: 100%;
+}
+
+.cart-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.cart-sidenav-heading {
+  padding-left: 10px;
+}

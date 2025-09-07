@@ -9,7 +9,14 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [MatButtonModule, MatSidenavModule, RouterLink, MatListModule, MatDividerModule, MatIconModule],
+  imports: [
+    MatButtonModule, 
+    MatSidenavModule, 
+    RouterLink, 
+    MatListModule, 
+    MatDividerModule, 
+    MatIconModule
+  ],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
 })
