@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
 
   <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" class="sidenav">
-    <app-sidenav></app-sidenav>
+    <app-sidenav (linkClicked)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content>
