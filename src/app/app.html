@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" class="sidenav">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    
+    @if (showHeader) {
+      <app-header (menuClick)="sidenav.toggle()"></app-header>
+    }
+
+    <main [style.paddingTop]="showHeader ? 'var(--headerHeight)' : '0'">
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>

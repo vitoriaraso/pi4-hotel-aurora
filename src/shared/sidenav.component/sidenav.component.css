@@ -1,0 +1,7 @@
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;        /* ocupa toda altura da sidenav */
+  overflow-y: auto;    /* rolagem interna se tiver muitos links */
+  padding: 16px;
+}

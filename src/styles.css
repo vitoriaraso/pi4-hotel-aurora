@@ -31,6 +31,7 @@
 :root {
     --white: #ffffff;
     --MediumGray: #535353;
+    --headerHeight: 60px;
 }
 
 body::-webkit-scrollbar {
@@ -53,4 +54,17 @@ html, body {
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: var(--white);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-drawer {
+    border-radius: 0 !important;
+}
+
+.mat-drawer-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
 }
