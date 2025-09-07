@@ -1,15 +1,15 @@
+// app.ts
+
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Header } from '../shared/header/header';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { Sidenav } from '../shared/sidenav/sidenav';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSidenavModule, Header, Sidenav],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet], 
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-
 }

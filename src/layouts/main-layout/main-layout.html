@@ -1,0 +1,12 @@
+<mat-sidenav-container style="height: 100vh;">
+
+  <app-sidenav #sidenav></app-sidenav>
+
+  <mat-sidenav-content>
+    <app-header (menuToggle)="sidenav.toggle()"></app-header>
+
+    <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

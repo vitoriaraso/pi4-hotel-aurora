@@ -1,14 +1,1 @@
-<mat-sidenav-container class="app-container">
-
-    <mat-sidenav #sidenav mode="over" position="start" [autoFocus]="false">
-        <app-sidenav (closeSidenav)="sidenav.close()"></app-sidenav>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-        <app-header (menuClicked)="sidenav.toggle()"></app-header>
-
-        <router-outlet></router-outlet>
-    
-    </mat-sidenav-content>
-
-</mat-sidenav-container>
+<router-outlet></router-outlet>

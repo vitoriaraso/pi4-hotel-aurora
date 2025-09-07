@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SobreNosSection } from './sobre-nos-section';
+import { MainLayout } from './main-layout';
 
-describe('SobreNosSection', () => {
-  let component: SobreNosSection;
-  let fixture: ComponentFixture<SobreNosSection>;
+describe('MainLayout', () => {
+  let component: MainLayout;
+  let fixture: ComponentFixture<MainLayout>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SobreNosSection]
+      imports: [MainLayout]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SobreNosSection);
+    fixture = TestBed.createComponent(MainLayout);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

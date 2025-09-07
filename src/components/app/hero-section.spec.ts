@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroSection } from './hero-section';
+import { HeroSection } from './home/hero-section/hero-section';
 
 describe('HeroSection', () => {
   let component: HeroSection;

@@ -1,10 +1,7 @@
-<div class="sidenav-content">
-    <div class="main-links">
-        <h2>Menu</h2>
-        <mat-divider></mat-divider>
-        <a mat-button routerLink="/home" (click)="closeSidenav.emit()">
-            <mat-icon>home</mat-icon>
-            <span>Início</span>
-        </a>
-    </div>
-</div>
+<mat-drawer #drawer mode="side" style="width: 250px;">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/home">Página Inicial</a>
+    <a mat-list-item routerLink="/quartos">Quartos</a>
+    <a mat-list-item routerLink="/reservas">Reservas</a>
+  </mat-nav-list>
+</mat-drawer>

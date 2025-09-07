@@ -1,16 +1,11 @@
-<div id="header" [class.visible]="headerIsVisible">
+<div id="header">
     <div class="header-menu">
-        <button mat-icon-button (click)="menuClicked.emit()">
-            <mat-icon>menu</mat-icon>
-        </button>
+        <mat-icon>menu</mat-icon>
     </div>
-    <div class="header-logo">logo</div>
-    <div class="header-cart-and-login">
-        <div class="header-cart">
-            <mat-icon>shopping_bag</mat-icon>
-        </div>
-        <div class="header-loginlogout">
-            <mat-icon>login</mat-icon>
-        </div>
+    <div class="header-logo">
+        logo
+    </div>
+    <div class="header-cart">
+        <mat-icon>shopping_bag</mat-icon>
     </div>
 </div>
