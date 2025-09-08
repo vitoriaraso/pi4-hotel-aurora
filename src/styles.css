@@ -33,7 +33,7 @@
     --white: #ffffff;
     --lightGray: #c0c0c0;
     --mediumGray: #404040;
-    --headerHeight: 60px;
+    --headerHeight: 75px;
 
     --lightGreen: #b3b792;
     --mediumGreen: #809671;
@@ -55,19 +55,13 @@ html {
 }
 
 html, body { 
+    font-family: Raleway, sans-serif; 
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
     min-height: 100%; 
 }
-
-body {
-    font-family: Raleway, sans-serif; 
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Raleway, sans-serif; }
 
 .mat-icon {
   font-family: 'Material Symbols Outlined' !important;
@@ -76,10 +70,11 @@ body { margin: 0; font-family: Raleway, sans-serif; }
     'wght' 200, /* mais fino */
     'GRAD' 0,
     'opsz' 24;
+    transition: 0.25s;
 }
 
 /* OPCIONAL: PREENCHE NO HOVER */
-/* a:hover .mat-icon {
+a:hover .mat-icon {
       font-family: 'Material Symbols Outlined' !important;
   font-variation-settings: 
     'FILL' 1,
@@ -87,7 +82,7 @@ body { margin: 0; font-family: Raleway, sans-serif; }
     'GRAD' 0,
     'opsz' 24;
 } 
-*/
+
 
 h1, h2, h3, h4, h5, h6, p {
   font-family: 'Raleway', sans-serif;
