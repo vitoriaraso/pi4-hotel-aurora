@@ -25,3 +25,8 @@
     border: none;
     cursor: pointer;
 }
+
+.header-content button mat-icon {
+    font-size: 27px;
+
+}

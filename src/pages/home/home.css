@@ -1,0 +1,41 @@
+#body {
+    width: 100vw;
+    overflow-y: hidden;
+    background-color: white;
+}
+
+/*
+  Usamos :host ::ng-deep para garantir que os estilos
+  se apliquem aos elementos filhos gerados pelo Swiper.
+*/
+:host ::ng-deep .swiper-wrapper {
+  transition-timing-function: linear !important;
+  -webkit-transition-timing-function: linear !important;
+
+  width: 100%;
+  height: max-content !important;
+  padding-bottom: 64px !important;
+  position: relative;
+  display: flex;
+}
+
+:host ::ng-deep .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: var(--lightBrown) !important;
+}
+
+
+:host ::ng-deep .swiper-pagination {
+  z-index: 10;
+  background-color: rgba(229, 231, 235, 0.75);
+}
+
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none;
+}
