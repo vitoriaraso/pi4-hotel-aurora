@@ -4,10 +4,11 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter, map } from 'rxjs';
-import { HeaderComponent } from '../shared/header.component/header.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from '../shared/sidenav.component/sidenav.component';
 import { CartSidenavComponent } from '../shared/cart-sidenav.component/cart-sidenav.component';
+import { HeaderComponent } from '../shared/header.component/header.component';
+import { FooterComponent } from '../shared/footer.component/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ import { CartSidenavComponent } from '../shared/cart-sidenav.component/cart-side
     HeaderComponent, 
     MatSidenavModule, 
     SidenavComponent, 
-    CartSidenavComponent
+    CartSidenavComponent,
+    FooterComponent
   ], 
   templateUrl: './app.html',
   styleUrl: './app.css'

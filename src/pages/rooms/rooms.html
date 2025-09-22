@@ -1,0 +1,37 @@
+
+<body>
+    <section class="description">
+        <h1>Quartos</h1>
+        <p>Nossos quartos oferecem estilo contemporâneo sofisticado, comodidades de alto padrão e o máximo conforto. descubra as diversas categorias 
+        de quartos que o Aurora tem à sua disposição. Projetados para oferecer o máximo conforto, os diversos tipos de quartos do nosso hotel 
+        em São Paulo são decorados com base no novo conceito de hospitalidade de puro luxo, tornando sua estadia uma experiência única.</p>
+    </section>
+
+    <section class="roomsCards">
+        <mat-card *ngFor="let card of Cards">
+            <!-- Imagem -->
+            <img mat-card-image [src]="card.imagePath" alt="{{ card.description }}">
+
+            <!-- Título -->
+            <mat-card-header>
+                <mat-card-title>{{ card.title }}</mat-card-title>
+            </mat-card-header>
+
+            <!-- Descrição -->
+            <mat-card-content>
+                <div class="card-description">
+                    <p>{{ card.description }}</p>
+                </div>
+
+                <div class="group-icons">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ card.oneIncluded }}"></mat-icon>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ card.twoIncluded }}"></mat-icon>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{ card.threeIncluded }}"></mat-icon>
+                </div>
+            </mat-card-content>
+
+            <!-- Botão -->
+            <button mat-button class="reservation-button" (click)="reservation()">Reservar</button>
+        </mat-card>
+    </section>
+</body>
