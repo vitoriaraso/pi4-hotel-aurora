@@ -4,22 +4,24 @@
     <app-sidenav (linkClicked)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
 
-  <mat-sidenav #cardSidenav mode="over" position="end" [fixedInViewport]="true" class="sidenav">
+  <mat-sidenav #cartSidenav mode="over" position="end" [fixedInViewport]="true" class="sidenav">
     <app-cart-sidenav></app-cart-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content>
     
     @if (showHeader) {
-      <app-header (menuClick)="sidenav.toggle()" (cartClick)="cardSidenav.toggle()"></app-header>
+      <app-header (menuClick)="sidenav.toggle()" (cartClick)="cartSidenav.toggle()"></app-header>
     }
 
     <main [style.paddingTop]="showHeader ? 'var(--headerHeight)' : '0'">
       <router-outlet></router-outlet>
+      @if (showHeader) {
+        <app-footer></app-footer>
+      }
     </main>
+    
 
   </mat-sidenav-content>
   
 </mat-sidenav-container>
-
-<app-footer></app-footer>
