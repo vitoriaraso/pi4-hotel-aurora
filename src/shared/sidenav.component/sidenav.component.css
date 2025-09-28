@@ -53,6 +53,7 @@
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 25px;
 }
 
@@ -64,6 +65,17 @@
   gap: 10px;
   background-color: var(--white);
   border: 1px solid var(--lightGray);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.25s;

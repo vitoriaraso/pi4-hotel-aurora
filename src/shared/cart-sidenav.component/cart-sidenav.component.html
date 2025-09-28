@@ -3,9 +3,12 @@
   <div class="cart-sidenav-content">
     <div class="cart-sidenav-heading">
       <h3>Carrinho</h3>
-      <mat-divider></mat-divider>
+      <button type="button" class="close" (click)="linkClicked.emit()">
+        <mat-icon>close</mat-icon>
+      </button>      
     </div>
-
+    
+    <mat-divider></mat-divider>
     <!-- lógica do carrinho aqui -->
 
   </div>

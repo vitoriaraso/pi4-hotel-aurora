@@ -1,9 +1,15 @@
 <div id="sidenav">
+
+
   
   <div class="sidenav-login">
     <button class="login">
       <mat-icon>person</mat-icon>
       <p>Entrar</p>
+    </button>
+
+    <button type="button" class="close" (click)="linkClicked.emit()">
+      <mat-icon>close</mat-icon>
     </button>
   </div>
   

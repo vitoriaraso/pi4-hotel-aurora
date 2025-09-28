@@ -12,5 +12,19 @@
 }
 
 .cart-sidenav-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding-left: 10px;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.25s;
 }

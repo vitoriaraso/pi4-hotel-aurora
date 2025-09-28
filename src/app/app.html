@@ -5,7 +5,7 @@
   </mat-sidenav>
 
   <mat-sidenav #cartSidenav mode="over" position="end" [fixedInViewport]="true" class="sidenav">
-    <app-cart-sidenav></app-cart-sidenav>
+    <app-cart-sidenav (linkClicked)="cartSidenav.close()"></app-cart-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content>

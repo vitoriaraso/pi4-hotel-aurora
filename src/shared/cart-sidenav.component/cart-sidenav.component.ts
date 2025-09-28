@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-cart-sidenav',
   standalone: true,
   imports: [
-    MatDividerModule
+    MatDividerModule, 
+    MatIconModule
   ],
   templateUrl: './cart-sidenav.component.html',
   styleUrl: './cart-sidenav.component.css'
 })
 export class CartSidenavComponent {
-
+  @Output() linkClicked = new EventEmitter<void>();
 }
