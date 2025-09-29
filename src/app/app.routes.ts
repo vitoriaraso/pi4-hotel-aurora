@@ -7,6 +7,7 @@ import { Spa } from '../pages/spa/spa';
 import { Events } from '../pages/events/events';
 import { Reservation } from '../pages/reservation/reservation';
 import { Signup } from '../pages/signup/signup';
+import { LoginComponent } from '../pages/login.component/login.component';
 
 export const routes: Routes = [
     {
@@ -39,8 +40,13 @@ export const routes: Routes = [
         component: Reservation
     },
     {
-        path: 'signup',
+        path: 'account/signup',
         component: Signup,
+        data: { showFooter: false }
+    },
+    {
+        path: 'auth/login',
+        component: LoginComponent,
         data: { showFooter: false }
     }
 ];

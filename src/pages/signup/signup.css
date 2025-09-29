@@ -1,36 +1,38 @@
-/* #background {
-    width: 100vw;
-    height: calc(100vh - var(--headerHeight));
+.background {
     background-image: url("../../assets/images/background-signup.jpg");
     background-size: cover;
     background-position: center;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-.organiza {
-    display: flex;
-    flex-direction: row;
-}
-
-#background {
-    /* width: 60vw; */
-    flex: 75%;
-    height: calc(100vh - var(--headerHeight));
-    background-image: url("../../assets/images/background-signup.jpg");
-    background-size: cover;
-    background-position: center;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .container {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    width: 70vw;
+}
+
+#flex1 {
+    flex: 75%;
+    height: calc(100vh - var(--headerHeight) - 60px);
+    /* background-image: url("../../assets/images/background-signup.jpg"); */
+    /* background-size: cover;
+    background-position: center; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    outline: 5px solid var(--almostWhite);
+    outline-offset: -5px;
+}
+
+#flex2 {
     flex: 25%;
     background-color: var(--almostWhite);
-    height: calc(100vh - var(--headerHeight));
+    height: calc(100vh - var(--headerHeight) - 60px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
