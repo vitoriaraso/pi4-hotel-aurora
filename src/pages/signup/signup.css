@@ -1,0 +1,75 @@
+/* #background {
+    width: 100vw;
+    height: calc(100vh - var(--headerHeight));
+    background-image: url("../../assets/images/background-signup.jpg");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+.organiza {
+    display: flex;
+    flex-direction: row;
+}
+
+#background {
+    /* width: 60vw; */
+    flex: 75%;
+    height: calc(100vh - var(--headerHeight));
+    background-image: url("../../assets/images/background-signup.jpg");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    flex: 25%;
+    background-color: var(--almostWhite);
+    height: calc(100vh - var(--headerHeight));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px 65px;
+    width: 40vw;
+    row-gap: 40px;
+}
+
+
+
+.texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+}
+
+.title {
+    font-family: var(--csamerta);
+    color: white;
+    font-size: 65px;
+    font-weight: 500;
+    text-align: right;
+    line-height: 1;
+    text-shadow: 0px 0px 15px var(--darkBrown);
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex;
+    row-gap: 10px;
+}

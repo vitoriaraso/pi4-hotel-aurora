@@ -6,41 +6,41 @@ import { ConferenceRoom } from '../pages/conference-room/conference-room';
 import { Spa } from '../pages/spa/spa';
 import { Events } from '../pages/events/events';
 import { Reservation } from '../pages/reservation/reservation';
+import { Signup } from '../pages/signup/signup';
 
 export const routes: Routes = [
     {
         path: '',
         component: HeroSection,
-        data: { showHeader: false }
+        data: { showHeader: false, showFooter: false }
     },
     {
         path: 'home',
-        component: Home,
-        data: { showHeader: true }
+        component: Home
     },
     {
         path: 'app-rooms',
-        component: Rooms,
-        data: { showHeader: true }
+        component: Rooms
     },
     {
         path: 'app-conference-room',
-        component: ConferenceRoom,
-        data: { showHeader: true }
+        component: ConferenceRoom
     },
     {
         path: 'app-spa',
-        component: Spa,
-        data: { showHeader: true }
+        component: Spa
     },
     {
         path: 'app-events',
-        component: Events,
-        data: { showHeader: true }
+        component: Events
     },
     {
         path: 'app-reservation',
-        component: Reservation,
-        data: { showHeader: true }
+        component: Reservation
+    },
+    {
+        path: 'signup',
+        component: Signup,
+        data: { showFooter: false }
     }
 ];

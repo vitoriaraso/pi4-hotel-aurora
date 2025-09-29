@@ -57,7 +57,11 @@
   padding: 25px;
 }
 
-.login {
+.sidenav-login a {
+  text-decoration: none;
+}
+
+/* .login {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,17 +69,6 @@
   gap: 10px;
   background-color: var(--white);
   border: 1px solid var(--lightGray);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: 0;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.25s;
@@ -89,4 +82,15 @@
 
 .login:hover {
   background-color: var(--almostWhite);
+} */
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.25s;
 }

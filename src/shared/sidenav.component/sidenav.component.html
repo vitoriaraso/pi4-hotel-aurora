@@ -3,10 +3,11 @@
 
   
   <div class="sidenav-login">
-    <button class="login">
-      <mat-icon>person</mat-icon>
-      <p>Entrar</p>
-    </button>
+    <a routerLink="/signup"
+    (click)="linkClicked.emit()">
+      <app-button label="Entrar" icon="person">
+      </app-button>
+    </a>
 
     <button type="button" class="close" (click)="linkClicked.emit()">
       <mat-icon>close</mat-icon>

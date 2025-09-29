@@ -46,6 +46,14 @@
     --almostWhite: #faf7f2;
 
     --componentOdd: #fcf9f5;
+
+
+
+
+    --csamerta: 'csamerta-regular';
+    --montreall: 'montreal-light';
+    --montrealr: 'montreal-regular';
+    --montrealt: 'montreal-thin';
 }
 
 body::-webkit-scrollbar {

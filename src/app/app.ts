@@ -27,6 +27,7 @@ import { FooterComponent } from '../shared/footer.component/footer.component';
 })
 export class App {
   showHeader: boolean = true;
+  showFooter: boolean = true;
 
   // Documentação: Injetamos o serviço de Roteamento (Router) e a Rota Ativa (ActivatedRoute)
   // para podermos "ouvir" e "inspecionar" as navegações.
@@ -54,7 +55,10 @@ export class App {
       // Finalmente, atualizamos nossa variável 'showHeader' com o valor
       // que definimos no arquivo de rotas.
       this.showHeader = data['showHeader'] ?? true; // Usa 'true' como padrão
+      this.showFooter = data['showFooter'] ?? true; // Usa 'true' como padrão
     });
   }
+
+
   
 }

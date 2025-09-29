@@ -16,7 +16,7 @@
 
     <main [style.paddingTop]="showHeader ? 'var(--headerHeight)' : '0'">
       <router-outlet></router-outlet>
-      @if (showHeader) {
+      @if (showFooter) {
         <app-footer></app-footer>
       }
     </main>

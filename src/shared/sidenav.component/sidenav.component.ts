@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { ButtonComponent } from '../button.component/button.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterLink, 
     MatListModule, 
     MatDividerModule, 
-    MatIconModule
+    MatIconModule,
+    ButtonComponent
   ],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
