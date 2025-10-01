@@ -2,30 +2,32 @@
 
 <div class="background">
     
-<div class="container">
-    <div id="flex1">
-    <div class="title">
-        Sua jornada<br>começa aqui
-    </div>
-</div>
-    <div id="flex2">
-        <div class="texts">
-            <div class="subtitle">
-                Faça login ou crie uma conta.
+    <div class="container">
+        
+        <div id="flex1">
+            <div class="title">
+                Sua jornada<br>começa aqui
             </div>
         </div>
 
-        <div class="buttons">
-            <a routerLink="/auth/login" 
-            (click)="linkClicked.emit()">
-                <app-button label="Entrar">
-                </app-button>
-            </a>
+        <div id="flex2">
+            <div class="texts">
+                <div class="subtitle">
+                    Faça login ou crie uma conta.
+                </div>
+            </div>
 
-            <!-- fazer o registrar-se -->
-            <app-button label="Criar uma conta"></app-button>   
+            <div class="buttons">
+                <a routerLink="/auth/login" 
+                (click)="linkClicked.emit()">
+                    <app-button label="Entrar">
+                    </app-button>
+                </a>
+
+                <!-- fazer o registrar-se -->
+                <app-button label="Criar uma conta"></app-button>   
+            </div>
         </div>
     </div>
-</div>
 
 </div>

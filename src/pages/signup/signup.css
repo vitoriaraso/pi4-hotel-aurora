@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: calc(100vh - var(--headerHeight));
 }
 
 .container {
@@ -16,10 +17,7 @@
 
 #flex1 {
     flex: 75%;
-    height: calc(100vh - var(--headerHeight) - 60px);
-    /* background-image: url("../../assets/images/background-signup.jpg"); */
-    /* background-size: cover;
-    background-position: center; */
+    height: calc(100vh - var(--headerHeight) - 100px);
 
     display: flex;
     align-items: center;
@@ -32,7 +30,7 @@
 #flex2 {
     flex: 25%;
     background-color: var(--almostWhite);
-    height: calc(100vh - var(--headerHeight) - 60px);
+    height: calc(100vh - var(--headerHeight) - 100px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -74,4 +72,8 @@
     align-items: flex-start;
     justify-content: flex;
     row-gap: 10px;
+}
+
+.buttons a {
+    text-decoration: none;
 }
