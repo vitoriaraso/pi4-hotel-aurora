@@ -25,7 +25,11 @@
                 </a>
 
                 <!-- fazer o registrar-se -->
-                <app-button label="Criar uma conta"></app-button>   
+                 <a routerLink="/account/register"
+                 (click)="linkClicked.emit()">
+                    <app-button label="Criar uma conta">
+                    </app-button>   
+                 </a>
             </div>
         </div>
     </div>

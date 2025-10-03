@@ -1,0 +1,45 @@
+.background {
+    background-image: url("../../assets/images/background-signup.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    padding: 30px;
+    width: 30vw;
+    align-items: center;
+    height: calc(100vh - var(--headerHeight) - 60px);
+}
+
+#container-login {
+    gap: 14px;
+    flex: 75%;
+    height: 400px;
+    outline-offset: -5px;
+    outline: 5px solid var(--almostWhite);
+    background-color: var(--almostWhite);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#input-email,
+#input-password {
+    width: 50%;
+}
+
+#links {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}

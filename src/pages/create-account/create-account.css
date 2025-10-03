@@ -1,0 +1,71 @@
+.background {
+    background-image: url("../../assets/images/background-signup.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    padding: 30px;
+    width: 40vw;
+    align-items: center;
+    height: calc(100vh - var(--headerHeight) - 60px);
+}
+
+#container-buttons {
+    gap: 14px;
+    flex: 75%;
+    height: 400px;
+    outline-offset: -5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--almostWhite);
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.buttons {
+    gap: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.area-button {
+    text-align: center;
+}
+
+.circle-btn {
+    border: none;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.circle-btn:hover {
+    transform: scale(1.10);
+}
+
+.circle-btn img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
+
+.label {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}

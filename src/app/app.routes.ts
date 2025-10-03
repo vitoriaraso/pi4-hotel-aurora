@@ -8,6 +8,7 @@ import { Events } from '../pages/events/events';
 import { Reservation } from '../pages/reservation/reservation';
 import { Signup } from '../pages/signup/signup';
 import { LoginComponent } from '../pages/login.component/login.component';
+import { CreateAccount } from '../pages/create-account/create-account';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,11 @@ export const routes: Routes = [
     {
         path: 'auth/login',
         component: LoginComponent,
+        data: { showFooter: false }
+    },
+    {
+        path: 'account/register',
+        component: CreateAccount,
         data: { showFooter: false }
     }
 ];
