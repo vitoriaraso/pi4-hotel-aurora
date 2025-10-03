@@ -1,0 +1,51 @@
+<div id="background">
+    <div class="sidebar">
+        <div class="links">
+            <a href="">
+                Dados pessoais
+            </a>
+            <a href="">
+                Histórico de reservas
+            </a>
+        </div>
+    </div>
+    <div class="container">
+
+
+        <div class="personal-info">
+            <div class="name-and-edit">
+                <div class="name">
+                    <input type="text" id="name" placeholder="{{ name }}" readonly>
+                </div>
+                <div class="edit-button">
+                    <app-button label="Editar" icon="settings" />
+                </div>
+            </div>
+            <div class="tel-and-email">
+                <div class="tel">
+                    {{ tel }}
+                </div>
+                <div class="email">
+                    {{ email }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="address-info">
+            <div class="address-and-edit">
+                <div class="address-label">
+                    <h1>Endereço</h1>
+                </div>
+                <div class="edit-button">
+                    <app-button label="Editar" icon="settings" />
+                </div>
+            </div>
+            <div class="address">
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

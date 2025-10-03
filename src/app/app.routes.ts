@@ -9,6 +9,7 @@ import { Reservation } from '../pages/reservation/reservation';
 import { Signup } from '../pages/signup/signup';
 import { LoginComponent } from '../pages/login.component/login.component';
 import { CreateAccount } from '../pages/create-account/create-account';
+import { AccountComponent } from '../pages/account.component/account.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +54,11 @@ export const routes: Routes = [
     {
         path: 'account/register',
         component: CreateAccount,
+        data: { showFooter: false }
+    },
+    {
+        path: 'account',
+        component: AccountComponent,
         data: { showFooter: false }
     }
 ];
