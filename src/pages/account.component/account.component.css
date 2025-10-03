@@ -1,0 +1,105 @@
+#background {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    display: flex;
+    flex: 25%;
+    height: calc(100vh - var(--headerHeight));
+    background-color: var(--almostWhite);
+    justify-content: center;
+}
+
+.sidebar .links {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 50px 0;
+}
+
+.sidebar .links a {
+    text-decoration: none;
+    line-height: 2;
+    font-size: 1.25em;
+    color: var(--mediumGray);
+    font-weight: 400;
+    transition: 0.75s;
+}
+
+.sidebar .links a:hover {
+    color: var(--darkBrown)
+}
+
+.container {
+    flex: 75%;
+    height: calc(100vh - var(--headerHeight));
+    background-color: var(--white);
+}
+
+.container .infos {
+    width: 75%;
+    padding: 25px 100px;
+}
+
+.container .infos input, 
+.container .infos select {
+    font-family: inherit;
+    font-size: 14px;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 4px 0;
+    width: auto;
+    min-width: 220px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.personal-info .name-and-edit, 
+.address-info .address-and-edit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.personal-info .name-and-edit #name {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.personal-info .tel-and-email > div,
+.address-info .address-elements > div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.address-info .address-elements .cep,
+.address-info .address-elements .logradouro,
+.address-info .address-elements .numero,
+.address-info .address-elements .complemento,
+.address-info .address-elements .bairro,
+.address-info .address-elements .localidade,
+.address-info .address-elements .uf {
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-info .tel-and-email > div > label,
+.address-info .address-elements > div > label,
+.address-info .address-elements .two-inputs-one-row label {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.address-info .address-elements .two-inputs-one-row {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-between;
+}
