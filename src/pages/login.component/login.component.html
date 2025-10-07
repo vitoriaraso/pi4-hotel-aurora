@@ -2,44 +2,29 @@
     <div class="container">
         <div id="container-login">
 
-            <!-- Input E-mail -->
-            <mat-form-field id="input-email">
-                <mat-label>E-mail</mat-label>
-                <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                    placeholder="Ex. maria123@gmail.com">
-                <mat-hint></mat-hint>
+            <h1>Login</h1>
 
-                @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-                <mat-error>Endereço de e-mail inválido</mat-error>
-                }
-                @if (emailFormControl.hasError('required')) {
-                <mat-error>E-mail é <strong>Obrigatório</strong></mat-error>
-                }
-            </mat-form-field>
+            <div class="content">
+                <label for="email">E-mail</label>
+                <app-input-text id="email" type="text" name="email"></app-input-text>
+            </div>
 
-            <!-- Input Password -->
-            <mat-form-field id="input-password">
-                <mat-label>Senha</mat-label>
-                <input matInput [type]="hide() ? 'password' : 'text'" />
-                <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide()">
-                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
+            <div class="content">
+                <label for="password">Senha</label>
+                <app-input-text id="password" type="password" name="password"></app-input-text>
+            </div>
 
             <!-- Button -->
             <app-button label="Entrar"></app-button>
 
-            <div id="links">
-                <!-- Se clicar em "Esqueceu sua senha" redireciona para uma página para alterar a senha -->
-                <a href="#">Esqueceu sua senha ?</a>
+            <div class="links">
+                <a routerLink="/forgot/password">Esqueceu sua senha ?</a>
 
-                <!-- Se clicar no "Cadastre-se" redireciona para uma página para realizar cadastro -->
-                <a routerLink="/account/register"
-                (click)="linkClicked.emit()">
+                <a routerLink="/account/register" (click)="linkClicked.emit()">
                     Criar uma conta
                 </a>
             </div>
+
         </div>
     </div>
 </div>

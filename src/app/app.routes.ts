@@ -8,8 +8,11 @@ import { Events } from '../pages/events/events';
 import { Reservation } from '../pages/reservation/reservation';
 import { Signup } from '../pages/signup/signup';
 import { LoginComponent } from '../pages/login.component/login.component';
-import { CreateAccount } from '../pages/create-account/create-account';
+import { CreateAccount } from '../pages/choose-registration/create-account';
 import { AccountComponent } from '../pages/account.component/account.component';
+import { CreateAccountPJ } from '../pages/create-account-pj/create-account-pj';
+import { CreateAccountPF } from '../pages/create-account-pf/create-account-pf';
+import { ForgotPassword } from '../pages/forgot-password/forgot-password';
 
 export const routes: Routes = [
     {
@@ -59,6 +62,21 @@ export const routes: Routes = [
     {
         path: 'account',
         component: AccountComponent,
+        data: { showFooter: false }
+    },
+    {
+        path: 'account/register/pj',
+        component: CreateAccountPJ,
+        data: { showFooter: false }
+    },
+    {
+        path: 'account/register/pf',
+        component: CreateAccountPF,
+        data: { showFooter: false }
+    },
+    {
+        path: 'forgot/password',
+        component: ForgotPassword,
         data: { showFooter: false }
     }
 ];
