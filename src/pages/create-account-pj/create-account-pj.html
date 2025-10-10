@@ -1,0 +1,68 @@
+<div class="background">
+    <div class="container">
+
+        <h1>Criar uma conta</h1>
+
+        <form id="formPJ">
+            <h2>1. Identificação Inicial</h2>
+
+            <div class="group-item">
+                <label for="companyName">Razão social</label>
+                <app-input-text id="companyName" type="text" name="companyName"></app-input-text>
+            </div>
+
+            <div class="group-address">
+                <div class="group-item">
+                    <label for="cnpj">CNPJ</label>
+                    <app-input-text id="cnpj" type="text" name="cnpj"></app-input-text>
+                </div>
+
+                <div class="group-item">
+                    <label for="cnpj">Endereço</label>
+                    <app-input-text id="address" type="text" name="address"></app-input-text>
+                </div>
+            </div>
+
+            <div class="group-email">
+                <div class="group-item">
+                    <label for="email">E-mail</label>
+                    <app-input-text id="email" type="email" name="email"></app-input-text>
+                </div>
+
+                <div class="group-item">
+                    <label for="confirmarEmail">Telefone</label>
+                    <app-input-text id="telefone" type="text" name="telefone"></app-input-text>
+                </div>
+            </div>
+
+            <div class="group-password">
+                <div class="group-item">
+                    <label for="password">Senha</label>
+                    <app-input-text id="password" type="password" name="password"></app-input-text>
+                </div>
+
+                <div class="group-item">
+                    <label for="confirmPassword">Confirme sua senha</label>
+                    <app-input-text id="confirmPassword" type="password" name="confirmPassword"></app-input-text>
+                </div>
+            </div>
+
+            <div class="passwordRules">
+                <small>
+                    Deve conter ao menos 1 letra maiúscula (A-Z).<br>
+                    Deve conter ao menos 1 letra minúscula (a-z).<br>
+                    Deve conter ao menos 1 número (0-9).<br>
+                    Deve conter ao menos 1 caractere especial.
+                </small>
+            </div>
+
+            <div class="buttons">
+                <a routerLink="/account/register">
+                    <app-button label="Voltar"></app-button>
+                </a>
+
+                <app-button label="Finalizar"></app-button>
+            </div>
+        </form>
+    </div>
+</div>
