@@ -1,71 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { ClienteService, ClienteResponseDTO, ClienteUpdateRequest } from '../../app/services/cliente.service';
+
 import { ButtonComponent } from '../../shared/button.component/button.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-account.component',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [
+    CommonModule,
+    ButtonComponent,
+    MatIconModule,
+    FormsModule
+  ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
-export class AccountComponent {
-  name: string = "Zezinho Balboa";
-  tel: string = "(00) 0000-0000";
-  email: string = "zezinho@corp.ze";
+export class AccountComponent implements OnInit {
+  cliente?: ClienteResponseDTO;
 
-  cep: string = "000000";
-  logradouro: string = "000000";
-  numero: string = "000000";
-  complemento: string = "000000";
-  bairro: string = "Selecione";
-  localidade: string = "000000";
-  uf: string = "000000";
+  // variáveis para controlar o modo de edição
+  isEditing = false;
+  editButtonLabel = 'Editar';
+  icon = 'edit';
 
-  personalInfoButtonLabel: string = 'Editar';
-  isPersonalInfoEditing: boolean = false;
+  // injetando o ClienteService
+  private clienteService = inject(ClienteService);
 
-  addressInfoButtonLabel: string = 'Editar';
-  isAddressInfoEditing: boolean = false;
-
-  togglePersonalInfo() {
-    const personalInfoInputs = document.querySelectorAll<HTMLInputElement>('.personal-info-input');
-
-    if (!this.isPersonalInfoEditing) {
-      personalInfoInputs.forEach(input => input.removeAttribute('readonly'));
-      personalInfoInputs[0]?.focus();
-    } else {
-      personalInfoInputs.forEach(input => input.setAttribute('readonly', 'true'));
-
-      const updatedData: Record<string, string> = {};
-      personalInfoInputs.forEach(input => {
-        updatedData[input.id] = input.value;
-      });
-      console.log('Dados atualizados:', updatedData);
-    }
-
-    this.isPersonalInfoEditing = !this.isPersonalInfoEditing;
-    this.personalInfoButtonLabel = this.isPersonalInfoEditing ? 'Salvar' : 'Editar';
+  ngOnInit() {
+    this.carregarDadosDoCliente();
   }
 
-  toggleAddressInfo() {
-    const addressInfoInputs = document.querySelectorAll<HTMLInputElement>('.address-info-input');
+  private carregarDadosDoCliente() {
+    // TODO: pegar id do login
+    const clienteId = 1;
+    console.log(`Get cliente com id: ${clienteId}`);
 
-    if (!this.isAddressInfoEditing) {
-      addressInfoInputs.forEach(input => input.removeAttribute('readonly'));
-      addressInfoInputs[0]?.focus();
-    } else {
-      addressInfoInputs.forEach(input => input.setAttribute('readonly', 'true'));
-
-      const updatedData: Record<string, string> = {};
-      addressInfoInputs.forEach(input => {
-        updatedData[input.id] = input.value;
-      });
-      console.log('Dados atualizados:', updatedData);
-    }
-
-    this.isAddressInfoEditing = !this.isAddressInfoEditing;
-    this.addressInfoButtonLabel = this.isAddressInfoEditing ? 'Salvar' : 'Editar';
+    // "subscribe" -> escuta a resposta da API
+    this.clienteService.getClienteById(clienteId).subscribe({
+      // "next" -> executado quando a API responde com sucesso
+      next: (dados) => {
+        // TODO: respostas da API, 200, 409 etc os caraio q o erick implementou meu deus af
+        this.cliente = dados;
+        console.log('Dados do cliente recebidos:', this.cliente);
+      },
+      // "error" -> se ocorrer algum problema na chamada
+      error: (erro) => {
+        console.error('Ocorreu um erro ao buscar os dados do cliente:', erro);
+      }
+    });
   }
-  
-  
+
+  toggleInfoEdit(): void {
+    this.isEditing = !this.isEditing;
+    this.editButtonLabel = this.isEditing ? 'Salvar' : 'Editar';
+    this.icon = this.isEditing ? 'save' : 'edit';
+
+    if (!this.isEditing && this.cliente) {
+      // TODO: botar o PUT aqui quando o usuário clicar em salvar
+    }
+  }
 }

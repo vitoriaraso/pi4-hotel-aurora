@@ -1,126 +1,113 @@
 <div id="background">
-
-    <div class="sidebar">
-        <div class="links">
-            <a href="">
-                Dados pessoais
-            </a>
-            <!-- implementar esse rolê -->
-            <a href="">
-                Histórico de reservas
-            </a>
-            <!-- implementar esse rolê -->
-        </div>
+  <div class="sidebar">
+    <div class="links">
+      <a href="">Dados pessoais</a>
+      <a href="">Histórico de reservas</a>
     </div>
+  </div>
 
+  <div class="container">
 
-
-    <div class="container">
-
-
-        <div class="infos">
-
-            <div class="personal-info">
-                <div class="name-and-edit">
-                    <div class="name">
-                        <input type="text" id="name" value="{{ name }}" class="personal-info-input" readonly>
-                    </div>
-                    <div class="edit-button">
-                        <app-button id="personal-info-edit-save-btn" [label]="personalInfoButtonLabel" (click)="togglePersonalInfo()" icon="settings" />
-                    </div>
-                </div>
-                <div class="tel-and-email">
-                    <div class="pf-tel">
-                        <label for="pf-tel">Telefone</label>
-                        <input type="text" id="pf-tel" name="pf-tel" value="{{ tel }}" class="personal-info-input" readonly>
-                    </div>
-                    <div class="email">
-                        <label for="pf-email">E-mail</label>
-                        <input type="text" id="pf-email" name="pf-email" value="{{ email }}" class="personal-info-input" readonly>
-                    </div>
-                </div>
+    @if (cliente) {
+      <div class="infos">
+        <div class="personal-info">
+          <div class="name-and-edit">
+            <div class="name">
+              <input type="text" id="name" [(ngModel)]="cliente.nome" class="user-info" [readonly]="!isEditing" required>
+              <mat-icon class="edit-icon" [style.display]="isEditing ? 'inline' : 'none'">edit</mat-icon>
             </div>
-
-
-            <div class="address-info">
-                <div class="address-and-edit">
-                    <div class="address-label">
-                        <h1>Endereço</h1>
-                    </div>
-                    <div class="edit-button">
-                        <app-button id="address-info-edit-save-btn" [label]="addressInfoButtonLabel" (click)="toggleAddressInfo()" icon="settings" />
-                    </div>
-                </div>
-                <div class="address-elements">
-                    <div class="cep">
-                        <label for="cep">CEP</label>
-                        <input type="text" id="cep" name="cep" value="{{ cep }}" readonly>
-                    </div>
-                    <div class="two-inputs-one-row">
-                        <div class="logradouro">
-                            <label for="logradouro">Logradouro</label>
-                            <input type="text" id="logradouro" name="logradouro" value="{{ logradouro }}" readonly>
-                        </div>
-                        <div class="numero">
-                            <label for="numero">Número</label>
-                            <input type="text" id="numero" name="numero" value="{{ numero }}" readonly>
-                        </div>
-                    </div>
-                    <div class="two-inputs-one-row">
-                        <div class="complemento">
-                            <label for="complemento">Complemento</label>
-                            <input type="text" id="complemento" name="complemento" value="{{ complemento }}" readonly>
-                        </div>
-                        <div class="bairro">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" id="bairro" name="bairro" value="{{ bairro }}" readonly>
-                        </div>
-                    </div>
-                    <div class="two-inputs-one-row">
-                        <div class="localidade">
-                            <label for="localidade">Localidade</label>
-                            <input type="text" id="localidade" name="localidade" value="{{ localidade }}" readonly>
-                        </div>
-                        <div class="uf">
-                            <label for="uf">Estado (UF)</label>
-                            <select id="uf" name="uf">
-                            <option value="">Selecione</option>
-                            <option value="AC">Acre (AC)</option>
-                            <option value="AL">Alagoas (AL)</option>
-                            <option value="AP">Amapá (AP)</option>
-                            <option value="AM">Amazonas (AM)</option>
-                            <option value="BA">Bahia (BA)</option>
-                            <option value="CE">Ceará (CE)</option>
-                            <option value="DF">Distrito Federal (DF)</option>
-                            <option value="ES">Espírito Santo (ES)</option>
-                            <option value="GO">Goiás (GO)</option>
-                            <option value="MA">Maranhão (MA)</option>
-                            <option value="MT">Mato Grosso (MT)</option>
-                            <option value="MS">Mato Grosso do Sul (MS)</option>
-                            <option value="MG">Minas Gerais (MG)</option>
-                            <option value="PA">Pará (PA)</option>
-                            <option value="PB">Paraíba (PB)</option>
-                            <option value="PR">Paraná (PR)</option>
-                            <option value="PE">Pernambuco (PE)</option>
-                            <option value="PI">Piauí (PI)</option>
-                            <option value="RJ">Rio de Janeiro (RJ)</option>
-                            <option value="RN">Rio Grande do Norte (RN)</option>
-                            <option value="RS">Rio Grande do Sul (RS)</option>
-                            <option value="RO">Rondônia (RO)</option>
-                            <option value="RR">Roraima (RR)</option>
-                            <option value="SC">Santa Catarina (SC)</option>
-                            <option value="SP">São Paulo (SP)</option>
-                            <option value="SE">Sergipe (SE)</option>
-                            <option value="TO">Tocantins (TO)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
+            <div class="edit-button">
+              <app-button id="personal-info-edit-save-btn" [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" />
             </div>
-
+          </div>
+          <div class="tel-and-email">
+            <div class="tel">
+              <label for="tel">Telefone
+                <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
+              </label>
+              <input type="text" id="tel" name="tel" class="user-info" [(ngModel)]="cliente.telefone" [readonly]="!isEditing" required />
+            </div>
+            <div class="email">
+              <label for="email">E-mail <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+              <input type="text" id="email" name="email" class="user-info" [(ngModel)]="cliente.email" [readonly]="!isEditing" required>
+            </div>
+          </div>
         </div>
 
+        <div class="address-info">
+          <div class="address-and-edit">
+            <div class="address-label">
+              <h1>Endereço</h1>
+            </div>
+          </div>
+          <div class="address-elements">
+            <div class="cep">
+              <label for="cep">CEP <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+              <input type="text" id="cep" name="cep" class="user-info" [(ngModel)]="cliente.cep" [readonly]="!isEditing" required>
+            </div>
+            <div class="two-inputs-one-row">
+              <div class="logradouro">
+                <label for="logradouro">Logradouro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input type="text" id="logradouro" name="logradouro" [(ngModel)]="cliente.logradouro" readonly required>
+              </div>
+              <div class="numero">
+                <label for="numero">Número <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input type="text" id="numero" name="numero" class="user-info" [(ngModel)]="cliente.numero" [readonly]="!isEditing" required>
+              </div>
+            </div>
+            <div class="two-inputs-one-row">
+              <div class="complemento">
+                <label for="complemento">Complemento <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input type="text" id="complemento" name="complemento" class="user-info" [(ngModel)]="cliente.complemento" [readonly]="!isEditing">
+              </div>
+              <div class="bairro">
+                <label for="bairro">Bairro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input type="text" id="bairro" name="bairro" [(ngModel)]="cliente.bairro" readonly required>
+              </div>
+            </div>
+            <div class="two-inputs-one-row">
+              <div class="localidade">
+                <label for="localidade">Localidade <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input type="text" id="localidade" name="localidade" [(ngModel)]="cliente.localidade" readonly required>
+              </div>
+              <div class="uf">
+                <label for="uf">Estado (UF) <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <select id="uf" name="uf" required [(ngModel)]="cliente.uf" [disabled]="!isEditing">
+                  <option value="">Selecione</option>
+                  <option value="AC">Acre (AC)</option>
+                  <option value="AL">Alagoas (AL)</option>
+                  <option value="AP">Amapá (AP)</option>
+                  <option value="AM">Amazonas (AM)</option>
+                  <option value="BA">Bahia (BA)</option>
+                  <option value="CE">Ceará (CE)</option>
+                  <option value="DF">Distrito Federal (DF)</option>
+                  <option value="ES">Espírito Santo (ES)</option>
+                  <option value="GO">Goiás (GO)</option>
+                  <option value="MA">Maranhão (MA)</option>
+                  <option value="MT">Mato Grosso (MT)</option>
+                  <option value="MS">Mato Grosso do Sul (MS)</option>
+                  <option value="MG">Minas Gerais (MG)</option>
+                  <option value="PA">Pará (PA)</option>
+                  <option value="PB">Paraíba (PB)</option>
+                  <option value="PR">Paraná (PR)</option>
+                  <option value="PE">Pernambuco (PE)</option>
+                  <option value="PI">Piauí (PI)</option>
+                  <option value="RJ">Rio de Janeiro (RJ)</option>
+                  <option value="RN">Rio Grande do Norte (RN)</option>
+                  <option value="RS">Rio Grande do Sul (RS)</option>
+                  <option value="RO">Rondônia (RO)</option>
+                  <option value="RR">Roraima (RR)</option>
+                  <option value="SC">Santa Catarina (SC)</option>
+                  <option value="SP">São Paulo (SP)</option>
+                  <option value="SE">Sergipe (SE)</option>
+                  <option value="TO">Tocantins (TO)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
 
-    </div>
+  </div>
 </div>
