@@ -2,13 +2,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { ClienteService, ClienteResponseDTO, ClienteUpdateRequest } from '../../app/services/cliente.service';
+import { ClienteService, ClienteResponseDTO, ClienteUpdateRequest, TipoCliente } from '../../app/services/cliente.service';
 
 import { ButtonComponent } from '../../shared/button.component/button.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-account.component',
+  selector: 'app-account',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,7 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AccountComponent implements OnInit {
   cliente?: ClienteResponseDTO;
-
   // variáveis para controlar o modo de edição
   isEditing = false;
   editButtonLabel = 'Editar';
@@ -56,11 +55,49 @@ export class AccountComponent implements OnInit {
 
   toggleInfoEdit(): void {
     this.isEditing = !this.isEditing;
-    this.editButtonLabel = this.isEditing ? 'Salvar' : 'Editar';
-    this.icon = this.isEditing ? 'save' : 'edit';
 
     if (!this.isEditing && this.cliente) {
-      // TODO: botar o PUT aqui quando o usuário clicar em salvar
+      this.atualizarDadosDoCliente();
+    } else {
+      this.atualizarEstadoDoBotao();
     }
+  }
+
+  private atualizarDadosDoCliente(): void {
+    if (!this.cliente) {
+      console.error("Dados do cliente não carregados");
+      return;
+    }
+
+    const updateRequest: ClienteUpdateRequest = {
+      nome: this.cliente.nome,
+      email: this.cliente.email,
+      telefone: this.cliente.telefone,
+      cep: this.cliente.cep,
+      logradouro: this.cliente.logradouro,
+      numero: this.cliente.numero,
+      complemento: this.cliente.complemento || '',
+      bairro: this.cliente.bairro,
+      localidade: this.cliente.localidade,
+      uf: this.cliente.uf
+    };
+
+    // chama o serviço com os parâmetros necessários
+    this.clienteService.atualizarCliente(this.cliente.id, this.cliente.tipoCliente, updateRequest)
+      .subscribe({
+        next: () => {
+          console.log('Cliente atualizado com sucesso!');
+          this.atualizarEstadoDoBotao();
+        },
+        error: (erro) => {
+          console.error('Falha ao atualizar o cliente:', erro);
+          this.isEditing = true;
+        }
+      });
+  }
+
+  private atualizarEstadoDoBotao(): void {
+    this.editButtonLabel = this.isEditing ? 'Salvar' : 'Editar';
+    this.icon = this.isEditing ? 'save' : 'edit';
   }
 }

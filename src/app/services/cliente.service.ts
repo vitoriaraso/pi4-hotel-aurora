@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export enum TipoCliente {
-  FISICO = 'FISICO',
-  JURIDICO = 'JURIDICO'
+  FISICO = 'fisico',
+  JURIDICO = 'juridico'
 }
 
 export interface ReservaResumoDTO {
@@ -16,6 +16,36 @@ export interface ClienteResumoDTO {
   id: number;
   nome: string;
   email: string;
+}
+
+export interface ClienteFisicoRequest {
+  nome: string;
+  email: string;
+  telefone: string;
+  senha: string;
+  cpf: string;
+  cep: string;
+  logradouro: string;
+  numero: string;
+  complemento?: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+}
+
+export interface ClienteJuridicoRequest {
+  nome: string;
+  email: string;
+  telefone: string;
+  senha: string;
+  cnpj: string;
+  cep: string;
+  logradouro: string;
+  numero: string;
+  complemento?: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
 }
 
 export interface ClienteResponseDTO {
@@ -59,31 +89,36 @@ export class ClienteService {
 
   constructor() {  }
 
-  /**
-   * Atualiza os dados do cliente físico
-   *
-   * @param id ID do cliente
-   */
-  atualizarCliente(id: number, clienteData: ClienteUpdateRequest): Observable<void> {
-    const url = `${this.apiUrl}/fisico/${id}`;
+  // POST
+  cadastrarClienteFisico(clienteData: ClienteFisicoRequest): Observable<void> {
+    const url = `${this.apiUrl}/fisico`;
+    return this.http.post<void>(url, clienteData);
+  }
+
+  cadastrarClienteJuridico(clienteData: ClienteJuridicoRequest): Observable<void> {
+    const url = `${this.apiUrl}/juridico`;
+    return this.http.post<void>(url, clienteData);
+  }
+
+
+
+  // PUT
+  atualizarCliente(id: number, tipoCliente: TipoCliente, clienteData: ClienteUpdateRequest): Observable<void> {
+    const endpoint = tipoCliente === TipoCliente.FISICO ? 'fisico' : 'juridico';
+    const url = `${this.apiUrl}/${endpoint}/${id}`;
+
+    console.log(`Enviando requisição PUT para ${url}`, clienteData);
+
     return this.http.put<void>(url, clienteData);
   }
 
-  /**
-   * Lista todos os clientes
-   *
-   * @return Lista de clientes
-   */
+
+
+  // GET
   getClientes(): Observable<ClienteResponseDTO[]> {
     return this.http.get<ClienteResponseDTO[]>(this.apiUrl);
   }
 
-  /**
-   * Lista o cliente conforme id
-   *
-   * @param id ID do cliente, físico ou jurídico
-   * @return json do cliente
-   */
   getClienteById(id: number): Observable<ClienteResponseDTO> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<ClienteResponseDTO>(url);
