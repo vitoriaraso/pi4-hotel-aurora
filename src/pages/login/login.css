@@ -1,27 +1,37 @@
 .background {
     display: flex;
+    align-items: center;
     justify-content: center;
-    background-color: #809671;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../assets/images/background-signup.jpg");
+    height: calc(100vh - var(--headerHeight));
 }
 
 .container {
-    width: 30vw;
+    width: auto;
+    height: auto;
+    padding: 10px;
     display: flex;
-    padding: 30px;
     align-items: center;
-    height: calc(100vh - var(--headerHeight) - 60px);
+    justify-content: center;
 }
 
-#container-login {
-    flex: 75%;
-    gap: 15px;
-    height: 400px;
+.form_login {
+    gap: 20px;
+    width: 300px;
+    height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-    background-color: white;
     border-radius: 20px;
+    background-color: white;
+    padding: 20px 20px 5px 20px;
+}
+
+h1 {
+    color: black;
+    text-align: center;
 }
 
 .content {
@@ -30,13 +40,9 @@
     flex-direction: column;
 }
 
-h1 {
-    color: black;
-}
-
 label {
     color: black;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .links {
@@ -44,6 +50,7 @@ label {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 a {

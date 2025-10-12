@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-create-account',
+  selector: 'app-choose-registration',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './create-account.html',
-  styleUrl: './create-account.css'
+  templateUrl: './choose-registration.html',
+  styleUrl: './choose-registration.css'
 })
 export class CreateAccount {
 
