@@ -9,8 +9,8 @@ import { InputTextComponent } from '../../shared/input-text.component/input-text
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, MatInputModule, ReactiveFormsModule, ButtonComponent, RouterLink, InputTextComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './login.html',
+  styleUrl: './login.css'
 })
 export class LoginComponent {
   @Output() linkClicked = new EventEmitter<void>();
