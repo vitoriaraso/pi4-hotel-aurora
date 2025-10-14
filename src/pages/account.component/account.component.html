@@ -5,108 +5,149 @@
       <a href="">Histórico de reservas</a>
     </div>
   </div>
-
+  <!-- <app-invalid-field [text]="`Campo inválido`"></app-invalid-field> -->
   <div class="container">
 
     @if (cliente) {
-      <div class="infos">
-        <div class="personal-info">
-          <div class="name-and-edit">
-            <div class="name">
-              <input type="text" id="name" [(ngModel)]="cliente.nome" class="user-info" [readonly]="!isEditing" required>
-              <mat-icon class="edit-icon" [style.display]="isEditing ? 'inline' : 'none'">edit</mat-icon>
+      <form [formGroup]="formulario">
+        <div class="infos">
+          <div class="personal-info">
+            <div class="name-and-edit">
+              <div class="name">
+                <input formControlName="nome" type="text" name="nome" id="name" class="user-info" required>
+                <mat-icon class="edit-icon" [style.display]="isEditing ? 'inline' : 'none'">edit</mat-icon>
+                @if (nome?.invalid && (nome?.touched || nome?.dirty)) {
+                  <div class="error-message">
+                    @if (nome?.errors?.['required']) { <span>O nome é obrigatório.</span> }
+                    @if (nome?.errors?.['minlength']) { <span>O nome deve ter no mínimo 3 caracteres.</span> }
+                    @if (nome?.errors?.['maxlength']) { <span>O nome deve ter no máximo 150 caracteres.</span> }
+                  </div>
+                }
+              </div>
+              <div class="edit-button">
+                <app-button id="personal-info-edit-save-btn" [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" [disabled]="isEditing && formulario.invalid" />
+              </div>
             </div>
-            <div class="edit-button">
-              <app-button id="personal-info-edit-save-btn" [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" />
+            <div class="tel-and-email">
+              <div class="tel">
+                <label for="telefone">Telefone
+                  <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
+                </label>
+                <input formControlName="telefone" type="text" id="telefone" name="telefone" class="user-info" required />
+                @if (telefone?.invalid && (telefone?.touched || telefone?.dirty)) {
+                  <div class="error-message">
+                    @if (telefone?.errors?.['required']) { <span>O telefone é obrigatório.</span> }
+                    @if (telefone?.errors?.['pattern']) { <span>O telefone deve conter 11 dígitos numéricos.</span> }
+                  </div>
+                }
+              </div>
+              <div class="email">
+                <label for="email">E-mail <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input formControlName="email" type="text" id="email" name="email" class="user-info" required>
+                @if (email?.invalid && (email?.touched || email?.dirty)) {
+                  <div class="error-message">
+                    @if (email?.errors?.['required']) { <span>O e-mail é obrigatório.</span> }
+                    @if (email?.errors?.['email']) { <span>Formato de e-mail inválido.</span> }
+                  </div>
+                }
+              </div>
             </div>
           </div>
-          <div class="tel-and-email">
-            <div class="tel">
-              <label for="tel">Telefone
-                <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
-              </label>
-              <input type="text" id="tel" name="tel" class="user-info" [(ngModel)]="cliente.telefone" [readonly]="!isEditing" required />
-            </div>
-            <div class="email">
-              <label for="email">E-mail <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-              <input type="text" id="email" name="email" class="user-info" [(ngModel)]="cliente.email" [readonly]="!isEditing" required>
-            </div>
-          </div>
-        </div>
 
-        <div class="address-info">
-          <div class="address-and-edit">
-            <div class="address-label">
-              <h1>Endereço</h1>
-            </div>
-          </div>
-          <div class="address-elements">
-            <div class="cep">
-              <label for="cep">CEP <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-              <input type="text" id="cep" name="cep" class="user-info" [(ngModel)]="cliente.cep" [readonly]="!isEditing" required>
-            </div>
-            <div class="two-inputs-one-row">
-              <div class="logradouro">
-                <label for="logradouro">Logradouro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <input type="text" id="logradouro" name="logradouro" [(ngModel)]="cliente.logradouro" readonly required>
-              </div>
-              <div class="numero">
-                <label for="numero">Número <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <input type="text" id="numero" name="numero" class="user-info" [(ngModel)]="cliente.numero" [readonly]="!isEditing" required>
+          <div class="address-info">
+            <div class="address-and-edit">
+              <div class="address-label">
+                <h1>Endereço</h1>
               </div>
             </div>
-            <div class="two-inputs-one-row">
-              <div class="complemento">
-                <label for="complemento">Complemento <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <input type="text" id="complemento" name="complemento" class="user-info" [(ngModel)]="cliente.complemento" [readonly]="!isEditing">
+            <div class="address-elements">
+              <div class="cep">
+                <label for="cep">CEP <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                <input formControlName="cep" type="text" id="cep" name="cep" class="user-info" required>
+                @if (cep?.invalid && (cep?.touched || cep?.dirty)) {
+                  <div class="error-message">
+                    @if (cep?.errors?.['required']) { <span>O CEP é obrigatório.</span> }
+                    @if (cep?.errors?.['pattern']) { <span>O CEP deve conter 8 dígitos numéricos.</span> }
+                  </div>
+                }
               </div>
-              <div class="bairro">
-                <label for="bairro">Bairro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <input type="text" id="bairro" name="bairro" [(ngModel)]="cliente.bairro" readonly required>
+              <div class="two-inputs-one-row">
+                <div class="logradouro">
+                  <label for="logradouro">Logradouro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <input formControlName="logradouro" type="text" id="logradouro" name="logradouro" required>
+                  @if (logradouro?.invalid && (logradouro?.touched || logradouro?.dirty)) {
+                    <div class="error-message">
+                      @if (logradouro?.errors?.['required']) { <span>O logradouro é obrigatório.</span> }
+                      @if (logradouro?.errors?.['minlength']) { <span>Mínimo de 5 caracteres.</span> }
+                    </div>
+                  }
+                </div>
+                <div class="numero">
+                  <label for="numero">Número <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <input formControlName="numero" type="text" id="numero" name="numero" class="user-info" required>
+                  @if (numero?.invalid && (numero?.touched || numero?.dirty)) {
+                    <div class="error-message">
+                      @if (numero?.errors?.['required']) { <span>O número é obrigatório.</span> }
+                    </div>
+                  }
+                </div>
               </div>
-            </div>
-            <div class="two-inputs-one-row">
-              <div class="localidade">
-                <label for="localidade">Localidade <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <input type="text" id="localidade" name="localidade" [(ngModel)]="cliente.localidade" readonly required>
+              <div class="two-inputs-one-row">
+                <div class="complemento">
+                  <label for="complemento">Complemento <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <input formControlName="complemento" type="text" id="complemento" name="complemento" class="user-info">
+                  @if (complemento?.invalid && (complemento?.touched || complemento?.dirty)) {
+                    <div class="error-message">
+                      @if (complemento?.errors?.['maxlength']) { <span>Máximo de 100 caracteres.</span> }
+                    </div>
+                  }
+                </div>
+                <div class="bairro">
+                  <label for="bairro">Bairro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <input formControlName="bairro" type="text" id="bairro" name="bairro" required>
+                  @if (bairro?.invalid && (bairro?.touched || bairro?.dirty)) {
+                    <div class="error-message">
+                      @if (bairro?.errors?.['required']) { <span>O bairro é obrigatório.</span> }
+                    </div>
+                  }
+                </div>
               </div>
-              <div class="uf">
-                <label for="uf">Estado (UF) <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <select id="uf" name="uf" required [(ngModel)]="cliente.uf" [disabled]="!isEditing">
-                  <option value="">Selecione</option>
-                  <option value="AC">Acre (AC)</option>
-                  <option value="AL">Alagoas (AL)</option>
-                  <option value="AP">Amapá (AP)</option>
-                  <option value="AM">Amazonas (AM)</option>
-                  <option value="BA">Bahia (BA)</option>
-                  <option value="CE">Ceará (CE)</option>
-                  <option value="DF">Distrito Federal (DF)</option>
-                  <option value="ES">Espírito Santo (ES)</option>
-                  <option value="GO">Goiás (GO)</option>
-                  <option value="MA">Maranhão (MA)</option>
-                  <option value="MT">Mato Grosso (MT)</option>
-                  <option value="MS">Mato Grosso do Sul (MS)</option>
-                  <option value="MG">Minas Gerais (MG)</option>
-                  <option value="PA">Pará (PA)</option>
-                  <option value="PB">Paraíba (PB)</option>
-                  <option value="PR">Paraná (PR)</option>
-                  <option value="PE">Pernambuco (PE)</option>
-                  <option value="PI">Piauí (PI)</option>
-                  <option value="RJ">Rio de Janeiro (RJ)</option>
-                  <option value="RN">Rio Grande do Norte (RN)</option>
-                  <option value="RS">Rio Grande do Sul (RS)</option>
-                  <option value="RO">Rondônia (RO)</option>
-                  <option value="RR">Roraima (RR)</option>
-                  <option value="SC">Santa Catarina (SC)</option>
-                  <option value="SP">São Paulo (SP)</option>
-                  <option value="SE">Sergipe (SE)</option>
-                  <option value="TO">Tocantins (TO)</option>
-                </select>
+              <div class="two-inputs-one-row">
+                <div class="localidade">
+                  <label for="localidade">Localidade <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <input formControlName="localidade" type="text" id="localidade" name="localidade" required>
+                  @if (localidade?.invalid && (localidade?.touched || localidade?.dirty)) {
+                    <div class="error-message">
+                      @if (localidade?.errors?.['required']) { <span>A localidade é obrigatória.</span> }
+                    </div>
+                  }
+                </div>
+                <div class="uf">
+                  <label for="uf">Estado (UF) <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <select formControlName="uf" id="uf" name="uf" required>
+                    <option value="">Selecione</option>
+                    <option value="AC">Acre (AC)</option>
+                    <option value="AL">Alagoas (AL)</option>
+                    <option value="AP">Amapá (AP)</option>
+                    <option value="AM">Amazonas (AM)</option>
+                    <option value="BA">Bahia (BA)</option>
+                    <option value="CE">Ceará (CE)</option>
+                    <option value="DF">Distrito Federal (DF)</option>
+                    <option value="SP">São Paulo (SP)</option>
+                    <option value="SE">Sergipe (SE)</option>
+                    <option value="TO">Tocantins (TO)</option>
+                  </select>
+                  @if (uf?.invalid && (uf?.touched || uf?.dirty)) {
+                    <div class="error-message">
+                      @if (uf?.errors?.['required']) { <span>Selecione um estado.</span> }
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     }
 
   </div>

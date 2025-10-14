@@ -121,3 +121,18 @@
   width: 80%;
   justify-content: space-between;
 }
+
+.error-message {
+  color: red;
+  font-size: 10px;
+}
+
+/*
+  Aplica o estilo a qualquer <app-button> que tenha o atributo 'disabled'.
+  É mais limpo e direto.
+*/
+app-button[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}

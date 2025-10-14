@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export enum TipoCliente {
-  FISICO = 'fisico',
-  JURIDICO = 'juridico'
+  FISICA = 'FISICA',
+  JURIDICA = 'JURIDICA'
 }
 
 export interface ReservaResumoDTO {
@@ -104,7 +104,7 @@ export class ClienteService {
 
   // PUT
   atualizarCliente(id: number, tipoCliente: TipoCliente, clienteData: ClienteUpdateRequest): Observable<void> {
-    const endpoint = tipoCliente === TipoCliente.FISICO ? 'fisico' : 'juridico';
+    const endpoint = tipoCliente === TipoCliente.FISICA ? 'fisico' : 'juridico';
     const url = `${this.apiUrl}/${endpoint}/${id}`;
 
     console.log(`Enviando requisição PUT para ${url}`, clienteData);
