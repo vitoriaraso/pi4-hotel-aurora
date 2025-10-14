@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextComponent } from '../../shared/input-text.component/input-text.component';
 import { ButtonComponent } from '../../shared/button.component/button.component';
 
-import { ClienteService, ClienteFisicoRequest } from '../../app/services/cliente.service';
+import { ClienteService, ClienteFisicoRequest } from '../../app/services/cliente/cliente.service';
 
 @Component({
   selector: 'app-create-account-pf',

@@ -4,10 +4,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { ClienteService, ClienteResponseDTO, ClienteUpdateRequest, TipoCliente } from '../../app/services/cliente.service';
+import { ClienteService, ClienteResponseDTO, ClienteUpdateRequest, TipoCliente } from '../../app/services/cliente/cliente.service';
 
 import { ButtonComponent } from '../../shared/button.component/button.component';
 import { MatIconModule } from '@angular/material/icon';
+import {ViaCepService} from '../../app/services/viacep/viacep.service';
 
 @Component({
   selector: 'app-account',
@@ -55,6 +56,7 @@ export class AccountComponent implements OnInit {
   cliente?: ClienteResponseDTO;
 
   private clienteService = inject(ClienteService);
+  private viaCepService = inject(ViaCepService);
 
   ngOnInit() {
     this.carregarDadosDoCliente();
@@ -88,6 +90,7 @@ export class AccountComponent implements OnInit {
       this.formulario.controls.logradouro.disable();
       this.formulario.controls.bairro.disable();
       this.formulario.controls.localidade.disable();
+      this.formulario.controls.uf.disable();
 
       this.atualizarEstadoDoBotao();
     } else {
@@ -148,4 +151,47 @@ export class AccountComponent implements OnInit {
     this.editButtonLabel = this.isEditing ? 'Salvar' : 'Editar';
     this.icon = this.isEditing ? 'save' : 'edit';
   }
+
+  consultarCep(): void {
+    const cepValue = this.formulario.get('cep')?.value;
+
+    // Remove caracteres não numéricos e verifica o tamanho
+    const cep = cepValue ? cepValue.replace(/\D/g, '') : '';
+    if (cep.length !== 8) {
+      console.log('CEP inválido ou incompleto.');
+      return; // Sai da função se o CEP não tiver 8 dígitos
+    }
+
+    // Chama o serviço
+    this.viaCepService.consultarCep(cep).subscribe({
+      next: (dados) => {
+        // A API do ViaCEP retorna {erro: true} para CEPs não encontrados
+        if (dados.erro) {
+          console.error('CEP não encontrado.');
+          // Aqui você pode limpar os campos ou mostrar uma mensagem de erro
+          this.formulario.patchValue({
+            logradouro: '',
+            bairro: '',
+            localidade: '',
+            uf: ''
+          });
+          return;
+        }
+
+        console.log('Dados recebidos do ViaCEP:', dados);
+
+        // Preenche os campos do formulário com os dados recebidos
+        this.formulario.patchValue({
+          logradouro: dados.logradouro,
+          bairro: dados.bairro,
+          localidade: dados.localidade,
+          uf: dados.uf
+        });
+      },
+      error: (erro) => {
+        console.error('Ocorreu um erro ao buscar o CEP:', erro);
+      }
+    });
+  }
+
 }

@@ -63,7 +63,7 @@
             <div class="address-elements">
               <div class="cep">
                 <label for="cep">CEP <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
-                <input formControlName="cep" type="text" id="cep" name="cep" class="user-info" required>
+                <input formControlName="cep" (blur)="consultarCep()" type="text" id="cep" name="cep" class="user-info" required>
                 @if (cep?.invalid && (cep?.touched || cep?.dirty)) {
                   <div class="error-message">
                     @if (cep?.errors?.['required']) { <span>O CEP é obrigatório.</span> }
@@ -73,7 +73,7 @@
               </div>
               <div class="two-inputs-one-row">
                 <div class="logradouro">
-                  <label for="logradouro">Logradouro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <label for="logradouro">Logradouro </label>
                   <input formControlName="logradouro" type="text" id="logradouro" name="logradouro" required>
                   @if (logradouro?.invalid && (logradouro?.touched || logradouro?.dirty)) {
                     <div class="error-message">
@@ -94,7 +94,7 @@
               </div>
               <div class="two-inputs-one-row">
                 <div class="complemento">
-                  <label for="complemento">Complemento <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <label for="complemento">Complemento <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon> </label>
                   <input formControlName="complemento" type="text" id="complemento" name="complemento" class="user-info">
                   @if (complemento?.invalid && (complemento?.touched || complemento?.dirty)) {
                     <div class="error-message">
@@ -103,7 +103,7 @@
                   }
                 </div>
                 <div class="bairro">
-                  <label for="bairro">Bairro <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <label for="bairro">Bairro </label>
                   <input formControlName="bairro" type="text" id="bairro" name="bairro" required>
                   @if (bairro?.invalid && (bairro?.touched || bairro?.dirty)) {
                     <div class="error-message">
@@ -114,7 +114,7 @@
               </div>
               <div class="two-inputs-one-row">
                 <div class="localidade">
-                  <label for="localidade">Localidade <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <label for="localidade">Localidade </label>
                   <input formControlName="localidade" type="text" id="localidade" name="localidade" required>
                   @if (localidade?.invalid && (localidade?.touched || localidade?.dirty)) {
                     <div class="error-message">
@@ -123,7 +123,7 @@
                   }
                 </div>
                 <div class="uf">
-                  <label for="uf">Estado (UF) <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon></label>
+                  <label for="uf">Estado (UF) </label>
                   <select formControlName="uf" id="uf" name="uf" required>
                     <option value="">Selecione</option>
                     <option value="AC">Acre (AC)</option>
