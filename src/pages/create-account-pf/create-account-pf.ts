@@ -30,7 +30,7 @@ export class CreateAccountPF {
   openSnackBar() {
     this._snackBar.open('Erro ao criar conta. Tente novamente.', 'Fechar', {
       duration: this.durationInSeconds * 1000,
-      horizontalPosition: 'right',
+      horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
   }
