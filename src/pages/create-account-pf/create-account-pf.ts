@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { InputTextComponent } from '../../shared/input-text.component/input-text.component';
 import { ButtonComponent } from '../../shared/button.component/button.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ClienteService, ClienteFisicoRequest } from '../../app/services/cliente/cliente.service';
 
@@ -16,13 +17,25 @@ import { ClienteService, ClienteFisicoRequest } from '../../app/services/cliente
     FormsModule,
     ButtonComponent,
     RouterLink,
-    InputTextComponent
+    InputTextComponent,
   ],
   templateUrl: './create-account-pf.html',
   styleUrl: './create-account-pf.css'
 })
 export class CreateAccountPF {
-    // objeto para armazenar os dados do formulário
+  // Aviso de erro
+  private _snackBar = inject(MatSnackBar);
+  durationInSeconds = 8;
+
+  openSnackBar() {
+    this._snackBar.open('Erro ao criar conta. Tente novamente.', 'Fechar', {
+      duration: this.durationInSeconds * 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
+  }
+
+  // objeto para armazenar os dados do formulário
   formData: ClienteFisicoRequest = {
     nome: '',
     email: '',
@@ -46,16 +59,12 @@ export class CreateAccountPF {
 
     this.clienteService.cadastrarClienteFisico(this.formData).subscribe({
       next: () => {
-        // TODO: melhorar isso aqui
-        alert('Conta criada com sucesso');
-        // redireciona a página de login
-        this.router.navigate(['/account/signup']);
+        this.router.navigate(['/account/created']);
       },
       error: (error) => {
         console.log('Ocorreu um erro:', error);
-        // TODO: melhorar isso aqui
-        alert(`Erro ao criar conta: ${error.error.message}`);
-        }
+        this.openSnackBar();
+      }
     })
   }
 }

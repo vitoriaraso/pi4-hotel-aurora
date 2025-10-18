@@ -1,0 +1,33 @@
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../assets/images/background-signup.jpg");
+    height: calc(100vh - var(--headerHeight));
+}
+
+.container {
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.message {
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 25px;
+}

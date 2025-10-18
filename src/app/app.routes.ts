@@ -7,12 +7,13 @@ import { Spa } from '../pages/spa/spa';
 import { Events } from '../pages/events/events';
 import { Reservation } from '../pages/reservation/reservation';
 import { Signup } from '../pages/signup/signup';
-import { LoginComponent } from '../pages/login.component/login.component';
-import { CreateAccount } from '../pages/choose-registration/create-account';
+import { LoginComponent } from '../pages/login/login';
+import { CreateAccount } from '../pages/choose-registration/choose-registration';
 import { AccountComponent } from '../pages/account.component/account.component';
 import { CreateAccountPJ } from '../pages/create-account-pj/create-account-pj';
 import { CreateAccountPF } from '../pages/create-account-pf/create-account-pf';
 import { ForgotPassword } from '../pages/forgot-password/forgot-password';
+import { AccountCreated } from '../pages/account-created/account-created';
 
 export const routes: Routes = [
     {
@@ -77,6 +78,11 @@ export const routes: Routes = [
     {
         path: 'forgot/password',
         component: ForgotPassword,
+        data: { showFooter: false }
+    },
+    {
+        path: 'account/created',
+        component: AccountCreated,
         data: { showFooter: false }
     }
 ];

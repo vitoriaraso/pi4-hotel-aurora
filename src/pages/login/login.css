@@ -1,32 +1,36 @@
 .background {
     display: flex;
+    align-items: center;
     justify-content: center;
-    background-color: #809671;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../assets/images/background-signup.jpg");
+    height: calc(100vh - var(--headerHeight));
 }
 
 .container {
-    width: 30vw;
     display: flex;
-    padding: 30px;
-    align-items: center;
-    height: calc(100vh - var(--headerHeight) - 60px);
+    width: auto;
+    height: auto;
 }
 
-#container-login {
-    flex: 75%;
-    gap: 15px;
+.login {
+    width: 400px;
     height: 400px;
     display: flex;
+    gap: 20px;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     background-color: white;
     border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 .content {
-    gap: 5px;
+    width: 80%;
     display: flex;
+    gap: 5px;
     flex-direction: column;
 }
 
@@ -36,7 +40,7 @@ h1 {
 
 label {
     color: black;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .links {
