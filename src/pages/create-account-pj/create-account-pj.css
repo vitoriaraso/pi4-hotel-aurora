@@ -19,9 +19,16 @@
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    height: calc(100vh - var(--headerHeight));
+}
+
+h1 {
+    text-align: center;
+    color: black;
 }
 
 form {
+    gap: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -44,13 +51,24 @@ h2 {
     width: 49%;
 }
 
-.group-item-name, .group-item-email {
+.group-item-name,
+.group-item-email {
     width: 100%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0px 30px 10px 30px;
+}
+
+.group-item {
+    gap: 3px;
+    display: flex;
+    flex-direction: column;
 }
 
 .group-email,
 .group-password,
 .group-address {
+    gap: 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
@@ -77,5 +95,4 @@ label {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
 }

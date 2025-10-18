@@ -12,6 +12,12 @@
     display: flex;
     width: auto;
     height: auto;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .message {
@@ -29,5 +35,5 @@
 }
 
 p {
-    font-size: 25px;
+    font-size: 20px;
 }

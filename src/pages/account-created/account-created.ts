@@ -9,6 +9,4 @@ import { ButtonComponent } from '../../shared/button.component/button.component'
   templateUrl: './account-created.html',
   styleUrl: './account-created.css'
 })
-export class AccountCreated {
-
-}
+export class AccountCreated { }

@@ -2,24 +2,25 @@
     <div class="container">
 
         <div class="login">
-            <h1>Login</h1>
+            <form class="form_login">
+                <h1>Login</h1>
 
-            <div class="content">
-                <label for="email">E-mail</label>
-                <app-input-text id="email" type="email" name="email"></app-input-text>
-            </div>
+                <div class="content">
+                    <label for="email">E-mail</label>
+                    <app-input-text id="email" type="email" name="email"></app-input-text>
+                </div>
 
-            <div class="content">
-                <label for="password">Senha</label>
-                <app-input-text id="password" type="password" name="password"></app-input-text>
-            </div>
+                <div class="content">
+                    <label for="password">Senha</label>
+                    <app-input-text id="password" type="password" name="password"></app-input-text>
+                </div>
 
-            <app-button label="Entrar"></app-button>
+                <app-button label="Entrar"></app-button>
 
-            <div class="links">
-                <a routerLink="/forgot/password">Esqueceu sua senha ?</a>
-                <a routerLink="/account/register" (click)="linkClicked.emit()">Criar uma conta</a>
-            </div>
+                <div class="links">
+                    <a routerLink="/forgot/password">Esqueceu sua senha ?</a>
+                    <a routerLink="/account/register" (click)="linkClicked.emit()">Criar uma conta</a>
+                </div>
         </div>
     </div>
 </div>

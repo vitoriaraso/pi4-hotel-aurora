@@ -17,14 +17,31 @@
 .login {
     width: 400px;
     height: 400px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_login {
+    gap: 20px;
+    width: 300px;
+    height: auto;
     display: flex;
     gap: 20px;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-    background-color: white;
     border-radius: 20px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    padding: 20px 20px 5px 20px;
+}
+
+h1 {
+    color: black;
+    text-align: center;
 }
 
 .content {
@@ -32,10 +49,6 @@
     display: flex;
     gap: 5px;
     flex-direction: column;
-}
-
-h1 {
-    color: black;
 }
 
 label {
@@ -48,6 +61,7 @@ label {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 a {

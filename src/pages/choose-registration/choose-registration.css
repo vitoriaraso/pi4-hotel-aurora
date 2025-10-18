@@ -15,8 +15,9 @@
 }
 
 .container-buttons {
-    width: 700px;
-    height: 400px;
+    width: 600px;
+    height: auto;
+    padding: 50px;
     display: flex;
     gap: 50px;
     align-items: center;
@@ -29,6 +30,7 @@
 
 h1 {
     color: black;
+    margin-bottom: 70px;
 }
 
 .buttons {
@@ -40,8 +42,8 @@ h1 {
 
 .circle-btn {
     display: flex;
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
     border-radius: 50%;
     align-items: center;
