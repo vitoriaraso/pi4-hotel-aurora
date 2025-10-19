@@ -33,11 +33,13 @@
                 <label for="telefone">Telefone
                   <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
                 </label>
-                <input formControlName="telefone" type="text" id="telefone" name="telefone" class="user-info" required />
+                <input formControlName="telefone" type="number" id="telefone" name="telefone" class="user-info" required />
                 @if (telefone?.invalid && (telefone?.touched || telefone?.dirty)) {
                   <div class="error-message">
                     @if (telefone?.errors?.['required']) { <span>O telefone é obrigatório.</span> }
-                    @if (telefone?.errors?.['pattern']) { <span>O telefone deve conter 11 dígitos numéricos.</span> }
+                    @if (telefone?.errors?.['pattern']) { <span>O telefone é composto apenas por dígitos numéricos.</span> }
+                    @if (telefone?.errors?.['minLength']) { <span>O telefone é composto por 11 dígitos numéricos.</span> }
+                    @if (telefone?.errors?.['maxLength']) { <span>O telefone é composto por 11 dígitos numéricos.</span> }
                   </div>
                 }
               </div>

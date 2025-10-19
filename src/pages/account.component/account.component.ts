@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
   // Vamos controlar isso dinamicamente.
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
-    telefone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]),
+    telefone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/), Validators.minLength(11), Validators.maxLength(11)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     cep: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]),
     logradouro: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
