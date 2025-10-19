@@ -9,6 +9,9 @@
 }
 
 .container {
+    display: flex;
+    width: auto;
+    height: auto;
     width: auto;
     height: auto;
     padding: 10px;
@@ -17,31 +20,20 @@
     justify-content: center;
 }
 
-.container-login {
+.message {
     width: auto;
     height: auto;
-    padding: 50px;
     display: flex;
+    gap: 20px;
+    padding: 30px;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     background-color: white;
     border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
-.content {
-    gap: 5px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-h1 {
-    color: black;
-    margin-bottom: 60px;
-}
-
-label {
-    color: black;
+p {
     font-size: 20px;
 }

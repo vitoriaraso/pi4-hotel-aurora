@@ -1,12 +1,10 @@
 <div class="background">
     <div class="container">
+        <form class="formPJ">
 
-        <h1>Criar uma conta</h1>
+            <h1>Criar uma conta</h1>
 
-        <form id="formPJ">
-            <h2>1. Identificação Inicial</h2>
-
-            <div class="group-item">
+            <div class="group-item-companyName">
                 <label for="companyName">Razão social</label>
                 <app-input-text id="companyName" type="text" name="companyName"></app-input-text>
             </div>
@@ -61,7 +59,9 @@
                     <app-button label="Voltar"></app-button>
                 </a>
 
-                <app-button label="Finalizar"></app-button>
+                <a routerLink="/account/created/successfully">
+                    <app-button label="Finalizar"></app-button>
+                </a>
             </div>
         </form>
     </div>

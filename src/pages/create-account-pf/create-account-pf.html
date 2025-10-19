@@ -6,7 +6,7 @@
 
       <h2>1. Identificação e Acesso</h2>
 
-      <div class="group-item">
+      <div class="group-item-name">
         <label for="name">Nome Completo</label>
         <app-input-text id="name" type="text" name="name" [(ngModel)]="formData.nome" required></app-input-text>
       </div>
@@ -18,11 +18,12 @@
         </div>
         <div class="group-item">
           <label for="telefone">Telefone</label>
-          <app-input-text id="telefone" type="text" name="telefone" [(ngModel)]="formData.telefone" required></app-input-text>
+          <app-input-text id="telefone" type="text" name="telefone" [(ngModel)]="formData.telefone"
+            required></app-input-text>
         </div>
       </div>
 
-      <div class="group-item">
+      <div class="group-item-email">
         <label for="email">E-mail</label>
         <app-input-text id="email" type="email" name="email" [(ngModel)]="formData.email" required></app-input-text>
       </div>
@@ -30,7 +31,8 @@
       <div class="group-password">
         <div class="group-item">
           <label for="password">Senha</label>
-          <app-input-text id="password" type="password" name="password" [(ngModel)]="formData.senha" required></app-input-text>
+          <app-input-text id="password" type="password" name="password" [(ngModel)]="formData.senha"
+            required></app-input-text>
         </div>
         <div class="group-item">
           <label for="confirmPassword">Confirme sua senha</label>
@@ -47,8 +49,6 @@
         </small>
       </div>
 
-      <hr class="section-divider">
-
       <h2>2. Endereço</h2>
 
       <div class="group-item">
@@ -57,11 +57,12 @@
       </div>
 
       <div class="group-address">
-        <div class="group-item" style="flex-grow: 3;">
+        <div class="group-item">
           <label for="logradouro">Logradouro</label>
-          <app-input-text id="logradouro" type="text" name="logradouro" [(ngModel)]="formData.logradouro" required></app-input-text>
+          <app-input-text id="logradouro" type="text" name="logradouro" [(ngModel)]="formData.logradouro"
+            required></app-input-text>
         </div>
-        <div class="group-item" style="flex-grow: 1;">
+        <div class="group-item">
           <label for="numero">Número</label>
           <app-input-text id="numero" type="text" name="numero" [(ngModel)]="formData.numero" required></app-input-text>
         </div>
@@ -74,28 +75,28 @@
         </div>
         <div class="group-item">
           <label for="complemento">Complemento (Opcional)</label>
-          <app-input-text id="complemento" type="text" name="complemento" [(ngModel)]="formData.complemento"></app-input-text>
+          <app-input-text id="complemento" type="text" name="complemento"
+            [(ngModel)]="formData.complemento"></app-input-text>
         </div>
       </div>
 
       <div class="group-address">
-        <div class="group-item" style="flex-grow: 3;">
+        <div class="group-item">
           <label for="localidade">Cidade</label>
-          <app-input-text id="localidade" type="text" name="localidade" [(ngModel)]="formData.localidade" required></app-input-text>
+          <app-input-text id="localidade" type="text" name="localidade" [(ngModel)]="formData.localidade"
+            required></app-input-text>
         </div>
-        <div class="group-item" style="flex-grow: 1;">
+        <div class="group-item">
           <label for="uf">Estado (UF)</label>
-          <!-- TODO: meter um select aqui -->
           <app-input-text id="uf" type="text" name="uf" [(ngModel)]="formData.uf" required></app-input-text>
         </div>
       </div>
 
       <div class="buttons">
-        <a routerLink="/account/register">
-          <app-button label="Voltar"></app-button>
-        </a>
+        <a routerLink="/account/register"><app-button label="Voltar"></app-button></a>
         <app-button type="submit" label="Finalizar" [disabled]="!createPFForm.form.valid"></app-button>
       </div>
+
     </form>
   </div>
 </div>
