@@ -2,10 +2,10 @@
   <div class="sidebar">
     <div class="links">
       <a href="">Dados pessoais</a>
+      <!-- TODO: listar as reservas do cliente aqui -->
       <a href="">Histórico de reservas</a>
     </div>
   </div>
-  <!-- <app-invalid-field [text]="`Campo inválido`"></app-invalid-field> -->
   <div class="container">
 
     @if (cliente) {
@@ -25,7 +25,7 @@
                 }
               </div>
               <div class="edit-button">
-                <app-button id="personal-info-edit-save-btn" [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" [disabled]="isEditing && formulario.invalid" />
+                <app-button id="personal-info-edit-save-btn" [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" [disabled]="isEditing && (formulario.invalid || !formulario.dirty)" />
               </div>
             </div>
             <div class="tel-and-email">
@@ -33,13 +33,11 @@
                 <label for="telefone">Telefone
                   <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
                 </label>
-                <input formControlName="telefone" type="number" id="telefone" name="telefone" class="user-info" required />
+                <input formControlName="telefone" mask="(00) 00000-0000" type="tel" id="telefone" name="telefone" class="user-info" required />
                 @if (telefone?.invalid && (telefone?.touched || telefone?.dirty)) {
                   <div class="error-message">
                     @if (telefone?.errors?.['required']) { <span>O telefone é obrigatório.</span> }
-                    @if (telefone?.errors?.['pattern']) { <span>O telefone é composto apenas por dígitos numéricos.</span> }
-                    @if (telefone?.errors?.['minLength']) { <span>O telefone é composto por 11 dígitos numéricos.</span> }
-                    @if (telefone?.errors?.['maxLength']) { <span>O telefone é composto por 11 dígitos numéricos.</span> }
+                    @if (telefone?.errors?.['maxlength'] || telefone?.errors?.['minlength']) { <span>O telefone deve ter 11 dígitos.</span> }
                   </div>
                 }
               </div>
@@ -70,6 +68,7 @@
                   <div class="error-message">
                     @if (cep?.errors?.['required']) { <span>O CEP é obrigatório.</span> }
                     @if (cep?.errors?.['pattern']) { <span>O CEP deve conter 8 dígitos numéricos.</span> }
+                    @if (cep?.errors?.['notFound']) { <span>CEP não encontrado. Verifique o número.</span> }
                   </div>
                 }
               </div>

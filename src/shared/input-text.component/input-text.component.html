@@ -1,6 +1,8 @@
-<input 
+<input
+  [type]="type"
   [id]="id"
-  [type]="type"  
-  [name]="name"
-  [placeholder]="placeholder"
-/>
+  [formControl]="internalControl"
+  [mask]="mask"
+  [dropSpecialCharacters]="dropSpecialCharacters"
+  (blur)="handleBlur()"
+>

@@ -1,4 +1,4 @@
-.login {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,17 +12,30 @@
   transition: 0.25s;
 }
 
-.login:disabled {
+.button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.login p {
+.button p {
   font-size: 1.1em;
   font-weight: 600;
   color: var(--mediumGray);
 }
 
-.login:hover {
+.button:hover {
   background-color: var(--almostWhite);
+}
+
+/* Usamos o seletor :host() para aplicar estilos ao próprio <app-button> quando ele tem a classe */
+:host(.disabled-button) button {
+  background-color: #c5c5c5; /* Cor cinza, clássica para desabilitado */
+  color: #666666;             /* Cor de texto mais clara */
+  cursor: not-allowed;       /* Cursor de 'não permitido' */
+  box-shadow: none;            /* Remove a sombra para parecer 'flat' */
+}
+
+/* Opcional: Para remover o efeito de hover quando estiver desabilitado */
+:host(.disabled-button) button:hover {
+  background-color: #c5c5c5;
 }

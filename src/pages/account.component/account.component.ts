@@ -1,14 +1,17 @@
 // account.component.ts
 
 import { Component, OnInit, inject } from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective } from 'ngx-mask';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ClienteService, ClienteResponseDTO, ClienteUpdateRequest, TipoCliente } from '../../app/services/cliente/cliente.service';
 
 import { ButtonComponent } from '../../shared/button.component/button.component';
 import { MatIconModule } from '@angular/material/icon';
-import {ViaCepService} from '../../app/services/viacep/viacep.service';
+import { ViaCepService } from '../../app/services/viacep/viacep.service';
 
 @Component({
   selector: 'app-account',
@@ -18,26 +21,44 @@ import {ViaCepService} from '../../app/services/viacep/viacep.service';
     ButtonComponent,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
 export class AccountComponent implements OnInit {
-  // O FormGroup não precisa mais da propriedade 'disabled' aqui.
-  // Vamos controlar isso dinamicamente.
-  formulario = new FormGroup({
-    nome: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
-    telefone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/), Validators.minLength(11), Validators.maxLength(11)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    cep: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]),
-    logradouro: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
-    numero: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]),
-    complemento: new FormControl('', [Validators.maxLength(100)]),
-    bairro: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]),
-    localidade: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
-    uf: new FormControl('', [Validators.required, Validators.pattern(/^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/)])
-  });
+  private clienteService = inject(ClienteService);
+  private viaCepService = inject(ViaCepService);
+  private snackBar = inject(MatSnackBar);
+
+  cliente?: ClienteResponseDTO;
+
+  isEditing = false;
+  editButtonLabel = 'Editar';
+  icon = 'edit';
+  private initialFormValue: string = '';
+
+  formulario!: FormGroup;
+
+  constructor() {
+    this.formulario = new FormGroup({
+      nome: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+      telefone: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      cep: new FormControl(
+        '',
+        [Validators.required, Validators.pattern(/^[0-9]{8}$/)], // Validadores Síncronos
+        [this.viaCepService.cepValidator()] // Validador Assíncrono
+      ),
+      logradouro: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
+      numero: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]),
+      complemento: new FormControl('', [Validators.maxLength(100)]),
+      bairro: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(2), Validators.maxLength(60)]),
+      localidade: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
+      uf: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern(/^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/)])
+    });
+  }
 
   get nome() { return this.formulario.get('nome'); }
   get telefone() { return this.formulario.get('telefone'); }
@@ -50,21 +71,13 @@ export class AccountComponent implements OnInit {
   get localidade() { return this.formulario.get('localidade'); }
   get uf() { return this.formulario.get('uf'); }
 
-  isEditing = false;
-  editButtonLabel = 'Editar';
-  icon = 'edit';
-  cliente?: ClienteResponseDTO;
-
-  private clienteService = inject(ClienteService);
-  private viaCepService = inject(ViaCepService);
-
   ngOnInit() {
     this.carregarDadosDoCliente();
-    // Inicia o formulário como desabilitado
-    this.formulario.disable(); // ✅ BOA PRÁTICA
+    this.formulario.disable();
   }
 
   private carregarDadosDoCliente() {
+    // TODO: mudar conforme login
     const clienteId = 1;
     this.clienteService.getClienteById(clienteId).subscribe({
       next: (dados) => {
@@ -78,35 +91,41 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  // LÓGICA PRINCIPAL MODIFICADA AQUI 👇
   toggleInfoEdit(): void {
-    this.isEditing = !this.isEditing;
+    if (!this.isEditing) {
+      this.isEditing = true;
+      this.initialFormValue = JSON.stringify(this.formulario.getRawValue());
 
-    if (this.isEditing) {
-      // Entrando no modo de edição
-      this.formulario.enable(); // Habilita todos os campos
+      this.formulario.enable();
+      this.formulario.markAsPristine();
 
-      // Se alguns campos NUNCA devem ser editáveis, desabilite-os aqui
-      this.formulario.controls.logradouro.disable();
-      this.formulario.controls.bairro.disable();
-      this.formulario.controls.localidade.disable();
-      this.formulario.controls.uf.disable();
+      this.formulario.controls["logradouro"].disable();
+      this.formulario.controls["bairro"].disable();
+      this.formulario.controls["localidade"].disable();
+      this.formulario.controls["uf"].disable();
 
       this.atualizarEstadoDoBotao();
-    } else {
-      // Saindo do modo de edição (clicando em Salvar)
-      if (this.formulario.valid) {
-        console.log('Formulário válido, tentando salvar...');
-        this.atualizarDadosDoCliente();
-      } else {
-        console.log('Formulário inválido, não é possível salvar.');
-
-        // Força o formulário a mostrar os erros de validação
-        this.formulario.markAllAsTouched();
-        // Importante: Não saia do modo de edição se o formulário for inválido
-        this.isEditing = true;
-      }
+      return;
     }
+
+    this.formulario.markAllAsTouched();
+
+    if (this.formulario.invalid) {
+      console.log('Formulário inválido, não é possível salvar.');
+      return;
+    }
+
+    const currentFormValue = JSON.stringify(this.formulario.getRawValue());
+    if (this.initialFormValue === currentFormValue) {
+      console.log('Nenhuma alteração detectada. Saindo do modo de edição.');
+      this.isEditing = false;
+      this.formulario.disable();
+      this.atualizarEstadoDoBotao();
+      return;
+    }
+
+    console.log('Alterações detectadas, salvando dados...');
+    this.atualizarDadosDoCliente();
   }
 
   private atualizarDadosDoCliente(): void {
@@ -115,7 +134,6 @@ export class AccountComponent implements OnInit {
       return;
     }
 
-    // Usamos 'getRawValue()' para pegar valores de campos desabilitados também (como logradouro, etc.)
     const formValues = this.formulario.getRawValue();
 
     const updateRequest: ClienteUpdateRequest = {
@@ -135,14 +153,24 @@ export class AccountComponent implements OnInit {
       .subscribe({
         next: () => {
           console.log('Cliente atualizado com sucesso!');
-          this.formulario.disable(); // Desabilita o formulário após salvar
+          this.isEditing = false;
+          this.formulario.disable();
           this.atualizarEstadoDoBotao();
-          alert('Dados atualizados com sucesso');
+
+          this.snackBar.open('Dados atualizados com sucesso!', 'Fechar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         },
         error: (erro) => {
           console.error('Erro ao atualizar cliente:', erro);
-          // Mantenha o formulário em modo de edição para o usuário corrigir
-          this.isEditing = true;
+          this.snackBar.open('Erro ao atualizar os dados. Tente novamente.', 'Fechar', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error']
+          });
         }
       });
   }
@@ -153,45 +181,26 @@ export class AccountComponent implements OnInit {
   }
 
   consultarCep(): void {
-    const cepValue = this.formulario.get('cep')?.value;
+    const cepControl = this.formulario.get('cep');
+    if (!cepControl || cepControl.invalid) { return; }
 
-    // Remove caracteres não numéricos e verifica o tamanho
-    const cep = cepValue ? cepValue.replace(/\D/g, '') : '';
-    if (cep.length !== 8) {
-      console.log('CEP inválido ou incompleto.');
-      return; // Sai da função se o CEP não tiver 8 dígitos
-    }
+    const cepValue = cepControl. value;
+    if (!cepValue) { return; }
 
-    // Chama o serviço
+    const cep = cepValue.replace(/\D/g, '');
+
     this.viaCepService.consultarCep(cep).subscribe({
       next: (dados) => {
-        // A API do ViaCEP retorna {erro: true} para CEPs não encontrados
-        if (dados.erro) {
-          console.error('CEP não encontrado.');
-          // Aqui você pode limpar os campos ou mostrar uma mensagem de erro
+        if (!dados.erro) {
           this.formulario.patchValue({
-            logradouro: '',
-            bairro: '',
-            localidade: '',
-            uf: ''
+            logradouro: dados.logradouro,
+            bairro: dados.bairro,
+            localidade: dados.localidade,
+            uf: dados.uf
           });
-          return;
         }
-
-        console.log('Dados recebidos do ViaCEP:', dados);
-
-        // Preenche os campos do formulário com os dados recebidos
-        this.formulario.patchValue({
-          logradouro: dados.logradouro,
-          bairro: dados.bairro,
-          localidade: dados.localidade,
-          uf: dados.uf
-        });
-      },
-      error: (erro) => {
-        console.error('Ocorreu um erro ao buscar o CEP:', erro);
       }
     });
   }
-
 }
+

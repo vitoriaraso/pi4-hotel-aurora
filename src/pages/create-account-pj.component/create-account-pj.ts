@@ -4,7 +4,7 @@ import { ButtonComponent } from '../../shared/button.component/button.component'
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-create-account-pj',
+  selector: 'app-create-account-pj.component',
   standalone: true,
   imports: [InputTextComponent, ButtonComponent, RouterLink],
   templateUrl: './create-account-pj.html',

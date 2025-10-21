@@ -2,83 +2,18 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export enum TipoCliente {
-  FISICA = 'FISICA',
-  JURIDICA = 'JURIDICA'
-}
+// Importa todos os modelos de um único local organizado.
+import {
+  ClienteFisicoRequest,
+  ClienteJuridicoRequest,
+  ClienteResponseDTO,
+  ClienteUpdateRequest,
+  TipoCliente
+} from '../../models/cliente/cliente.model';
 
-export interface ReservaResumoDTO {
-  id: number;
-  // TODO: terminar de colocar os campos aqui das reservas
-}
-
-export interface ClienteResumoDTO {
-  id: number;
-  nome: string;
-  email: string;
-}
-
-export interface ClienteFisicoRequest {
-  nome: string;
-  email: string;
-  telefone: string;
-  senha: string;
-  cpf: string;
-  cep: string;
-  logradouro: string;
-  numero: string;
-  complemento?: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-}
-
-export interface ClienteJuridicoRequest {
-  nome: string;
-  email: string;
-  telefone: string;
-  senha: string;
-  cnpj: string;
-  cep: string;
-  logradouro: string;
-  numero: string;
-  complemento?: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-}
-
-export interface ClienteResponseDTO {
-  id: number;
-  nome: string;
-  email: string;
-  telefone: string;
-  cep: string;
-  logradouro: string;
-  numero: string;
-  complemento: string | null;
-  bairro: string;
-  localidade: string;
-  uf: string;
-  cpf: string | null;
-  cnpj: string | null;
-  tipoCliente: TipoCliente;
-  dataCadastro: string; // LocalDateTime vira um string no json
-  reservas: ReservaResumoDTO[];
-}
-
-export interface ClienteUpdateRequest{
-  nome: string;
-  email: string;
-  telefone: string;
-  cep: string;
-  logradouro: string;
-  numero: string;
-  complemento?: string; // ? -> indica que é opcional
-  bairro: string;
-  localidade: string;
-  uf: string;
-}
+// Re-exporta os modelos para que possam ser importados a partir deste arquivo de serviço.
+// Isso corrige os erros de importação nos componentes.
+export * from '../../models/cliente/cliente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -87,23 +22,34 @@ export class ClienteService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8081/api/clientes';
 
-  constructor() {  }
+  constructor() { }
 
-  // POST
+  /**
+   * Cadastra um novo cliente do tipo Pessoa Física.
+   * @param clienteData Os dados do cliente a serem cadastrados.
+   */
   cadastrarClienteFisico(clienteData: ClienteFisicoRequest): Observable<void> {
     const url = `${this.apiUrl}/fisico`;
     return this.http.post<void>(url, clienteData);
   }
 
+  /**
+   * Cadastra um novo cliente do tipo Pessoa Jurídica.
+   * @param clienteData Os dados do cliente a serem cadastrados.
+   */
   cadastrarClienteJuridico(clienteData: ClienteJuridicoRequest): Observable<void> {
     const url = `${this.apiUrl}/juridico`;
     return this.http.post<void>(url, clienteData);
   }
 
-
-
-  // PUT
+  /**
+   * Atualiza os dados de um cliente existente.
+   * @param id O ID do cliente a ser atualizado.
+   * @param tipoCliente O tipo do cliente (PESSOA_FISICA ou PESSOA_JURIDICA).
+   * @param clienteData Os novos dados do cliente.
+   */
   atualizarCliente(id: number, tipoCliente: TipoCliente, clienteData: ClienteUpdateRequest): Observable<void> {
+    // A lógica para determinar o endpoint fica mais segura com o enum importado.
     const endpoint = tipoCliente === TipoCliente.FISICA ? 'fisico' : 'juridico';
     const url = `${this.apiUrl}/${endpoint}/${id}`;
 
@@ -112,15 +58,20 @@ export class ClienteService {
     return this.http.put<void>(url, clienteData);
   }
 
-
-
-  // GET
+  /**
+   * Busca a lista de todos os clientes.
+   */
   getClientes(): Observable<ClienteResponseDTO[]> {
     return this.http.get<ClienteResponseDTO[]>(this.apiUrl);
   }
 
+  /**
+   * Busca um cliente específico pelo seu ID.
+   * @param id O ID do cliente.
+   */
   getClienteById(id: number): Observable<ClienteResponseDTO> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<ClienteResponseDTO>(url);
   }
 }
+

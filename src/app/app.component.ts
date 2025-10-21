@@ -1,4 +1,4 @@
-// app.ts
+// app.component.ts
 
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -14,18 +14,18 @@ import { FooterComponent } from '../shared/footer.component/footer.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterOutlet, 
-    HeaderComponent, 
-    MatSidenavModule, 
-    SidenavComponent, 
+    CommonModule,
+    RouterOutlet,
+    HeaderComponent,
+    MatSidenavModule,
+    SidenavComponent,
     CartSidenavComponent,
     FooterComponent
-  ], 
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
-export class App {
+export class AppComponent {
   showHeader: boolean = true;
   showFooter: boolean = true;
 
@@ -60,5 +60,5 @@ export class App {
   }
 
 
-  
+
 }

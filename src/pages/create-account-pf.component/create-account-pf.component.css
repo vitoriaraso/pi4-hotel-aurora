@@ -77,3 +77,10 @@ label {
     display: flex;
     justify-content: space-between;
 }
+
+.error-message {
+  color: red;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+}

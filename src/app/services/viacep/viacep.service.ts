@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 // Interface para tipar a resposta da API
 export interface ViaCepResponse {
@@ -32,9 +34,35 @@ export class ViaCepService {
    * @returns Um Observable com os dados do endereço.
    */
   consultarCep(cep: string): Observable<ViaCepResponse> {
-    // Monta a URL da requisição GET
     const url = `${this.API_URL}/${cep}/json/`;
     console.log(`Buscando CEP em: ${url}`);
     return this.http.get<ViaCepResponse>(url);
   }
+
+  /**
+   * Retorna um Validador Assíncrono para campos de CEP.
+   * O validador consulta a API do ViaCEP para verificar se o CEP é válido.
+   */
+  cepValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      const cep = control.value;
+
+      // Se o campo estiver vazio ou não passar na validação síncrona (pattern), não faz a chamada
+      if (!cep || (control.errors && !control.hasError('cepInvalido'))) {
+        return of(null);
+      }
+
+      return this.consultarCep(String(cep).replace(/\D/g, '')).pipe(
+        map(response => {
+          // Se a API retorna 'erro: true', o CEP é inválido
+          return response.erro ? { cepInvalido: true } : null;
+        }),
+        catchError(() => {
+          // Se houver qualquer erro na chamada HTTP, considera inválido
+          return of({ cepInvalido: true });
+        })
+      );
+    };
+  }
 }
+

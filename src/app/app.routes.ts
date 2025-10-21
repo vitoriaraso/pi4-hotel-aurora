@@ -2,18 +2,18 @@ import { Routes } from '@angular/router';
 import { Home } from '../pages/home/home';
 import { HeroSection } from '../components/app/hero-section';
 import { Rooms } from '../pages/rooms/rooms';
-import { ConferenceRoom } from '../pages/conference-room/conference-room';
+import { ConferenceRoomComponent } from '../pages/conference-room.component/conference-room.component';
 import { Spa } from '../pages/spa/spa';
 import { Events } from '../pages/events/events';
 import { Reservation } from '../pages/reservation/reservation';
 import { Signup } from '../pages/signup/signup';
 import { LoginComponent } from '../pages/login/login';
-import { CreateAccount } from '../pages/choose-registration/choose-registration';
+import { CreateAccount } from '../pages/choose-registration.component/choose-registration.component';
 import { AccountComponent } from '../pages/account.component/account.component';
-import { CreateAccountPJ } from '../pages/create-account-pj/create-account-pj';
-import { CreateAccountPF } from '../pages/create-account-pf/create-account-pf';
+import { CreateAccountPJ } from '../pages/create-account-pj.component/create-account-pj';
+import { CreateAccountPfComponent } from '../pages/create-account-pf.component/create-account-pf.component';
 import { ForgotPassword } from '../pages/forgot-password/forgot-password';
-import { AccountCreated } from '../pages/account-created/account-created';
+import { AccountCreatedComponent } from '../pages/account-created.component/account-created.component';
 
 export const routes: Routes = [
     {
@@ -30,8 +30,8 @@ export const routes: Routes = [
         component: Rooms
     },
     {
-        path: 'app-conference-room',
-        component: ConferenceRoom
+        path: 'app-conference-room.component',
+        component: ConferenceRoomComponent
     },
     {
         path: 'app-spa',
@@ -72,7 +72,7 @@ export const routes: Routes = [
     },
     {
         path: 'account/register/pf',
-        component: CreateAccountPF,
+        component: CreateAccountPfComponent,
         data: { showFooter: false }
     },
     {
@@ -82,7 +82,7 @@ export const routes: Routes = [
     },
     {
         path: 'account/created',
-        component: AccountCreated,
+        component: AccountCreatedComponent,
         data: { showFooter: false }
     }
 ];
