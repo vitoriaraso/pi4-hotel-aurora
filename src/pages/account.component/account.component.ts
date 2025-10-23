@@ -39,6 +39,8 @@ export class AccountComponent implements OnInit {
   icon = 'edit';
   private initialFormValue: string = '';
 
+
+
   formulario!: FormGroup;
 
   constructor() {
