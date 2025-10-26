@@ -1,7 +1,5 @@
 <div id="sidenav">
 
-
-  
   <div class="sidenav-login">
     <a routerLink="/account/signup"
     (click)="linkClicked.emit()">
@@ -13,37 +11,57 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  
+
   <div class="sidenav-content">
     <div class="sidenav-heading">
       <h3>Hotel</h3>
       <mat-divider></mat-divider>
     </div>
-    
+
     <div class="sidenav-links">
       <a routerLink="/home"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>room_service</mat-icon>
       <p>Apresentação</p>
     </a>
-    
+
+      <a routerLink="/app-facilities"
+         (click)="linkClicked.emit()">
+        <mat-icon matListItemIcon>room_service</mat-icon>
+        <p>Dependências do Hotel</p>
+      </a>
+
       <a routerLink="/app-rooms"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>bed</mat-icon>
       <p>Quartos & Suítes</p>
     </a>
-  
+
       <a routerLink="/app-conference-room"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>meeting_room</mat-icon>
       <p>Salas de Conferência</p>
     </a>
 
+      <!-- TODO: adicionar componente Auditório e mudar o redirecionamento do link -->
+      <a routerLink="/app-auditorium"
+         (click)="linkClicked.emit()">
+        <mat-icon matListItemIcon>mic_double</mat-icon>
+        <p>Auditórios</p>
+      </a>
+
       <a routerLink="/app-spa"
      (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>spa</mat-icon>
       <p>Spa</p>
     </a>
+
+      <!-- TODO: adicionar componente Sauna e mudar o redirecionamento do link -->
+      <a routerLink="/app-sauna"
+         (click)="linkClicked.emit()">
+        <mat-icon matListItemIcon>heat</mat-icon>
+        <p>Sauna</p>
+      </a>
 
       <a routerLink="/app-events"
       (click)="linkClicked.emit()">

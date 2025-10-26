@@ -1,0 +1,198 @@
+<div class="background">
+  <div class="container">
+    <h1>Criar uma conta</h1>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+      <h2>1. Identificação e Acesso</h2>
+
+      <div class="group-item-name">
+        <label for="name">Nome Completo</label>
+        <app-input-text id="name" type="text" formControlName="nome"></app-input-text>
+        @if (nome?.invalid && (nome?.touched || nome?.dirty)) {
+          <div class="error-message">
+            @if (nome?.errors?.['required']) { <span>O nome é obrigatório.</span> }
+            @if (nome?.errors?.['minlength']) { <span>O nome deve ter no mínimo 3 caracteres.</span> }
+          </div>
+        }
+      </div>
+
+      <div class="group-address">
+        <div class="group-item">
+          <label for="cpf">CPF</label>
+          <app-input-text id="cpf" type="text" formControlName="cpf" mask="000.000.000-00"></app-input-text>
+          @if (cpf?.invalid && (cpf?.touched || cpf?.dirty)) {
+            <div class="error-message">
+              @if (cpf?.errors?.['required']) { <span>O CPF é obrigatório.</span> }
+              @if (cpf?.errors?.['cpfInvalido']) { <span>O CPF informado é inválido.</span> }
+            </div>
+          }
+        </div>
+        <!-- TODO: validação do telefone -->
+        <div class="group-item">
+          <label for="telefone">Telefone</label>
+          <app-input-text id="telefone" type="text" formControlName="telefone" mask="(00) 00000-0000"></app-input-text>
+          @if (telefone?.invalid && (telefone?.touched || telefone?.dirty)) {
+            <div class="error-message">
+              @if (telefone?.errors?.['required']) { <span>O telefone é obrigatório.</span> }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="group-item-email">
+        <label for="email">E-mail</label>
+        <app-input-text id="email" type="email" formControlName="email"></app-input-text>
+        @if (email?.invalid && (email?.touched || email?.dirty)) {
+          <div class="error-message">
+            @if (email?.errors?.['required']) { <span>O e-mail é obrigatório.</span> }
+            @if (email?.errors?.['email']) { <span>Formato de e-mail inválido.</span> }
+          </div>
+        }
+      </div>
+
+      <div class="group-password">
+        <div class="group-item">
+          <label for="password">Senha</label>
+          <app-input-text id="password" type="password" formControlName="senha"></app-input-text>
+          @if (senha?.invalid && (senha?.touched || senha?.dirty)) {
+            <div class="error-message">
+              @if (senha?.errors?.['required']) { <span>A senha é obrigatória.</span> }
+              @if (senha?.errors?.['minlength']) { <span>A senha deve ter no mínimo 8 caracteres.</span> }
+              @if (senha?.errors?.['pattern']) { <span>A senha não atende aos requisitos de segurança.</span> }
+            </div>
+          }
+        </div>
+        <div class="group-item">
+          <label for="confirmPassword">Confirme sua senha</label>
+          <app-input-text id="confirmPassword" type="password" formControlName="confirmPassword"></app-input-text>
+          @if (confirmPassword?.invalid && (confirmPassword?.touched || confirmPassword?.dirty)) {
+            <div class="error-message">
+              @if (confirmPassword?.errors?.['required']) { <span>A confirmação de senha é obrigatória.</span> }
+              @if (confirmPassword?.errors?.['passwordMismatch']) { <span>As senhas não coincidem.</span> }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="passwordRules">
+        <small>
+          Mínimo de 8 caracteres.<br>
+          Deve conter ao menos 1 letra maiúscula (A-Z).<br>
+          Deve conter ao menos 1 letra minúscula (a-z).<br>
+          Deve conter ao menos 1 número (0-9).<br>
+          Deve conter ao menos 1 caractere especial (@$!%*?&).
+        </small>
+      </div>
+
+      <h2>2. Endereço</h2>
+
+      <div class="group-item">
+        <label for="cep">CEP</label>
+        <app-input-text id="cep" type="text" formControlName="cep" (blurEvent)="consultarCep()" mask="00000-000"></app-input-text>
+        @if (cep?.invalid && (cep?.touched || cep?.dirty)) {
+          <div class="error-message">
+            @if (cep?.errors?.['required']) { <span>O CEP é obrigatório.</span> }
+            @if (cep?.errors?.['pattern']) { <span>O CEP deve conter 8 dígitos.</span> }
+            @if (cep?.errors?.['notFound']) { <span>CEP não encontrado.</span> }
+          </div>
+        }
+      </div>
+
+      <div class="group-address">
+        <div class="group-item">
+          <label for="logradouro">Logradouro</label>
+          <app-input-text id="logradouro" type="text" formControlName="logradouro"></app-input-text>
+          @if (logradouro?.invalid && (logradouro?.touched || logradouro?.dirty)) {
+            <div class="error-message">
+              @if (logradouro?.errors?.['required']) { <span>O logradouro é obrigatório.</span> }
+            </div>
+          }
+        </div>
+        <div class="group-item">
+          <label for="numero">Número</label>
+          <app-input-text id="numero" type="text" formControlName="numero"></app-input-text>
+          @if (numero?.invalid && (numero?.touched || numero?.dirty)) {
+            <div class="error-message">
+              @if (numero?.errors?.['required']) { <span>O número é obrigatório.</span> }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="group-address">
+        <div class="group-item">
+          <label for="bairro">Bairro</label>
+          <app-input-text id="bairro" type="text" formControlName="bairro"></app-input-text>
+          @if (bairro?.invalid && (bairro?.touched || bairro?.dirty)) {
+            <div class="error-message">
+              @if (bairro?.errors?.['required']) { <span>O bairro é obrigatório.</span> }
+            </div>
+          }
+        </div>
+        <div class="group-item">
+          <label for="complemento">Complemento (Opcional)</label>
+          <app-input-text id="complemento" type="text" formControlName="complemento">
+          </app-input-text>
+        </div>
+      </div>
+
+      <div class="group-address">
+        <div class="group-item">
+          <label for="localidade">Cidade</label>
+          <app-input-text id="localidade" type="text" formControlName="localidade"></app-input-text>
+          @if (localidade?.invalid && (localidade?.touched || localidade?.dirty)) {
+            <div class="error-message">
+              @if (localidade?.errors?.['required']) { <span>A cidade é obrigatória.</span> }
+            </div>
+          }
+        </div>
+        <div class="group-item">
+          <label for="uf">Estado (UF)</label>
+          <!-- TODO: adicionar todos os UFs -->
+          <select formControlName="uf" id="uf" name="uf" required>
+            <option value="">Selecione</option>
+            <option value="AC">Acre (AC)</option>
+            <option value="AL">Alagoas (AL)</option>
+            <option value="AP">Amapá (AP)</option>
+            <option value="AM">Amazonas (AM)</option>
+            <option value="BA">Bahia (BA)</option>
+            <option value="CE">Ceará (CE)</option>
+            <option value="DF">Distrito Federal (DF)</option>
+            <option value="ES">Espírito Santo (ES)</option>
+            <option value="GO">Goiás (GO)</option>
+            <option value="MA">Maranhão (MA)</option>
+            <option value="MT">Mato Grosso (MT)</option>
+            <option value="MS">Mato Grosso do Sul (MS)</option>
+            <option value="MG">Minas Gerais (MG)</option>
+            <option value="PA">Pará (PA)</option>
+            <option value="PB">Paraíba (PB)</option>
+            <option value="PR">Paraná (PR)</option>
+            <option value="PE">Pernambuco (PE)</option>
+            <option value="PI">Piauí (PI)</option>
+            <option value="RJ">Rio de Janeiro (RJ)</option>
+            <option value="RN">Rio Grande do Norte (RN)</option>
+            <option value="RS">Rio Grande do Sul (RS)</option>
+            <option value="RO">Rondônia (RO)</option>
+            <option value="RR">Roraima (RR)</option>
+            <option value="SC">Santa Catarina (SC)</option>
+            <option value="SP">São Paulo (SP)</option>
+            <option value="SE">Sergipe (SE)</option>
+            <option value="TO">Tocantins (TO)</option>
+          </select>
+          @if (uf?.invalid && (uf?.touched || uf?.dirty)) {
+            <div class="error-message">
+              @if (uf?.errors?.['required']) { <span>Selecione um estado.</span> }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="buttons">
+        <a routerLink="/account/register"><app-button label="Voltar"></app-button></a>
+        <app-button type="submit" label="Finalizar" [disabled]="formulario.invalid"></app-button>
+      </div>
+    </form>
+  </div>
+</div>
+

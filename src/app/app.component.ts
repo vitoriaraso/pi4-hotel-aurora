@@ -1,5 +1,3 @@
-// app.component.ts
-
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';

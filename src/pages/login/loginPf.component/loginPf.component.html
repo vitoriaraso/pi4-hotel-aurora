@@ -1,0 +1,27 @@
+<div class="background">
+  <div class="container">
+    <div class="login">
+      <form class="form_login">
+        <h1>Login</h1>
+
+        <div class="content">
+          <label for="email">E-mail</label>
+          <app-input-text id="email" type="email"></app-input-text>
+        </div>
+
+        <div class="content">
+          <label for="password">Senha</label>
+          <app-input-text id="password" type="password"></app-input-text>
+        </div>
+
+        <app-button label="Entrar"></app-button>
+        <app-button label="Faça login com o Google"><i class="fa-brands fa-google"></i></app-button>
+
+        <div class="links">
+          <a routerLink="/forgot/password">Esqueceu sua senha?</a>
+          <a routerLink="/account/register" (click)="linkClicked.emit()">Criar uma conta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

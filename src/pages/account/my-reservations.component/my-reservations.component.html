@@ -1,0 +1,49 @@
+<!-- TODO: listar as reservas do cliente aqui -->
+
+<div class="container">
+  <div class="reservations-container">
+    <h2>Meu Histórico de Reservas</h2>
+
+    @if (isLoading) {
+      <div class="loading-spinner">
+        <p>Carregando suas reservas...</p>
+      </div>
+    }
+
+    @if (error) {
+      <div class="alert error">
+        <p>{{ error }}</p>
+      </div>
+    }
+
+    @if (!isLoading && !error) {
+
+      @if (reservas.length === 0) {
+        <div class="alert info">
+          <p>Você ainda não fez nenhuma reserva.</p>
+        </div>
+      } @else {
+        <div class="reservations-list">
+          @for (reserva of reservas; track reserva.id) {
+            <!-- TODO: estilizar cards de reserva do cliente -->
+            <div class="reservation-card">
+              <div class="card-header">
+                <h3>{{ reserva.instalacaoAlugavel.nome }}</h3>
+              </div>
+            <div class="card-body">
+              <!-- slipt usado para coletar somente a data, e não a hora. se quiser a hora só tirar o split -->
+              <p><strong>Check-in:</strong> {{ reserva.checkIn.split(' ')[0] }}</p>
+              <p><strong>Check-out:</strong> {{ reserva.checkOut.split(' ')[0] }}</p>
+                <p><strong>Pagamento:</strong> {{ reserva.tipoPagamento }}</p>
+              </div>
+              <div class="card-footer">
+                <strong>Valor Total: {{ reserva.valorTotal | currency:'BRL' }}</strong>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+
+</div>

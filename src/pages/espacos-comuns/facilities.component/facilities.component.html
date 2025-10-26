@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Título</h1>
+  <h2>Subtítulo</h2>
+  <p>Parágrafo</p>
+
+  <!--
+
+  Categoria	Exemplos
+Lazer & Relaxamento	Piscina, Jardim, Terraço, Cinema
+Bem-estar & Fitness	Academia, Quadra Poliesportiva
+Convívio & Entretenimento	Refeitório, Lobby, Sala de Jogos, Sala de TV, Espaço Kids, Sala de Leitura
+
+  -->
+
+  <h1>Lazer & Relaxamento</h1>
+  @if (isLoading) {
+    <p class="loading-message">Carregando espaços...</p>
+  } @else {
+    <div class="espacos-grid">
+      @for (espaco of espacos; track espaco.id) {
+        <div class="espaco-card">
+          <h3>{{ espaco.tipoEspacos }}</h3>
+          <p>{{ espaco.descricao }}</p>
+          <small>Cadastrado em: {{ espaco.dataCadastro.split(' ')[0] }}</small>
+        </div>
+      } @empty {
+        <p class="empty-message">Nenhum espaço cadastrado no momento.</p>
+      }
+    </div>
+  }
+
+
+</div>

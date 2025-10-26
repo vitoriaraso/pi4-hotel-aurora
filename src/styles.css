@@ -48,7 +48,7 @@
     --componentOdd: #fcf9f5;
 
 
-
+    --fontSizeButton: 15px;
 
     --csamerta: 'csamerta-regular';
     --montreall: 'montreal-light';
@@ -65,18 +65,18 @@ html {
     scrollbar-width: none;
 }
 
-html, body { 
-    font-family: Raleway, sans-serif; 
+html, body {
+    font-family: Raleway, sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    min-height: 100%; 
+    min-height: 100%;
 }
 
 .mat-icon {
   font-family: 'Material Symbols Outlined' !important;
-  font-variation-settings: 
+  font-variation-settings:
     'FILL' 0,
     'wght' 200, /* mais fino */
     'GRAD' 0,
@@ -87,12 +87,12 @@ html, body {
 /* opcional: icone fica preenchido no hover */
 a:hover .mat-icon {
     font-family: 'Material Symbols Outlined' !important;
-  font-variation-settings: 
+  font-variation-settings:
     'FILL' 1,
     'wght' 200,
     'GRAD' 0,
     'opsz' 24;
-} 
+}
 
 
 h1, h2, h3, h4, h5, h6, p {

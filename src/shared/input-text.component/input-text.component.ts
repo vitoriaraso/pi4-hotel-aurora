@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, forwardRef, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Subject } from 'rxjs';
@@ -31,6 +31,9 @@ export class InputTextComponent implements ControlValueAccessor, OnInit, OnDestr
   // Funções 'callback' que o Angular nos dará para notificar o formulário pai
   private onChange = (_: any) => {};
   private onTouched = () => {};
+
+  // Ele vai emitir um evento chamado 'inputBlur'
+  @Output() blurEvent = new EventEmitter<void>();
 
   ngOnInit(): void {
     // Escuta as mudanças no FormControl interno e as propaga para o formulário pai
@@ -74,5 +77,6 @@ export class InputTextComponent implements ControlValueAccessor, OnInit, OnDestr
   // Propaga o evento 'touched' para o formulário pai quando o usuário sai do campo
   handleBlur(): void {
     this.onTouched();
+    this.blurEvent.emit();
   }
 }

@@ -3,8 +3,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 20px;
+  padding: 10px 20px;
   gap: 10px;
+  font-family: Raleway, sans-serif;
+  font-size: var(--fontSizeButton);
   background-color: var(--white);
   border: 1px solid var(--lightGray);
   border-radius: 5px;

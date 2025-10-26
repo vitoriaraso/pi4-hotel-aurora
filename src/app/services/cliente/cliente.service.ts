@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-// Importa todos os modelos de um único local organizado.
 import {
   ClienteFisicoRequest,
   ClienteJuridicoRequest,

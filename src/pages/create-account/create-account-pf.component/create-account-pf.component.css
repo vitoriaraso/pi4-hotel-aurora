@@ -1,0 +1,86 @@
+.background {
+    overflow-y: auto;
+    padding: 50px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url("../../../assets/images/background-signup.jpg");
+    height: calc(100vh - var(--headerHeight));
+}
+
+.container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    height: auto;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+}
+
+h2 {
+    text-align: left;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+form {
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.group-item {
+    width: 49%;
+    gap: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.group-email,
+.group-password,
+.group-address {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+
+label {
+    text-align: left;
+    font-weight: 500;
+    color: #333;
+}
+
+.passwordRules {
+    text-align: left;
+    background-color: #f7f7f7;
+    border-left: 4px solid #809671;
+    border-radius: 6px;
+    padding: 15px;
+    color: #555;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-message {
+  color: red;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+}
