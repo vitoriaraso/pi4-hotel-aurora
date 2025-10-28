@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EspacosService } from '../../../app/services/espacos/espacos.service';
-import { EspacosResponseDTO } from '../../../app/models/espacos.model/espacos.model';
+import { EspacosResponseDTO } from '../../../app/models/espacos/espacos.model';
 
 interface SecaoEspaco {
   titulo: string;

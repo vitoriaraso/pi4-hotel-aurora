@@ -1,0 +1,63 @@
+html, body {
+  overflow-y: hidden;
+}
+
+#background {
+  background-color: var(--white);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5vh;
+  padding: 2vh 3vw;
+  margin: 0;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--almostWhite);
+}
+
+.big-container {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+}
+
+.sidebar {
+  flex: 5%;
+  display: flex;
+  border-right: 1px solid var(--almostWhite);
+}
+
+.sidebar .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar .block {
+  flex: 0 0 auto;
+  border-bottom: 2px solid var(--almostWhite);
+}
+
+.sidebar .links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px; /* altura fixa */
+  text-decoration: none;
+  padding: 0 1rem;
+  white-space: nowrap; /* impede quebra de linha */
+  overflow: hidden;
+  text-overflow: ellipsis; /* adiciona "..." se o texto for longo */
+  transition: background-color 0.2s ease;
+}
+
+.sidebar .links a:hover {
+  background-color: var(--almostWhite);
+}
+.container {
+  flex: 85%;
+}

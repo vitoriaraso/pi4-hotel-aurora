@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import { EspacosRequestDTO, EspacosResponseDTO } from '../../models/espacos.model/espacos.model';
+import { EspacosRequestDTO, EspacosResponseDTO } from '../../models/espacos/espacos.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 

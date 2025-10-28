@@ -1,1 +1,15 @@
-<p>dashboard-clientes.component works!</p>
+<div class="container">
+
+  @if (!isLoading) {
+    <app-dashboard-table
+      title="Painel de Clientes"
+      [data]="listaDeClientes"
+      [visibleColumns]="colunasVisiveisParaAdmin"
+      [columnNames]="nomesDasColunas"
+      [showActions]="true">  </app-dashboard-table>
+  } @else {
+    <p>Carregando painel de clientes...</p>
+  }
+
+
+</div>

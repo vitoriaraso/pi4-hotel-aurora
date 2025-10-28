@@ -1,4 +1,4 @@
-import { ReservaResumoDTO } from '../../services/reserva/reserva.service';
+import { ReservaResumoDTO } from '../reserva/reserva.model';
 
 /**
  * Enum para representar os tipos de cliente.
@@ -61,6 +61,15 @@ export interface ClienteResponseDTO {
   tipoCliente: TipoCliente;
   dataCadastro: string;
   reservas: ReservaResumoDTO[];
+}
+
+export interface ClienteResponseDTOAdmin1 {
+  id: number;
+  nome: string;
+  email: string;
+  telefone: string;
+  tipoCliente: TipoCliente;
+  dataCadastro: string;
 }
 
 /**

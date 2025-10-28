@@ -1,19 +1,51 @@
 <div id="background">
-  <div class="header">heeeeeeeader</div>
-  <div class="sidebar">
-    <div class="links">
-      <a [routerLink]="['admin/dashboard/clientes']"
-         routerLinkActive="link-ativo"
-         [routerLinkActiveOptions]="{exact: true}">Clientes</a>
-
-      <a [routerLink]="['admin/dashboard/funcionarios']"
-         routerLinkActive="link-ativo">Funcionários</a>
-
-      <a [routerLink]="['admin/dashboard/reservas']"
-         routerLinkActive="link-ativo">Reservas</a>
-    </div>
+  <div class="header">
+    <p>logo</p>
+    <h2>Nome</h2>
+    <p>logout</p>
   </div>
-  <div class="container">
-    <router-outlet></router-outlet>
+  <div class="big-container">
+    <div class="sidebar">
+      <div class="links">
+        <div class="block">
+          <a [routerLink]="['admin/dashboard/clientes']"
+             routerLinkActive="link-ativo"
+             [routerLinkActiveOptions]="{exact: true}">Clientes</a>
+        </div>
+
+        <div class="block">
+        <a [routerLink]="['admin/dashboard/funcionarios']"
+           routerLinkActive="link-ativo">Funcionários</a>
+        </div>
+
+        <div class="block">
+        <a [routerLink]="['admin/dashboard/reservas']"
+           routerLinkActive="link-ativo">Reservas</a>
+        </div>
+
+        <div class="block">
+        <a [routerLink]="['admin/dashboard/espacos-comuns']"
+           routerLinkActive="link-ativo">Espaços comuns</a>
+        </div>
+
+        <div class="block">
+        <a [routerLink]="['admin/dashboard/instalacoes-alugaveis']"
+           routerLinkActive="link-ativo">Instalações alugáveis</a>
+        </div>
+
+        <div class="block">
+        <a [routerLink]="['admin/dashboard/hoteis']"
+           routerLinkActive="link-ativo">Hotéis</a>
+        </div>
+
+        <div class="block">
+        <a [routerLink]="['admin/dashboard/configuracoes']"
+           routerLinkActive="link-ativo">Configurações</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

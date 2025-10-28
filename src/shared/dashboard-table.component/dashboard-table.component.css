@@ -1,0 +1,11 @@
+.table-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
