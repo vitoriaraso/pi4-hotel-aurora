@@ -1,21 +1,61 @@
 <div class="background">
   <div class="container">
     <div class="login">
-      <form class="form_login">
-        <h1>Login</h1>
+      <form class="form_login" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <h1>Login Cliente</h1>
+
+        @if (errorMessage()) {
+        <div class="error-message">{{ errorMessage() }}</div>
+        }
 
         <div class="content">
           <label for="email">E-mail</label>
-          <app-input-text id="email" type="email"></app-input-text>
+          <app-input-text
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+            email
+            #emailInput="ngModel"
+          ></app-input-text>
+
+          @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
+          <div class="field-error">
+            @if (emailInput.errors?.['required']) {
+            <span>E-mail é obrigatório.</span>
+            } @if (emailInput.errors?.['email']) {
+            <span>Formato de e-mail inválido.</span>
+            }
+          </div>
+          }
         </div>
 
         <div class="content">
           <label for="password">Senha</label>
-          <app-input-text id="password" type="password"></app-input-text>
+          <app-input-text
+            id="password"
+            type="password"
+            [(ngModel)]="senha"
+            name="senha"
+            required
+            #senhaInput="ngModel"
+          ></app-input-text>
+
+          @if (senhaInput.invalid && (senhaInput.dirty || senhaInput.touched)) {
+          <div class="field-error">
+            @if (senhaInput.errors?.['required']) {
+            <span>Senha é obrigatória.</span>
+            }
+          </div>
+          }
         </div>
 
-        <app-button label="Entrar"></app-button>
-        <app-button label="Faça login com o Google"><i class="fa-brands fa-google"></i></app-button>
+        <app-button label="Entrar com Google" (click)="loginComGoogle()">
+          <i class="fa-brands fa-google"></i>
+        </app-button>
+
+        <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
 
         <div class="links">
           <a routerLink="/forgot/password">Esqueceu sua senha?</a>
