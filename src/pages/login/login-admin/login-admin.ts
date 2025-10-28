@@ -8,7 +8,7 @@ import { InputTextComponent } from '../../../shared/input-text.component/input-t
 import { AuthService } from '../../../app/auth/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-admin',
   standalone: true,
   imports: [
     FormsModule, // Essencial para [(ngModel)] e #loginForm
@@ -16,10 +16,10 @@ import { AuthService } from '../../../app/auth/auth.service';
     ButtonComponent,
     InputTextComponent,
   ],
-  templateUrl: './loginPj.component.html',
-  styleUrl: './loginPj.component.css',
+  templateUrl: './login-admin.html',
+  styleUrl: './login-admin.css',
 })
-export class LoginPjComponent {
+export class loginAdminComponent {
   @Output() linkClicked = new EventEmitter<void>();
 
   // Injeção de dependência moderna com inject()
@@ -48,7 +48,9 @@ export class LoginPjComponent {
       },
       error: (err) => {
         // Define o sinal com a nova mensagem de erro
-        this.errorMessage.set(err.error?.message || 'Falha no login. Verifique suas credenciais.');
+        this.errorMessage.set(
+          err.error?.message || 'Falha no login. Verifique suas credenciais.'
+        );
       },
     });
   }

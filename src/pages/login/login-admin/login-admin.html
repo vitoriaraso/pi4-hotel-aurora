@@ -2,10 +2,10 @@
   <div class="container">
     <div class="login">
       <form class="form_login" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <h1>Login Empresarios</h1>
+        <h1>Login Administrador</h1>
 
         @if (errorMessage()) {
-          <div class="error-message">{{ errorMessage() }}</div>
+        <div class="error-message">{{ errorMessage() }}</div>
         }
 
         <div class="content">
@@ -17,19 +17,18 @@
             name="email"
             required
             email
-            #emailInput="ngModel" 
+            #emailInput="ngModel"
           ></app-input-text>
 
-           @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
-            <div class="field-error">
-              @if (emailInput.errors?.['required']) {
-                <span>E-mail é obrigatório.</span>
-              }
-              @if (emailInput.errors?.['email']) {
-                <span>Formato de e-mail inválido.</span>
-              }
-            </div>
-           }
+          @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
+          <div class="field-error">
+            @if (emailInput.errors?.['required']) {
+            <span>E-mail é obrigatório.</span>
+            } @if (emailInput.errors?.['email']) {
+            <span>Formato de e-mail inválido.</span>
+            }
+          </div>
+          }
         </div>
 
         <div class="content">
@@ -43,18 +42,14 @@
             #senhaInput="ngModel"
           ></app-input-text>
 
-           @if (senhaInput.invalid && (senhaInput.dirty || senhaInput.touched)) {
-            <div class="field-error">
-              @if (senhaInput.errors?.['required']) {
-                <span>Senha é obrigatória.</span>
-              }
-            </div>
-           }
+          @if (senhaInput.invalid && (senhaInput.dirty || senhaInput.touched)) {
+          <div class="field-error">
+            @if (senhaInput.errors?.['required']) {
+            <span>Senha é obrigatória.</span>
+            }
+          </div>
+          }
         </div>
-
-        <app-button label="Entrar com Google" (click)="loginComGoogle()">
-          <i class="fa-brands fa-google"></i>
-        </app-button>
 
         <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
 
