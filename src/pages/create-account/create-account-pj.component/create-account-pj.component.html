@@ -28,7 +28,7 @@
             </div>
           }
         </div>
-        <!-- TODO: validação do telefone -->
+        <!-- TODO: validação do telefone único -->
         <div class="group-item">
           <label for="telefone">Telefone</label>
           <app-input-text id="telefone" type="text" formControlName="telefone" mask="(00) 00000-0000"></app-input-text>
@@ -149,7 +149,6 @@
         </div>
         <div class="group-item">
           <label for="uf">Estado (UF)</label>
-          <!-- TODO: adicionar todos os UFs -->
           <select formControlName="uf" id="uf" name="uf" required>
             <option value="">Selecione</option>
             <option value="AC">Acre (AC)</option>

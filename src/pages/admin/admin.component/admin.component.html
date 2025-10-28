@@ -1,0 +1,19 @@
+<div id="background">
+  <div class="header">heeeeeeeader</div>
+  <div class="sidebar">
+    <div class="links">
+      <a [routerLink]="['admin/dashboard/clientes']"
+         routerLinkActive="link-ativo"
+         [routerLinkActiveOptions]="{exact: true}">Clientes</a>
+
+      <a [routerLink]="['admin/dashboard/funcionarios']"
+         routerLinkActive="link-ativo">Funcionários</a>
+
+      <a [routerLink]="['admin/dashboard/reservas']"
+         routerLinkActive="link-ativo">Reservas</a>
+    </div>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

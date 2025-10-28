@@ -25,6 +25,23 @@ import { ForgotPassword } from '../pages/forgot-password/forgot-password';
 import { AccountComponent} from '../pages/account/account.component/account.component';
 import { PersonalInfoComponent } from '../pages/account/personal-info.component/personal-info.component';
 import { MyReservationsComponent } from '../pages/account/my-reservations.component/my-reservations.component';
+import {AdminComponent} from '../pages/admin/admin.component/admin.component';
+import {DashboardComponent} from '../pages/admin/dashboard.component/dashboard.component';
+import {DashboardClientesComponent} from '../pages/admin/dashboard-clientes.component/dashboard-clientes.component';
+import {
+  DashboardFuncionariosComponent
+} from '../pages/admin/dashboard-funcionarios.component/dashboard-funcionarios.component';
+import {DashboardReservasComponent} from '../pages/admin/dashboard-reservas.component/dashboard-reservas.component';
+import {
+  DashboardEspacoscomunsComponent
+} from '../pages/admin/dashboard-espacoscomuns.component/dashboard-espacoscomuns.component';
+import {
+  DashboardInstalacoesalugaveisComponent
+} from '../pages/admin/dashboard-instalacoesalugaveis.component/dashboard-instalacoesalugaveis.component';
+import {DashboardHoteisComponent} from '../pages/admin/dashboard-hoteis.component/dashboard-hoteis.component';
+import {
+  DashboardConfiguracoesComponent
+} from '../pages/admin/dashboard-configuracoes.component/dashboard-configuracoes.component';
 
 export const routes: Routes = [
   ///////  ///////  ///////  ///////  ///////    HERO SECTION
@@ -133,4 +150,53 @@ export const routes: Routes = [
             },
           ],
     },
+  ///////  ///////  ///////  ///////  ///////    PÁGINA DO USUÁRIO
+  {
+      path: 'admin',
+      component: AdminComponent,
+      data: { showFooter: false, showHeader: false },
+      children: [
+        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+        {
+          path: 'admin/dashboard',
+          component: DashboardComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/clientes',
+          component: DashboardClientesComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/funcionarios',
+          component: DashboardFuncionariosComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/reservas',
+          component: DashboardReservasComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/espacos-comuns',
+          component: DashboardEspacoscomunsComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/instalacoes-alugaveis',
+          component: DashboardInstalacoesalugaveisComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/hoteis',
+          component: DashboardHoteisComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+        {
+          path: 'admin/dashboard/configuracoes',
+          component: DashboardConfiguracoesComponent,
+          data: { showFooter: false, showHeader: false }
+        },
+      ],
+  },
 ];
