@@ -73,5 +73,15 @@ export class ClienteService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<ClienteResponseDTO>(url);
   }
+
+  /**
+   * Exclui um cliente específico pelo seu ID.
+   * @param id O ID do cliente a ser excluído.
+   * @returns Um Observable<void> que completa quando a exclusão é bem-sucedida.
+   */
+  deleteCliente(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
 }
 

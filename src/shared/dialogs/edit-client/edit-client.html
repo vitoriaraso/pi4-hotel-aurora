@@ -1,1 +1,27 @@
-<p>edit-client works!</p>
+<h2 mat-dialog-title>Editar Cliente: {{ data.nome }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formulario" class="edit-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome Completo</mat-label>
+      <input matInput formControlName="nome">
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input matInput formControlName="telefone" mask="(00) 00000-0000">
+      </mat-form-field>
+    </div>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="onSave()" [disabled]="formulario.invalid">Salvar Alterações</button>
+</mat-dialog-actions>

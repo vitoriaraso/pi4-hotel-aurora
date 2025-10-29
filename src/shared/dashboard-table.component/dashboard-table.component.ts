@@ -15,8 +15,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-dashboard-table',
@@ -25,7 +25,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     CommonModule, TitleCasePipe, MatTableModule, MatPaginatorModule, MatSortModule,
     MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatTooltipModule
   ],
-  providers: [TitleCasePipe],
+  providers: [
+    TitleCasePipe
+  ],
   templateUrl: './dashboard-table.component.html',
   styleUrls: ['./dashboard-table.component.css']
 })

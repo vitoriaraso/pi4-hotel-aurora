@@ -27,7 +27,8 @@ import { PersonalInfoComponent } from '../pages/account/personal-info.component/
 import { MyReservationsComponent } from '../pages/account/my-reservations.component/my-reservations.component';
 import { AdminComponent } from '../pages/admin/admin.component/admin.component';
 import { DashboardComponent } from '../pages/admin/dashboard.component/dashboard.component';
-import { DashboardClientesComponent } from '../pages/admin/dashboard-clientes.component/dashboard-clientes.component';
+import { DashboardClientesComponent } from '../pages/admin/clientes/dashboard-clientes.component/dashboard-clientes.component';
+import { ClientDetailComponent } from '../pages/admin/clientes/client-detail/client-detail.component';
 import { DashboardFuncionariosComponent } from '../pages/admin/dashboard-funcionarios.component/dashboard-funcionarios.component';
 import { DashboardReservasComponent } from '../pages/admin/dashboard-reservas.component/dashboard-reservas.component';
 import { DashboardEspacoscomunsComponent } from '../pages/admin/dashboard-espacoscomuns.component/dashboard-espacoscomuns.component';
@@ -35,7 +36,7 @@ import { DashboardInstalacoesalugaveisComponent } from '../pages/admin/dashboard
 import { DashboardHoteisComponent } from '../pages/admin/dashboard-hoteis.component/dashboard-hoteis.component';
 import { DashboardConfiguracoesComponent } from '../pages/admin/dashboard-configuracoes.component/dashboard-configuracoes.component';
 
-import { AuthCallbackComponent } from '../app/auth/auth-callback/auth-callback.component';
+import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
 
 export const routes: Routes = [
   /////////////////////////////////////////// Login OAUTH
@@ -154,7 +155,7 @@ export const routes: Routes = [
       },
     ],
   },
-  ///////  ///////  ///////  ///////  ///////    PÁGINA DO USUÁRIO
+  ///////  ///////  ///////  ///////  ///////    DASHBOARD DO ADMIN
   {
     path: 'admin',
     component: AdminComponent,
@@ -167,37 +168,42 @@ export const routes: Routes = [
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/clientes',
+        path: 'dashboard/clientes',
         component: DashboardClientesComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/funcionarios',
+        path: 'dashboard/clientes/:id',
+        component: ClientDetailComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/funcionarios',
         component: DashboardFuncionariosComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/reservas',
+        path: 'dashboard/reservas',
         component: DashboardReservasComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/espacos-comuns',
+        path: 'dashboard/espacos-comuns',
         component: DashboardEspacoscomunsComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/instalacoes-alugaveis',
+        path: 'dashboard/instalacoes-alugaveis',
         component: DashboardInstalacoesalugaveisComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/hoteis',
+        path: 'dashboard/hoteis',
         component: DashboardHoteisComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'admin/dashboard/configuracoes',
+        path: 'dashboard/configuracoes',
         component: DashboardConfiguracoesComponent,
         data: { showFooter: false, showHeader: false },
       },

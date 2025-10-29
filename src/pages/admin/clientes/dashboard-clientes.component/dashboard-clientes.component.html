@@ -1,0 +1,18 @@
+<div class="container">
+
+  @if (isLoading) {
+    <p class="loading-message">Carregando painel de clientes...</p>
+  } @else {
+    <app-dashboard-table
+      title="Painel de Clientes"
+      [data]="listaDeClientes"
+      [visibleColumns]="colunasVisiveisParaAdmin"
+      [columnNames]="nomesDasColunas"
+      [showActions]="true"
+      (editAction)="handleEdit($event)"
+      (deleteAction)="handleDelete($event)">
+    </app-dashboard-table>
+  }
+
+
+</div>
