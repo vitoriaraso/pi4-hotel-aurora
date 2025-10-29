@@ -43,14 +43,12 @@ export class loginAdminComponent {
       next: (response) => {
         if (response.token) {
           this.authService.saveToken(response.token);
-          this.router.navigate(['/']); // Redireciona para a home ou dashboard
+          this.router.navigate(['/admin']); // Redireciona para a home ou dashboard
         }
       },
       error: (err) => {
         // Define o sinal com a nova mensagem de erro
-        this.errorMessage.set(
-          err.error?.message || 'Falha no login. Verifique suas credenciais.'
-        );
+        this.errorMessage.set(err.error?.message || 'Falha no login. Verifique suas credenciais.');
       },
     });
   }

@@ -15,11 +15,16 @@
     width: 600px;
     display: flex;
     flex-direction: column;
-    background: white;
+    background: rgba(255, 255, 255, 0.5); /* mais transparente */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* sombra mais difusa */
+    backdrop-filter: blur(8px); /* efeito vidro mais forte */
+    -webkit-backdrop-filter: blur(8px); /* compatibilidade com Safari */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* borda mais sutil */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     height: auto;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 h1 {
@@ -30,7 +35,7 @@ h1 {
 h2 {
     text-align: left;
     margin-bottom: 10px;
-    color: #444;
+    color: #000;
 }
 
 form {
@@ -58,7 +63,7 @@ form {
 label {
     text-align: left;
     font-weight: 500;
-    color: #333;
+    color: #000;
 }
 
 .passwordRules {
@@ -67,7 +72,7 @@ label {
     border-left: 4px solid #809671;
     border-radius: 6px;
     padding: 15px;
-    color: #555;
+    color: #000;
     font-size: 13px;
     line-height: 1.5;
 }
@@ -83,4 +88,10 @@ label {
   font-size: 10px;
   display: flex;
   flex-direction: column;
+}
+
+
+#uf{
+    padding: 12px;
+    border-radius: 5px;
 }
