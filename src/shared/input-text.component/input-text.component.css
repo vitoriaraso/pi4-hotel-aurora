@@ -7,10 +7,17 @@ input {
     font-size: 18px;
     font-family: inherit;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     transition: border-color 0.2s, box-shadow 0.2s;
     padding: 20px 5px 20px 5px;
     box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0); /* mais transparente */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* sombra mais difusa */
+    backdrop-filter: blur(8px); /* efeito vidro mais forte */
+    -webkit-backdrop-filter: blur(8px); /* compatibilidade com Safari */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* borda mais sutil */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 label {

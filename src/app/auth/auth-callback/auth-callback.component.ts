@@ -6,14 +6,10 @@ import { AuthService } from '../../auth/auth.service';
   selector: 'app-auth-callback',
   standalone: true,
   imports: [],
-  template: '<p>Processando login...</p>'
+  template: '<p>Processando login...</p>',
 })
 export class AuthCallbackComponent implements OnInit {
-
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     // Supondo que o backend redireciona para algo como:
@@ -26,9 +22,11 @@ export class AuthCallbackComponent implements OnInit {
       this.authService.saveToken(token);
 
       // Redireciona para home ou dashboard
-      this.router.navigate(['/']);
+      this.router.navigate(['/account/personal-info']);
+      console.log('passei pelo redit do pers info');
     } else {
       // Se não houver token, redireciona para login
+      console.log('nao tem token volta home');
       this.router.navigate(['/login']);
     }
   }

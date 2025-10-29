@@ -2,7 +2,7 @@
   <div class="container">
     <div class="login">
       <form class="form_login" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <h1>Login Cliente</h1>
+        <h1>Login</h1>
 
         @if (errorMessage()) {
         <div class="error-message">{{ errorMessage() }}</div>
@@ -55,7 +55,7 @@
           <i class="fa-brands fa-google"></i>
         </app-button>
 
-        <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
+        <button class="btnEntrar" type="submit" [disabled]="!loginForm.valid">Entrar</button>
 
         <div class="links">
           <a routerLink="/forgot/password">Esqueceu sua senha?</a>
