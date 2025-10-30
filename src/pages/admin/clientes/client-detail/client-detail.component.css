@@ -1,8 +1,15 @@
-/* --- Estrutura Principal da Página --- */
+
+
 .page-container {
-  padding: 24px;
+  /*height: 100vh; !* Mude de 'min-height' para 'height'. A altura agora é EXATAMENTE a da tela. *!*/
+  overflow-y: auto; /* Se o conteúdo interno for maior que 100vh, ADICIONE a barra de rolagem AQUI DENTRO. */
+  box-sizing: border-box; /* Garante que o padding não aumente a altura total. Essencial! */
+
+  display: flex;
+  justify-content: center;
+  padding: 12vh 0;
+  width: 100vw;
   background-color: #f5f5f5;
-  min-height: 100vh;
 }
 
 .header-controls {
@@ -34,6 +41,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 55vw;
 }
 
 /* --- Estilo dos Cards de Seção --- */
