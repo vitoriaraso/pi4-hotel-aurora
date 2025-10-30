@@ -15,7 +15,7 @@
     width: 600px;
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.5); /* mais transparente */
+    background: rgba(255, 255, 255, 0.35); /* mais transparente */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* sombra mais difusa */
     backdrop-filter: blur(8px); /* efeito vidro mais forte */
     -webkit-backdrop-filter: blur(8px); /* compatibilidade com Safari */
@@ -30,12 +30,14 @@
 h1 {
     text-align: center;
     color: black;
+    font-weight: 700;
 }
 
 h2 {
     text-align: left;
     margin-bottom: 10px;
     color: #000;
+    font-weight: 700;
 }
 
 form {
@@ -62,18 +64,22 @@ form {
 
 label {
     text-align: left;
-    font-weight: 500;
+    font-weight: 600;
     color: #000;
+}
+
+::ng-deep app-input-text input {
+  margin-top: 2px;
 }
 
 .passwordRules {
     text-align: left;
     background-color: #f7f7f7;
-    border-left: 4px solid #809671;
+    border-left: 7px solid #809671;
     border-radius: 6px;
     padding: 15px;
     color: #000;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -84,12 +90,20 @@ label {
 }
 
 .error-message {
-  color: red;
-  font-size: 10px;
-  display: flex;
+  display: inline-flex; 
   flex-direction: column;
+  color: #ff4d4f;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 8px;
+  margin-top: 4px;
+  border-radius: 4px;
+  background: rgba(255, 0, 0, 0.02);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  max-width: max-content; 
+  white-space: nowrap; 
 }
-
 
 #uf{
     padding: 12px;

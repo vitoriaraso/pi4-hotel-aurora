@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // MANTEMOS - Para Template-driven forms (ngModel)
 // REMOVEMOS ReactiveFormsModule, já que não estamos usando FormBuilder
 import { MatInputModule } from '@angular/material/input';
@@ -15,6 +15,7 @@ import { AuthService } from '../../../app/auth/auth.service';
     MatInputModule,
     ButtonComponent,
     InputTextComponent,
+    RouterModule,
   ],
   templateUrl: './loginPf.component.html',
   styleUrl: './loginPf.component.css',

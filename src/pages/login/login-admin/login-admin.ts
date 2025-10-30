@@ -13,7 +13,6 @@ import { AuthService } from '../../../app/auth/auth.service';
   imports: [
     FormsModule, // Essencial para [(ngModel)] e #loginForm
     MatInputModule,
-    ButtonComponent,
     InputTextComponent,
   ],
   templateUrl: './login-admin.html',
