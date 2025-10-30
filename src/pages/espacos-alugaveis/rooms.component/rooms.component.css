@@ -11,9 +11,11 @@ body {
 
 .description {
     text-align: center;
-    width: 50%;
+    width: 80%;
     height: auto;
+    font-weight: 500;
     padding: 20px;
+    line-height: 30px;
     box-sizing: border-box;    
 }
 
@@ -55,6 +57,8 @@ mat-card-content {
 
 .card-description {
     margin: 10px 0px 10px 0px;
+    line-height: 30px;
+    font-weight: 500;
 }
 
 .group-icons {

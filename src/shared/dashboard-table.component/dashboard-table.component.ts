@@ -22,7 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   selector: 'app-dashboard-table',
   standalone: true,
   imports: [
-    CommonModule, TitleCasePipe, MatTableModule, MatPaginatorModule, MatSortModule,
+    CommonModule, MatTableModule, MatPaginatorModule, MatSortModule,
     MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatTooltipModule
   ],
   providers: [

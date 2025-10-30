@@ -15,7 +15,7 @@
   flex-direction: column;
   gap: 20px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.15); /* mais transparente */
+  background: rgba(255, 255, 255, 0.35); /* mais transparente */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* sombra mais difusa */
   padding: 30px 25px;
   font-family: 'Segoe UI', sans-serif;
@@ -27,7 +27,7 @@
 h1 {
   color: var(--cor-primaria);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -42,15 +42,14 @@ h1 {
 label {
   color: var(--cor-texto);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 app-input-text {
   border: none;
   border-radius: 5px;
-  padding: 2px;
   font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 

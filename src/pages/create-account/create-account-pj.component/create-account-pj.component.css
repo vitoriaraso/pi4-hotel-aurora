@@ -1,86 +1,111 @@
 .background {
-  overflow-y: auto;
-  padding: 40px 0;
-  height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-image: url("../../../assets/images/background-signup.jpg");
+    overflow-y: auto;
+    padding: 50px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url("../../../assets/images/background-signup.jpg");
+    height: calc(100vh - var(--headerHeight));
 }
 
 .container {
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  height: auto;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.35); /* mais transparente */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* sombra mais difusa */
+    backdrop-filter: blur(8px); /* efeito vidro mais forte */
+    -webkit-backdrop-filter: blur(8px); /* compatibilidade com Safari */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* borda mais sutil */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 20px;
+    height: auto;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 h1 {
-  text-align: center;
-  color: black;
+    text-align: center;
+    color: black;
+    font-weight: 700;
 }
 
 h2 {
-  text-align: left;
-  margin-bottom: 10px;
-  color: #444;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: 700;
 }
 
 form {
-  gap: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .group-item {
-  width: 49%;
-  gap: 3px;
-  display: flex;
-  flex-direction: column;
+    width: 49%;
+    gap: 3px;
+    display: flex;
+    flex-direction: column;
 }
 
 .group-email,
 .group-password,
 .group-address {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
 }
 
 label {
-  text-align: left;
-  font-weight: 500;
-  color: #333;
+    text-align: left;
+    font-weight: 600;
+    color: #000;
+}
+
+::ng-deep app-input-text input {
+  margin-top: 2px;
 }
 
 .passwordRules {
-  text-align: left;
-  background-color: #f7f7f7;
-  border-left: 4px solid #809671;
-  border-radius: 6px;
-  padding: 15px;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.5;
+    text-align: left;
+    background-color: #f7f7f7;
+    border-left: 7px solid #809671;
+    border-radius: 6px;
+    padding: 15px;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .error-message {
-  color: red;
-  font-size: 10px;
-  display: flex;
+  display: inline-flex; 
   flex-direction: column;
+  color: #ff4d4f;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 8px;
+  margin-top: 4px;
+  border-radius: 4px;
+  background: rgba(255, 0, 0, 0.02);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  max-width: max-content; 
+  white-space: nowrap; 
+}
+
+#uf{
+    padding: 12px;
+    border-radius: 5px;
 }

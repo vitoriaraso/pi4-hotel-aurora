@@ -37,7 +37,6 @@ html, body {
 }
 
 .container {
-  height: 91vh;
   overflow-y: auto;
   box-sizing: border-box;
 }

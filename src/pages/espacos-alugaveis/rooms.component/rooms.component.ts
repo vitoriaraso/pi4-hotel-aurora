@@ -17,17 +17,13 @@ import { MatCardModule } from '@angular/material/card';
 export class RoomsComponent {
   constructor(private router: Router) { }
 
-   // Arrays dos Objetos Cards
+   // Arrays dos Objetos Cards PRESIDENCIAL, DELUXE, EXECUTIVO, STANDARD
   Cards = [
-    { imagePath: 'assets/images/room04.jpeg', title: 'Classic', description: 'Quarto aconchegante e funcional, ideal para uma estadia prática.', oneIncluded: 'null', twoIncluded: 'null', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room05.jpeg', title: 'Master', description: 'Espaço confortável, perfeito para dois hóspedes que buscam comodidade.', oneIncluded: 'null', twoIncluded: 'coffee', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room06.jpeg', title: 'Premier', description: 'Opção sofisticada para um ou dois hóspedes, superior ao Master.', oneIncluded: 'local_dining', twoIncluded: 'coffee', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room09.jpeg', title: 'Family', description: 'Ambiente planejado para casais com filhos, com espaço extra.', oneIncluded: 'null', twoIncluded: 'local_dining', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room06.jpeg', title: 'Executive', description: 'Quarto moderno com área de trabalho, ideal para viagens de negócios.', oneIncluded: 'null', twoIncluded: 'coffee', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room04.jpeg', title: 'Deluxe', description: 'Hospedagem ampla e elegante, combinando luxo e conforto.', oneIncluded: 'null', twoIncluded: 'local_dining', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room07.jpeg', title: 'Romantic', description: 'Clima intimista e acolhedor, pensado para casais.', oneIncluded: 'null', twoIncluded: 'local_dining', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room04.jpeg', title: 'Accessible', description: 'Estrutura adaptada para garantir conforto e segurança a todos.', oneIncluded: 'coffee', twoIncluded: 'local_dining', threeIncluded: 'wifi' },
-    { imagePath: 'assets/images/room05.jpeg', title: 'Presidential', description: 'A mais alta categoria, unindo luxo, exclusividade e serviços premium.', oneIncluded: 'coffee', twoIncluded: 'local_dining', threeIncluded: 'wifi' },
+    { imagePath: 'assets/images/suites/standard.avif', title: 'Standard', description: 'Suíte aconchegante e funcional, ideal para quem busca conforto com praticidade em um ambiente sofisticado.', oneIncluded: 'null', twoIncluded: 'null', threeIncluded: 'wifi' },
+    { imagePath: 'assets/images/suites/executive.avif', title: 'Executivo', description: 'Espaço moderno e bem equipado, perfeito para hóspedes em viagem de negócios que valorizam eficiência e estilo.', oneIncluded: 'null', twoIncluded: 'coffee', threeIncluded: 'wifi' },
+    { imagePath: 'assets/images/suites/deluxe.webp', title: 'Deluxe', description: 'Suíte espaçosa com decoração refinada, oferecendo comodidades premium e uma experiência de hospedagem superior.', oneIncluded: 'local_dining', twoIncluded: 'coffee', threeIncluded: 'wifi' },
+    { imagePath: 'assets/images/suites/presidencial.avif', title: 'Presidencial', description: 'O ápice do luxo e exclusividade: ambientes amplos, serviço personalizado e vista privilegiada para uma estadia inesquecível.', oneIncluded: 'null', twoIncluded: 'local_dining', threeIncluded: 'wifi' },
+    
   ]
 
   // Pagína de reserva
