@@ -1,0 +1,66 @@
+<div class="page-container">
+  <div class="content-container">
+    <div class="header-controls">
+      <a routerLink="/admin/dashboard/funcionarios" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar para a lista
+      </a>
+    </div>
+
+    <div class="content-wrapper">
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="form-section">
+          <div class="section-header">
+            <h2>Cadastrar Novo Funcionário</h2>
+          </div>
+          <div class="section-content">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="nome">Nome Completo</label>
+                <input formControlName="nome" type="text" id="nome" required>
+                @if (nome?.invalid && nome?.touched) { <div class="error-message">Nome é obrigatório.</div> }
+              </div>
+              <div class="form-field">
+                <label for="cargo">Cargo</label>
+                <input formControlName="cargo" type="text" id="cargo" required>
+                @if (cargo?.invalid && cargo?.touched) { <div class="error-message">Cargo é obrigatório.</div> }
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="cpf">CPF</label>
+                <input formControlName="cpf" mask="000.000.000-00" [dropSpecialCharacters]="true" type="text" id="cpf" required>
+                @if (cpf?.invalid && cpf?.touched) { <div class="error-message">CPF inválido ou obrigatório.</div> }
+              </div>
+              <div class="form-field">
+                <label for="telefone">Telefone</label>
+                <input formControlName="telefone" mask="(00) 00000-0000" [dropSpecialCharacters]="true" type="tel" id="telefone" required>
+                @if (telefone?.invalid && telefone?.touched) { <div class="error-message">Telefone obrigatório (11 dígitos).</div> }
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">E-mail</label>
+                <input formControlName="email" type="email" id="email" required>
+                @if (email?.invalid && email?.touched) { <div class="error-message">E-mail inválido ou obrigatório.</div> }
+              </div>
+              <div class="form-field">
+                <label for="senha">Senha</label>
+                <input formControlName="senha" type="password" id="senha" required>
+                @if (senha?.invalid && senha?.touched) { <div class="error-message">Senha obrigatória (mín. 6 caracteres).</div> }
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <app-button
+              label="Cadastrar Funcionário"
+              type="submit"
+              icon="save"
+              [disabled]="formulario.invalid"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

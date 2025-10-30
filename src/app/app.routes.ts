@@ -29,7 +29,7 @@ import { AdminComponent } from '../pages/admin/admin.component/admin.component';
 import { DashboardComponent } from '../pages/admin/dashboard.component/dashboard.component';
 import { DashboardClientesComponent } from '../pages/admin/clientes/dashboard-clientes.component/dashboard-clientes.component';
 import { ClientDetailComponent } from '../pages/admin/clientes/client-detail/client-detail.component';
-import { DashboardFuncionariosComponent } from '../pages/admin/dashboard-funcionarios.component/dashboard-funcionarios.component';
+import { DashboardFuncionariosComponent } from '../pages/admin/funcionários/dashboard-funcionarios.component/dashboard-funcionarios.component';
 import { DashboardReservasComponent } from '../pages/admin/dashboard-reservas.component/dashboard-reservas.component';
 import { DashboardEspacoscomunsComponent } from '../pages/admin/dashboard-espacoscomuns.component/dashboard-espacoscomuns.component';
 import { DashboardInstalacoesalugaveisComponent } from '../pages/admin/dashboard-instalacoesalugaveis.component/dashboard-instalacoesalugaveis.component';
@@ -37,6 +37,10 @@ import { DashboardHoteisComponent } from '../pages/admin/dashboard-hoteis.compon
 import { DashboardConfiguracoesComponent } from '../pages/admin/dashboard-configuracoes.component/dashboard-configuracoes.component';
 
 import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
+import {FuncionarioDetailComponent} from '../pages/admin/funcionários/funcionario-detail/funcionario-detail.component';
+import {
+  CreateFuncionarioComponent
+} from '../pages/admin/funcionários/create-funcionario.component/create-funcionario.component';
 
 export const routes: Routes = [
   /////////////////////////////////////////// Login OAUTH
@@ -178,8 +182,18 @@ export const routes: Routes = [
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'dashboard/funcionarios',
+        path: 'dashboard/funcionarios', // editando aqui
         component: DashboardFuncionariosComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/funcionarios/novo',
+        component: CreateFuncionarioComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/funcionarios/:id', // editando aqui
+        component: FuncionarioDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {

@@ -1,10 +1,6 @@
-
-
 .page-container {
-  /*height: 100vh; !* Mude de 'min-height' para 'height'. A altura agora é EXATAMENTE a da tela. *!*/
-  overflow-y: auto; /* Se o conteúdo interno for maior que 100vh, ADICIONE a barra de rolagem AQUI DENTRO. */
-  box-sizing: border-box; /* Garante que o padding não aumente a altura total. Essencial! */
-
+  min-height: 100vh;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   padding: 12vh 0;
@@ -145,4 +141,10 @@ select:not(:disabled):focus {
     flex-direction: column;
     gap: 20px;
   }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px 24px;
 }
