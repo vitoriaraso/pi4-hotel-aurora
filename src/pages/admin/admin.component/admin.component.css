@@ -28,7 +28,7 @@ html, body {
   top: 9vh; /* Altura da header */
   left: 0;
   bottom: 0;
-  width: 10vw;
+  width: 12vw;
   z-index: 999;
 
   display: flex;

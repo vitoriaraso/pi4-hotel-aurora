@@ -4,6 +4,11 @@
   align-items: center;
   gap: 40px;
   padding: 40px 20px;
+  
+}
+
+.imagem-destaque img {
+  width: 1200px;
   font-family: 'Segoe UI', sans-serif;
 }
 

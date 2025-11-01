@@ -33,7 +33,7 @@
     height: calc(100vh - var(--headerHeight) - 100px);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     padding: 0px 65px;
     width: 40vw;
@@ -51,7 +51,7 @@
 }
 
 .title {
-    font-family: var(--csamerta);
+    font-family: var(--montrealt);
     color: white;
     font-size: 65px;
     font-weight: 500;
@@ -63,14 +63,15 @@
 .subtitle {
     font-size: 16px;
     font-weight: 400;
+    width: 80%;
     text-align: center;
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex;
+    align-items: center;
+    justify-content: center;
     row-gap: 10px;
 }
 
