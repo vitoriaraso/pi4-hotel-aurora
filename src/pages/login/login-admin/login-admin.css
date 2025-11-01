@@ -61,6 +61,17 @@ app-input-text {
   font-size: 12px;
   font-weight: 700;
   border-radius: 4px;
+  color: var(--cor-erro);
+  font-size: 13px;
+}
+
+.error-message {
+  color: var(--cor-erro);
+  background-color: rgba(255, 0, 0, 0.05);
+  border-left: 4px solid var(--cor-erro);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 app-button {

@@ -21,6 +21,12 @@ body {
     background-position: center; 
     background-repeat: no-repeat; 
     color: black; 
+    width: 80%;
+    height: auto;
+    font-weight: 500;
+    padding: 20px;
+    line-height: 30px;
+    box-sizing: border-box;    
 }
 
 .titulo{
@@ -65,6 +71,7 @@ mat-card-content {
 
 .card-description {
     margin: 10px 0px -20px 0px;
+    margin: 10px 0px 10px 0px;
     line-height: 30px;
     font-weight: 500;
 }

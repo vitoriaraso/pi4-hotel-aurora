@@ -9,6 +9,11 @@
 
 .imagem-destaque img {
   width: 1200px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.imagem-destaque img {
+  width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 8px;
