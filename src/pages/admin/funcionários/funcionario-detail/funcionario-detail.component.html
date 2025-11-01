@@ -1,0 +1,63 @@
+<div class="page-container">
+  <div class="content-container">
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/funcionarios" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  @if (funcionario) {
+    <div class="content-wrapper">
+      <form [formGroup]="formulario">
+        <div class="form-section">
+          <div class="section-header">
+            <h2>Detalhes do Funcionário</h2>
+            <app-button
+              [label]="editButtonLabel"
+              (click)="toggleInfoEdit()"
+              [icon]="icon"
+              [disabled]="isEditing && formulario.invalid"
+            />
+          </div>
+
+          <div class="section-content">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="nome">Nome Completo</label>
+                <input formControlName="nome" type="text" id="nome">
+              </div>
+              <div class="form-field">
+                <label for="cargo">Cargo</label>
+                <input formControlName="cargo" type="text" id="cargo">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">E-mail</label>
+                <input formControlName="email" type="email" id="email">
+              </div>
+              <div class="form-field">
+                <label for="telefone">Telefone</label>
+                <input formControlName="telefone" mask="(00) 00000-0000" type="tel" id="telefone">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Data de Cadastro</label>
+                <input [value]="funcionario.dataCadastro.split(' ')[0]" disabled>
+              </div>
+              <div class="form-field">
+                <label>Hotel</label>
+                <input [value]="funcionario.hotel.nome" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <p class="loading-message">Carregando dados do funcionário...</p>
+  }
+  </div>
+</div>

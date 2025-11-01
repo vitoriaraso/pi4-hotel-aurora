@@ -6,10 +6,10 @@ import { AuditoriumComponent } from '../pages/espacos-alugaveis/auditorium.compo
 import { ConferenceRoomComponent } from '../pages/espacos-alugaveis/conference-room.component/conference-room.component';
 import { RoomsComponent } from '../pages/espacos-alugaveis/rooms.component/rooms.component';
 import { SalaoEventosComponent } from '../pages/espacos-alugaveis/salao-eventos.component/salao-eventos.component';
-import { SaunaComponent } from '../pages/espacos-alugaveis/sauna.component/sauna.component';
-import { SpaComponent } from '../pages/espacos-alugaveis/spa.component/spa.component';
+import { ReserveComponent } from '../pages/espacos-alugaveis/reserve.component/reserve.component';
 
 import { FacilitiesComponent } from '../pages/espacos-comuns/facilities.component/facilities.component';
+import { DependenciesComponent } from '../pages/espacos-comuns/dependencies.component/dependencies.component';
 
 import { Signup } from '../pages/signup/signup';
 import { CreateAccount } from '../pages/create-account/choose-registration.component/choose-registration.component';
@@ -29,7 +29,7 @@ import { AdminComponent } from '../pages/admin/admin.component/admin.component';
 import { DashboardComponent } from '../pages/admin/dashboard.component/dashboard.component';
 import { DashboardClientesComponent } from '../pages/admin/clientes/dashboard-clientes.component/dashboard-clientes.component';
 import { ClientDetailComponent } from '../pages/admin/clientes/client-detail/client-detail.component';
-import { DashboardFuncionariosComponent } from '../pages/admin/dashboard-funcionarios.component/dashboard-funcionarios.component';
+import { DashboardFuncionariosComponent } from '../pages/admin/funcionários/dashboard-funcionarios.component/dashboard-funcionarios.component';
 import { DashboardReservasComponent } from '../pages/admin/dashboard-reservas.component/dashboard-reservas.component';
 import { DashboardEspacoscomunsComponent } from '../pages/admin/dashboard-espacoscomuns.component/dashboard-espacoscomuns.component';
 import { DashboardInstalacoesalugaveisComponent } from '../pages/admin/dashboard-instalacoesalugaveis.component/dashboard-instalacoesalugaveis.component';
@@ -37,6 +37,8 @@ import { DashboardHoteisComponent } from '../pages/admin/dashboard-hoteis.compon
 import { DashboardConfiguracoesComponent } from '../pages/admin/dashboard-configuracoes.component/dashboard-configuracoes.component';
 
 import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
+import { FuncionarioDetailComponent } from '../pages/admin/funcionários/funcionario-detail/funcionario-detail.component';
+import { CreateFuncionarioComponent } from '../pages/admin/funcionários/create-funcionario.component/create-funcionario.component';
 
 export const routes: Routes = [
   /////////////////////////////////////////// Login OAUTH
@@ -53,18 +55,18 @@ export const routes: Routes = [
   {
     path: '',
     component: HeroSection,
-    data: { showHeader: false, showFooter: false },
+    //data: { showHeader: false, showFooter: false },
   },
   ///////  ///////  ///////  ///////  ///////    HOME
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
+  //{
+  //  path: 'home',
+  //  component: HomeComponent,
+  //},
   ///////  ///////  ///////  ///////  ///////    ESPAÇOS ALUGÁVEIS
-  {
-    path: 'app-auditorium',
-    component: AuditoriumComponent,
-  },
+  //{
+  //  path: 'app-auditorium',
+  //  component: AuditoriumComponent,
+  //},
   {
     path: 'app-conference-room',
     component: ConferenceRoomComponent,
@@ -73,22 +75,23 @@ export const routes: Routes = [
     path: 'app-rooms',
     component: RoomsComponent,
   },
+  //{
+  //  path: 'app-salao-eventos',
+  //  component: SalaoEventosComponent,
+  //},
+
   {
-    path: 'app-salao-eventos',
-    component: SalaoEventosComponent,
-  },
-  {
-    path: 'app-sauna',
-    component: SaunaComponent,
-  },
-  {
-    path: 'app-spa',
-    component: SpaComponent,
+    path: 'app-reserve',
+    component: ReserveComponent,
   },
   ///////  ///////  ///////  ///////  ///////    ESPAÇOS COMUNS (FACILITIES)
+  //{
+  //  path: 'app-facilities',  //não utilizado e substituído pelo path app-lazer
+  //  component: FacilitiesComponent,
+  //},
   {
-    path: 'app-facilities',
-    component: FacilitiesComponent,
+    path: 'app-dependencies',
+    component: DependenciesComponent,
   },
   ///////  ///////  ///////  ///////  ///////    CADASTRO
   {
@@ -178,8 +181,18 @@ export const routes: Routes = [
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'dashboard/funcionarios',
+        path: 'dashboard/funcionarios', // editando aqui
         component: DashboardFuncionariosComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/funcionarios/novo',
+        component: CreateFuncionarioComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/funcionarios/:id', // editando aqui
+        component: FuncionarioDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {

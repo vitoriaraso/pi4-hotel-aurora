@@ -18,7 +18,7 @@ html, body {
   align-items: center;
   justify-content: space-between;
   height: 9vh;
-  padding: 2vh 3vw;
+  padding: 0vh 3vw;
   background-color: var(--white);
   border-bottom: 1px solid var(--almostWhite);
 }
@@ -28,7 +28,7 @@ html, body {
   top: 9vh; /* Altura da header */
   left: 0;
   bottom: 0;
-  width: 10vw;
+  width: 12vw;
   z-index: 999;
 
   display: flex;

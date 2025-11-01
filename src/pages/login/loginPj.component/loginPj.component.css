@@ -56,13 +56,13 @@ app-input-text {
 .field-error {
   display: inline-flex; 
   flex-direction: column;
-  color: #ff4d4f;
+  color: #000;
   font-size: 12px;
   font-weight: bold;
   padding: 2px 8px;
   margin-top: 4px;
   border-radius: 4px;
-  background: rgba(255, 0, 0, 0.02);
+  background: rgba(255, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   max-width: max-content; 

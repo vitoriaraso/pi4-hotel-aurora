@@ -7,8 +7,5 @@
 .table-container {
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
-  margin-top: 9vh;
-  margin-left: 5vw;
-  width: 85%;
+  width: 1000px;
 }

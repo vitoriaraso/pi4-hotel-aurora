@@ -26,7 +26,7 @@ import { ViaCepService } from '../../../../app/services/viacep/viacep.service';
     ButtonComponent
   ],
   templateUrl: './client-detail.component.html',
-  styleUrl: './client-detail.component.css'
+  styleUrl: '../../css-componente-detail/detail.component.css',
 })
 export class ClientDetailComponent implements OnInit {
   // Injeção de dependências

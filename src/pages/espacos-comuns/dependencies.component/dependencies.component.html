@@ -1,0 +1,22 @@
+<section class="dependencies-section">
+  <div class="header-content">
+    <h2>Conforto e Requinte: Nossas Experiências de Lazer</h2>
+    <p>Criamos um refúgio onde o luxo se encontra com a natureza.</p>
+  </div>
+
+  <div class="dependencies-container-lista">
+    <article
+      class="dependencies-card"
+      *ngFor="let item of itemsDependencies; let i = index"
+      [class.alternado]="i % 2 !== 0"
+    >
+      <div class="imagem-wrapper">
+        <img [src]="item.imagemUrl" [alt]="item.titulo" />
+      </div>
+      <div class="conteudo-wrapper">
+        <h3>{{ item.titulo }}</h3>
+        <p>{{ item.descricao }}</p>
+      </div>
+    </article>
+  </div>
+</section>

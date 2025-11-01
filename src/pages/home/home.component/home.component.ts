@@ -3,11 +3,14 @@ import Swiper from 'swiper';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { AboutAuroraComponent } from '../about-aurora.component/about-aurora.component';
 import { RoomsSectionComponent } from '../rooms-section.component/rooms-section.component';
+import { HeroSection } from "../../../components/app/hero-section";
+import { FooterComponent } from "../../../shared/footer.component/footer.component";
+import { HeaderComponent } from "../../../shared/header.component/header.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AboutAuroraComponent, RoomsSectionComponent],
+  imports: [AboutAuroraComponent, RoomsSectionComponent, HeroSection, FooterComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

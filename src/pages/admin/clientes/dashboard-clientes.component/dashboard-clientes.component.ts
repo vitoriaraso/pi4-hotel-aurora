@@ -23,7 +23,7 @@ import {
     MatDialogModule
   ],
   templateUrl: './dashboard-clientes.component.html',
-  styleUrl: './dashboard-clientes.component.css'
+  styleUrl: '../../css-componente-dashboard/dashboard.component.css'
 })
 export class DashboardClientesComponent implements OnInit {
   private clienteService = inject(ClienteService);

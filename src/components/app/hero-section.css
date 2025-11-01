@@ -57,9 +57,14 @@
     filter: blur(0px);
 }
 
+.hero-content p span{
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+}
+
 .hero-content p {
-    font-family: "Raleway", sans-serif;
-    font-size: 15px;
+    font-family: 'Raleway', cursive;
+    font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.5;
     text-shadow: 0px 0px 8px #372a1e;
@@ -82,4 +87,55 @@
     50% { bottom: 10px }
     75% { bottom: 10px }
     100% { bottom: 10px }
+}
+
+
+.container {
+    background-color: var(--componentOdd);
+}
+
+.container-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.container-content .title h1 {
+    font-size: 3.25em;
+    font-weight: 300;
+    text-align: center;
+}
+
+.container-content .description {
+    width: 700px;
+}
+
+.container-content .description p {
+    font-size: 1.1rem;
+    line-height: 2;
+    text-align: center;
+}
+
+.description-second {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description-second p {
+    font-size: 1.1rem;
+    line-height: 2;
+    text-align: center;
+    max-width: 700px;
+}
+
+.container-content .social-proof p {
+    font-size: 1rem;
+    line-height: 2;
+    text-align: center;
+    font-style: italic;
 }

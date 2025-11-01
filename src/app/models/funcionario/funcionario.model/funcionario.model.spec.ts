@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaunaComponent } from './sauna.component';
+import { FuncionarioModel } from './funcionario.model';
 
-describe('SaunaComponent', () => {
-  let component: SaunaComponent;
-  let fixture: ComponentFixture<SaunaComponent>;
+describe('FuncionarioModel', () => {
+  let component: FuncionarioModel;
+  let fixture: ComponentFixture<FuncionarioModel>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SaunaComponent]
+      imports: [FuncionarioModel]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SaunaComponent);
+    fixture = TestBed.createComponent(FuncionarioModel);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,18 +14,18 @@
 
   <div class="sidenav-content">
     <div class="sidenav-heading">
-      <h3>Hotel</h3>
+      <h3>Aurora Resort</h3>
       <mat-divider></mat-divider>
     </div>
 
     <div class="sidenav-links">
-      <a routerLink="/home"
+      <a routerLink=""
       (click)="linkClicked.emit()">
-      <mat-icon matListItemIcon>room_service</mat-icon>
-      <p>Apresentação</p>
+      <mat-icon matListItemIcon>home</mat-icon>
+      <p>Home</p>
     </a>
 
-      <a routerLink="/app-facilities"
+      <a routerLink="/app-dependencies"
          (click)="linkClicked.emit()">
         <mat-icon matListItemIcon>room_service</mat-icon>
         <p>Dependências do Hotel</p>
@@ -34,7 +34,7 @@
       <a routerLink="/app-rooms"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>bed</mat-icon>
-      <p>Quartos & Suítes</p>
+      <p>Hospedagem</p>
     </a>
 
       <a routerLink="/app-conference-room"
@@ -43,29 +43,30 @@
       <p>Salas de Conferência</p>
     </a>
 
-      <a routerLink="/app-auditorium"
+      <!--<a routerLink="/app-auditorium"
          (click)="linkClicked.emit()">
         <mat-icon matListItemIcon>mic_double</mat-icon>
         <p>Auditórios</p>
-      </a>
+      </a>-->
 
-      <a routerLink="/app-spa"
+      <a routerLink="/app-reserve"
      (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>spa</mat-icon>
-      <p>Spa</p>
+      <p>Reservas</p>
     </a>
 
-      <a routerLink="/app-sauna"
+    <!--  
+    <a routerLink="/app-lazer"
          (click)="linkClicked.emit()">
         <mat-icon matListItemIcon>heat</mat-icon>
-        <p>Sauna</p>
+        <p>Lazer</p>
       </a>
 
       <a routerLink="/app-events"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>event</mat-icon>
       <p>Eventos</p>
-    </a>
+    </a>-->
 
   </div>
 </div>

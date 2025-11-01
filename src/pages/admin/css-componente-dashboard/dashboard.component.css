@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15vh;
+  padding-left: 50px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+app-button {
+  display: flex;
+  justify-self: flex-end;
+}
+
+.content-container a {
+  text-decoration: none;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  color: #666;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+}
+

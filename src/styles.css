@@ -2,6 +2,7 @@
 @import 'swiper/css/pagination';
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 @font-face {
     font-family: 'csamerta-regular';
@@ -31,6 +32,13 @@
     font-style: normal;
 }
 
+.great-vibes-regular {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 :root {
     --white: #ffffff;
     --lightGray: #c0c0c0;
@@ -54,6 +62,7 @@
     --montreall: 'montreal-light';
     --montrealr: 'montreal-regular';
     --montrealt: 'montreal-thin';
+    --greatvibesr: 'great-vibes-regular';
 }
 
 body::-webkit-scrollbar {

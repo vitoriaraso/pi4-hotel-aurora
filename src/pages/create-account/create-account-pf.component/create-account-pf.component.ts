@@ -189,8 +189,6 @@ export class CreateAccountPfComponent implements OnInit {
         this.snackBar.open('Ops! Parece que há um problema com algumas informações. Revise os dados e tente novamente.', 'Fechar', { duration: 10000 });
       }
     });
-
-
   }
 }
 
