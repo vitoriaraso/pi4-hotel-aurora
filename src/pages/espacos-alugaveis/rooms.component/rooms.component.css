@@ -21,7 +21,17 @@ body {
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
+<<<<<<< HEAD
     color: black;
+=======
+    color: black; 
+    width: 80%;
+    height: auto;
+    font-weight: 500;
+    padding: 20px;
+    line-height: 30px;
+    box-sizing: border-box;    
+>>>>>>> 523c23fedc95e0e1cd058d4e71b2e22e8ccc5c18
 }
 
 .titulo{
@@ -76,7 +86,12 @@ mat-card-content {
 }
 
 .card-description {
+<<<<<<< HEAD
     margin: 10px 0px -30px 0px;
+=======
+    margin: 10px 0px -20px 0px;
+    margin: 10px 0px 10px 0px;
+>>>>>>> 523c23fedc95e0e1cd058d4e71b2e22e8ccc5c18
     line-height: 30px;
     font-weight: 500;
     

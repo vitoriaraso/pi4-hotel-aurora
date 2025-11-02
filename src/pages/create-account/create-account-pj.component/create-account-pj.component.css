@@ -91,18 +91,21 @@ label {
 
 a{
     text-decoration: none;
+    justify-content: space-between;
 }
 
 .error-message {
   display: inline-flex; 
   flex-direction: column;
   color: #000;
+  color: #ff4d4f;
   font-size: 12px;
   font-weight: bold;
   padding: 2px 8px;
   margin-top: 4px;
   border-radius: 4px;
   background: rgba(255, 0, 0, 0.5);
+  background: rgba(255, 0, 0, 0.02);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   max-width: max-content; 

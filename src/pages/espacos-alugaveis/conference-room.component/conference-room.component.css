@@ -33,6 +33,14 @@
 }
 
 .imagem-destaque img {
+<<<<<<< HEAD
+=======
+  width: 1200px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.imagem-destaque img {
+>>>>>>> 523c23fedc95e0e1cd058d4e71b2e22e8ccc5c18
   width: 100%;
   height: auto;
   object-fit: cover;
