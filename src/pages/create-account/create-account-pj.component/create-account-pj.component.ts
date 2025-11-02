@@ -7,10 +7,10 @@ import {
   ValidationErrors,
   ValidatorFn,
   Validators,
-  FormsModule
+  FormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router} from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
@@ -107,7 +107,7 @@ export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): V
     CommonModule,
     ButtonComponent,
     InputTextComponent,
-    RouterLink,
+    //RouterLink,
   ],
   styleUrls: ['./create-account-pj.component.css']
 })

@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+//import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [
-    RouterLink
-  ],
+  standalone: true,
+  imports: [ ],
   templateUrl: './hero-section.html',
-  styleUrl: './hero-section.css'
+  styleUrls: ['./hero-section.css']
 })
 export class HeroSection {
 

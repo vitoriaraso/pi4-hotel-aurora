@@ -8,7 +8,7 @@ import {
   MatDialogTitle,
   MatDialogContent,
   MatDialogActions,
-  MatDialogClose,
+  //MatDialogClose,
 } from '@angular/material/dialog';
 
 @Component({
@@ -19,7 +19,7 @@ import {
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose,
+    //MatDialogClose,
   ],
   templateUrl: './confirmation-dialog.component.html',
 })
