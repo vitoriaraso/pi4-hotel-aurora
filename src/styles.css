@@ -41,6 +41,7 @@
 
 :root {
     --white: #ffffff;
+    --neve: #FFFAFA;
     --lightGray: #c0c0c0;
     --mediumGray: #404040;
     --headerHeight: 75px;
@@ -52,7 +53,7 @@
     --lightBrown: #e5d2b8;
     --veryLightBrown: #e5e0d8;
     --almostWhite: #faf7f2;
-
+    
     --componentOdd: #fcf9f5;
 
 
