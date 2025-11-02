@@ -1,11 +1,136 @@
-.table-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+/*.table-header {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: space-between;*/
+/*}*/
 
+/*.table-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  width: 1000px;*/
+/*}*/
+
+/* --- Tira o CSS antigo --- */
+/* Remove qualquer estilo de container que estava aqui antes */
 .table-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 1000px;
+}
+
+/* --- Cabeçalho (Filtro) --- */
+.table-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.filter-field {
+  width: 100%;
+  max-width: 320px;
+  font-size: 0.9rem;
+}
+
+/* ✅ MÁGICA DO CSS PARA DEIXAR O "fill" BONITINHO */
+
+/* 1. Remove o fundo cinza padrão do mat-form-field 'fill' */
+:host ::ng-deep .filter-field .mdc-text-field--filled {
+  background-color: transparent !important;
+}
+
+/* 2. Remove a linha de baixo quando não está focado */
+:host ::ng-deep .filter-field .mdc-line-ripple {
+  display: none !important;
+}
+
+/* 3. (Opcional) Adiciona uma borda inferior sutil para combinar com o design */
+:host ::ng-deep .filter-field .mdc-text-field {
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+}
+
+/* 4. (Opcional) Mostra uma linha azul (cor primária) no foco */
+:host ::ng-deep .filter-field .mdc-text-field--focused {
+  border-bottom: 2px solid #3f51b5;
+}
+
+/* --- Tabela "Minimalista e Clean" --- */
+.clean-table {
+  width: 100%;
+  box-shadow: none; /* Remove qualquer sombra */
+  background-color: #ffffff; /* ✅ Fundo branco, como você pediu! */
+}
+
+/* --- Estilo do Cabeçalho da Tabela --- */
+.mat-header-cell {
+  background-color: #ffffff; /* ✅ Fundo do cabeçalho branco */
+  border-bottom: 2px solid #e0e0e0; /* Linha divisória mais forte */
+
+  /* Tipografia "Pro" para cabeçalhos */
+  color: #a0a0a0; /* Cinza médio, suave */
+  font-size: 0.75rem; /* Pequeno */
+  font-weight: 700;
+  text-transform: uppercase; /* TUDO MAIÚSCULO */
+  letter-spacing: 1px; /* Espaçamento */
+}
+
+/* --- Estilo das Células e Linhas de Dados --- */
+.mat-cell {
+  border-bottom: 1px solid #f5f5f5; /* Borda de linha SUPER sutil */
+  color: #444;
+  font-size: 0.9rem;
+  padding-top: 16px; /* Mais "respiro" vertical */
+  padding-bottom: 16px;
+}
+
+/* Remove a borda da última linha para um look mais limpo */
+.mat-row:last-child .mat-cell {
+  border-bottom: none;
+}
+
+/* Efeito de hover sutil nas linhas */
+.table-row {
+  transition: background-color 0.2s ease;
+}
+.table-row:hover {
+  background-color: #fcfcfc !important; /* Um "quase branco" no hover */
+}
+
+/* --- Coluna de Ações --- */
+.actions-header {
+  text-align: right;
+}
+.actions-cell {
+  text-align: right;
+}
+
+/* Deixa os ícones um pouco mais sutis */
+.table-button {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  color: #999;
+}
+.table-button:hover {
+  color: #3f51b5; /* Cor primária no hover */
+}
+.table-button[color="warn"]:hover {
+  color: #f44336; /* Cor de perigo no hover */
+}
+
+/* --- Paginador --- */
+.clean-paginator {
+  background-color: #ffffff; /* ✅ Fundo do paginador branco */
+  border-top: 1px solid #e0e0e0;
+  color: #777;
+}
+
+/* --- Mensagem de Carregamento --- */
+.loading-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: #aaa;
 }

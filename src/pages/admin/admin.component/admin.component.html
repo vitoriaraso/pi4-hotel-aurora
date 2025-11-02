@@ -1,51 +1,49 @@
-<div id="background">
-  <div class="header">
-    <p>logo</p>
-    <h2>Nome</h2>
-    <p>logout</p>
-  </div>
-  <div class="big-container">
-    <div class="sidebar">
-      <div class="links">
-        <div class="block">
-          <a [routerLink]="['dashboard/clientes']"
-             routerLinkActive="link-ativo"
-             [routerLinkActiveOptions]="{exact: true}">Clientes</a>
-        </div>
-
-        <div class="block">
-        <a [routerLink]="['dashboard/funcionarios']"
-           routerLinkActive="link-ativo">Funcionários</a>
-        </div>
-
-        <div class="block">
-        <a [routerLink]="['dashboard/reservas']"
-           routerLinkActive="link-ativo">Reservas</a>
-        </div>
-
-        <div class="block">
-        <a [routerLink]="['dashboard/espacos-comuns']"
-           routerLinkActive="link-ativo">Espaços comuns</a>
-        </div>
-
-        <div class="block">
-        <a [routerLink]="['dashboard/instalacoes-alugaveis']"
-           routerLinkActive="link-ativo">Instalações alugáveis</a>
-        </div>
-
-        <div class="block">
-        <a [routerLink]="['dashboard/hoteis']"
-           routerLinkActive="link-ativo">Hotéis</a>
-        </div>
-
-        <div class="block">
-        <a [routerLink]="['dashboard/configuracoes']"
-           routerLinkActive="link-ativo">Configurações</a>
-        </div>
-      </div>
+<div class="admin-layout-minimal">
+  <header class="minimal-header">
+    <div class="header-left">
+      <p class="logo">App Logo</p>
+      <h2 class="title">Painel de Administração</h2>
     </div>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+    <button class="logout-btn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Sair</span>
+    </button>
+  </header>
+
+  <aside class="minimal-sidebar">
+    <nav class="sidebar-nav">
+      <a class="nav-item" [routerLink]="['dashboard/clientes']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>group</mat-icon>
+        <span>Clientes</span>
+      </a>
+      <a class="nav-item" [routerLink]="['dashboard/funcionarios']" routerLinkActive="active">
+        <mat-icon>badge</mat-icon>
+        <span>Funcionários</span>
+      </a>
+      <a class="nav-item" [routerLink]="['dashboard/reservas']" routerLinkActive="active">
+        <mat-icon>book_online</mat-icon>
+        <span>Reservas</span>
+      </a>
+      <a class="nav-item" [routerLink]="['dashboard/espacos-comuns']" routerLinkActive="active">
+        <mat-icon>deck</mat-icon>
+        <span>Espaços Comuns</span>
+      </a>
+      <a class="nav-item" [routerLink]="['dashboard/instalacoes-alugaveis']" routerLinkActive="active">
+        <mat-icon>store</mat-icon>
+        <span>Alugáveis</span>
+      </a>
+      <a class="nav-item" [routerLink]="['dashboard/hoteis']" routerLinkActive="active">
+        <mat-icon>apartment</mat-icon>
+        <span>Hotéis</span>
+      </a>
+      <a class="nav-item" [routerLink]="['dashboard/configuracoes']" routerLinkActive="active">
+        <mat-icon>settings</mat-icon>
+        <span>Configurações</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="minimal-content">
+    <router-outlet></router-outlet>
+  </main>
 </div>

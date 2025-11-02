@@ -43,6 +43,8 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
 
   // ✅ 1. NOVO @Input PARA LIGAR/DESLIGAR A COLUNA DE AÇÕES
   @Input() showActions: boolean = false;
+  @Input() showEditAction: boolean = true;
+  @Input() showDeleteAction: boolean = true;
 
   // ✅ 2. NOVOS @Output's PARA EMITIR EVENTOS
   @Output() editAction = new EventEmitter<T>();
@@ -58,17 +60,44 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
     if (changes['data'] && this.data) {
       this.dataSource.data = this.data;
 
+      console.log('[FILHO] Dados recebidos via @Input():', this.data);
+
       let columns = this.visibleColumns.length > 0 ? [...this.visibleColumns] : (this.data.length > 0 ? Object.keys(this.data[0] as object) : []);
 
       if (this.showActions && columns.length > 0 && !columns.includes('actions')) {
         columns.push('actions');
       }
-
+      console.log('Colunas que a tabela vai tentar renderizar:', this.displayedColumns);
       this.displayedColumns = columns;
 
       // ✅ ADICIONE ESTA LINHA PARA DEPURAR
-      console.log('Colunas que a tabela vai tentar renderizar:', this.displayedColumns);
+
     }
+  }
+
+  // ✅ LOG 3: "GRAMPEAR" A FUNÇÃO QUE BUSCA O VALOR
+  public getNestedValue(item: any, path: string): any {
+    // Adicionamos um log especial APENAS para a coluna que está falhando
+    if (path === 'funcionario.nome') {
+      console.log(`[FILHO - getNestedValue] Buscando pelo caminho: "${path}" no item:`, item);
+    }
+
+    if (!path) return '';
+    const keys = path.split('.');
+
+    let result = item;
+    for (const key of keys) {
+      if (result === null || typeof result === 'undefined') {
+        if (path === 'funcionario.nome') console.warn(`[FILHO - getNestedValue] Parou! Objeto intermediário é nulo ou indefinido ao tentar ler a chave: "${key}"`);
+        return '';
+      }
+      result = result[key];
+    }
+
+    if (path === 'funcionario.nome') {
+      console.log(`[FILHO - getNestedValue] Resultado final para "${path}":`, result);
+    }
+    return result;
   }
 
   // ✅ 4. MÉTODOS PÚBLICOS PARA SEREM CHAMADOS PELO HTML

@@ -76,7 +76,6 @@ export class DashboardClientesComponent implements OnInit {
   }
 
   /**
-   * --- MÉTODO ATUALIZADO ---
    * É chamado quando o evento (deleteAction) é emitido pela tabela.
    * Abre um dialog de confirmação antes de excluir.
    * @param cliente O objeto do cliente a ser excluído.

@@ -22,7 +22,7 @@ export class FacilitiesComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
-    this.espacosService.listarTodosEspacos().subscribe({
+    this.espacosService.getEspacos().subscribe({
       next: (dados) => {
         // came uma nova função para processar os dados recebidos
         this.agruparEspacosPorSecao(dados);

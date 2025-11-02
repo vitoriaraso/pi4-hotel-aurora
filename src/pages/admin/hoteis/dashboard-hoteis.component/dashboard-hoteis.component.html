@@ -1,0 +1,26 @@
+<div class="clean-card">
+
+  <div class="dashboard-header">
+    <h2 class="dashboard-title">Painel de Hotéis</h2>
+
+    <a routerLink="/admin/dashboard/hoteis/novo">
+      <app-button label="Adicionar Novo Hotel" icon="add"></app-button>
+    </a>
+  </div>
+
+  <div class="dashboard-content">
+    @if (isLoading) {
+      <p class="loading-message">Carregando painel de hotéis...</p>
+    } @else {
+      <app-dashboard-table
+        [data]="listaDeHoteis"
+        [visibleColumns]="colunasVisiveis"
+        [columnNames]="nomesDasColunas"
+        [showActions]="true"
+        (editAction)="handleView($event)"
+        (deleteAction)="handleDelete($event)">
+      </app-dashboard-table>
+    }
+  </div>
+
+</div>

@@ -2,13 +2,14 @@ export interface ReservaResumoDTO {
   id: number;
   checkIn: string;
   checkOut: string;
+  valorTotal: number;
 }
 
 export interface ReservaResponseDTO {
   id: number;
   tipoPagamento: string;
   valorTotal: number;
-  status: string;
+  statusReserva: string;
   checkIn: string;
   checkOut: string;
   dataCadastro: string;

@@ -28,17 +28,39 @@ import { MyReservationsComponent } from '../pages/account/my-reservations.compon
 import { AdminComponent } from '../pages/admin/admin.component/admin.component';
 import { DashboardComponent } from '../pages/admin/dashboard.component/dashboard.component';
 import { DashboardClientesComponent } from '../pages/admin/clientes/dashboard-clientes.component/dashboard-clientes.component';
-import { ClientDetailComponent } from '../pages/admin/clientes/client-detail/client-detail.component';
-import { DashboardFuncionariosComponent } from '../pages/admin/funcionários/dashboard-funcionarios.component/dashboard-funcionarios.component';
-import { DashboardReservasComponent } from '../pages/admin/dashboard-reservas.component/dashboard-reservas.component';
-import { DashboardEspacoscomunsComponent } from '../pages/admin/dashboard-espacoscomuns.component/dashboard-espacoscomuns.component';
-import { DashboardInstalacoesalugaveisComponent } from '../pages/admin/dashboard-instalacoesalugaveis.component/dashboard-instalacoesalugaveis.component';
-import { DashboardHoteisComponent } from '../pages/admin/dashboard-hoteis.component/dashboard-hoteis.component';
 import { DashboardConfiguracoesComponent } from '../pages/admin/dashboard-configuracoes.component/dashboard-configuracoes.component';
 
 import { AuthCallbackComponent } from './auth/auth-callback/auth-callback.component';
-import { FuncionarioDetailComponent } from '../pages/admin/funcionários/funcionario-detail/funcionario-detail.component';
-import { CreateFuncionarioComponent } from '../pages/admin/funcionários/create-funcionario.component/create-funcionario.component';
+import {ClienteDetailComponent} from '../pages/admin/clientes/cliente-detail/cliente-detail.component';
+import {
+  DashboardFuncionariosComponent
+} from '../pages/admin/funcionarios/dashboard-funcionarios.component/dashboard-funcionarios.component';
+import {
+  CreateFuncionarioComponent
+} from '../pages/admin/funcionarios/create-funcionario.component/create-funcionario.component';
+import {
+  FuncionariosDetailComponent
+} from '../pages/admin/funcionarios/funcionarios-detail/funcionarios-detail.component';
+import {
+  DashboardReservasComponent
+} from '../pages/admin/reservas/dashboard-reservas.component/dashboard-reservas.component';
+import {
+  DashboardEspacosComponent
+} from '../pages/admin/espacos-comuns/dashboard-espacos.component/dashboard-espacos.component';
+import {CreateEspacoComponent} from '../pages/admin/espacos-comuns/create-espaco.component/create-espaco.component';
+import {EspacoDetailComponent} from '../pages/admin/espacos-comuns/espaco-detail.component/espaco-detail.component';
+import {
+  DashboardInstalacoesComponent
+} from '../pages/admin/instalacoes/dashboard-instalacoes.component/dashboard-instalacoes.component';
+import {
+  CreateInstalacaoComponent
+} from '../pages/admin/instalacoes/create-instalacao.component/create-instalacao.component';
+import {
+  InstalacaoDetailComponent
+} from '../pages/admin/instalacoes/instalacao-detail.component/instalacao-detail.component';
+import {CreateHotelComponent} from '../pages/admin/hoteis/create-hotel.component/create-hotel.component';
+import {HotelDetailComponent} from '../pages/admin/hoteis/hotel-detail.component/hotel-detail.component';
+import {DashboardHoteisComponent} from '../pages/admin/hoteis/dashboard-hoteis.component/dashboard-hoteis.component';
 
 export const routes: Routes = [
   /////////////////////////////////////////// Login OAUTH
@@ -55,7 +77,7 @@ export const routes: Routes = [
   {
     path: '',
     component: HeroSection,
-    //data: { showHeader: false, showFooter: false },
+    // data: { showHeader: false, showFooter: false },
   },
   ///////  ///////  ///////  ///////  ///////    HOME
   //{
@@ -177,11 +199,11 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard/clientes/:id',
-        component: ClientDetailComponent,
+        component: ClienteDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'dashboard/funcionarios', // editando aqui
+        path: 'dashboard/funcionarios',
         component: DashboardFuncionariosComponent,
         data: { showFooter: false, showHeader: false },
       },
@@ -191,8 +213,8 @@ export const routes: Routes = [
         data: { showFooter: false, showHeader: false },
       },
       {
-        path: 'dashboard/funcionarios/:id', // editando aqui
-        component: FuncionarioDetailComponent,
+        path: 'dashboard/funcionarios/:id',
+        component: FuncionariosDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
@@ -202,17 +224,47 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard/espacos-comuns',
-        component: DashboardEspacoscomunsComponent,
+        component: DashboardEspacosComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/espacos-comuns/novo',
+        component: CreateEspacoComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/espacos-comuns/:id',
+        component: EspacoDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
         path: 'dashboard/instalacoes-alugaveis',
-        component: DashboardInstalacoesalugaveisComponent,
+        component: DashboardInstalacoesComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/instalacoes-alugaveis/novo', // 'novo' vem ANTES de ':id'
+        component: CreateInstalacaoComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/instalacoes-alugaveis/:id',
+        component: InstalacaoDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
         path: 'dashboard/hoteis',
         component: DashboardHoteisComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/hoteis/novo', // 'novo' vem ANTES de ':id'
+        component: CreateHotelComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/hoteis/:id',
+        component: HotelDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
       {

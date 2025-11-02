@@ -1,0 +1,47 @@
+<div class="page-container">
+
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/espacos-comuns" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  <div class="content-wrapper">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <div class="section-header"><h2>Cadastrar Novo Espaço Comum</h2></div>
+        <div class="section-content">
+          <div class="form-row">
+
+            <div class="form-field">
+              <label for="espaco">Tipo de Espaço</label>
+              <select formControlName="tipoEspacos" id="espaco" required>
+                <option value="" disabled>Selecione um tipo</option>
+                @for (tipo of tiposDeEspaco; track tipo) {
+                  <option [value]="tipo">{{ tiposDeEspacoLabel[tipo] }}</option>
+                }
+              </select>
+              @if (tipoEspacos?.invalid && tipoEspacos?.touched) {
+                <div class="error-message">O tipo é obrigatório.</div>
+              }
+            </div>
+
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="descricao">Descrição</label>
+              <textarea formControlName="descricao" id="descricao" rows="4"></textarea>
+              @if (descricao?.invalid && descricao?.touched) {
+                <div class="error-message">A descrição é obrigatória.</div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <app-button label="Salvar Espaço" type="submit" icon="save" [disabled]="formulario.invalid" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

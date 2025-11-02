@@ -1,0 +1,133 @@
+<div class="page-container">
+    <div class="header-controls">
+      <a routerLink="/admin/dashboard/clientes" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar para a lista
+      </a>
+    </div>
+
+    @if (cliente) {
+      <div class="content-wrapper">
+        <form [formGroup]="formulario">
+
+          <div class="form-section">
+            <div class="section-header">
+              <h2>Informações Pessoais</h2>
+              <app-button
+                id="edit-save-btn"
+                [label]="editButtonLabel"
+                (click)="toggleInfoEdit()"
+                [icon]="icon"
+                [disabled]="isEditing && (formulario.invalid || !formulario.dirty)"
+              />
+            </div>
+
+            <div class="section-content">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name">Nome Completo</label>
+                  <input formControlName="nome" type="text" id="name" required>
+                  @if (nome?.invalid && (nome?.touched || nome?.dirty)) {
+                    <div class="error-message">
+                      @if (nome?.errors?.['required']) { <span>O nome é obrigatório.</span> }
+                      @if (nome?.errors?.['minlength']) { <span>Mínimo de 3 caracteres.</span> }
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="telefone">Telefone</label>
+                  <input formControlName="telefone" mask="(00) 00000-0000" type="tel" id="telefone" required>
+                  @if (telefone?.invalid && (telefone?.touched || telefone?.dirty)) {
+                    <div class="error-message">
+                      @if (telefone?.errors?.['required']) { <span>O telefone é obrigatório.</span> }
+                    </div>
+                  }
+                </div>
+                <div class="form-field">
+                  <label for="email">E-mail</label>
+                  <input formControlName="email" type="email" id="email" required>
+                  @if (email?.invalid && (email?.touched || email?.dirty)) {
+                    <div class="error-message">
+                      @if (email?.errors?.['required']) { <span>O e-mail é obrigatório.</span> }
+                      @if (email?.errors?.['email']) { <span>Formato de e-mail inválido.</span> }
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="section-header">
+              <h2>Endereço</h2>
+            </div>
+
+            <div class="section-content">
+              <div class="form-row">
+                <div class="form-field cep-field">
+                  <label for="cep">CEP</label>
+                  <input
+                    formControlName="cep"
+                    mask="00000-000"
+                    [dropSpecialCharacters]="true"
+                    (blur)="consultarCep()"
+                    type="text"
+                    id="cep"
+                    required
+                  >
+                  @if (cep?.invalid && (cep?.touched || cep?.dirty)) {
+                    <div class="error-message">@if (cep?.errors?.['required']) { <span>CEP obrigatório.</span> }</div>
+                  }
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field logradouro-field">
+                  <label for="logradouro">Logradouro</label>
+                  <input formControlName="logradouro" type="text" id="logradouro" required>
+                </div>
+                <div class="form-field numero-field">
+                  <label for="numero">Número</label>
+                  <input formControlName="numero" type="text" id="numero" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="complemento">Complemento</label>
+                  <input formControlName="complemento" type="text" id="complemento">
+                </div>
+                <div class="form-field">
+                  <label for="bairro">Bairro</label>
+                  <input formControlName="bairro" type="text" id="bairro" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="localidade">Cidade</label>
+                  <input formControlName="localidade" type="text" id="localidade" required>
+                </div>
+                <div class="form-field uf-field">
+                  <label for="uf">Estado (UF)</label>
+                  <select formControlName="uf" id="uf" required>
+                    <option value="">Selecione</option>
+                    <option value="AC">AC</option> <option value="AL">AL</option> <option value="AP">AP</option>
+                    <option value="AM">AM</option> <option value="BA">BA</option> <option value="CE">CE</option>
+                    <option value="DF">DF</option> <option value="ES">ES</option> <option value="GO">GO</option>
+                    <option value="MA">MA</option> <option value="MT">MT</option> <option value="MS">MS</option>
+                    <option value="MG">MG</option> <option value="PA">PA</option> <option value="PB">PB</option>
+                    <option value="PR">PR</option> <option value="PE">PE</option> <option value="PI">PI</option>
+                    <option value="RJ">RJ</option> <option value="RN">RN</option> <option value="RS">RS</option>
+                    <option value="RO">RO</option> <option value="RR">RR</option> <option value="SC">SC</option>
+                    <option value="SP">SP</option> <option value="SE">SE</option> <option value="TO">TO</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    } @else {
+      <p class="loading-message">Carregando dados do cliente...</p>
+    }
+  </div>

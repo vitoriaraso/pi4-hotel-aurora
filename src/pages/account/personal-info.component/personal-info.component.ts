@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/button.component/button.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxMaskDirective } from 'ngx-mask';
+import { jwtDecode } from 'jwt-decode';
+import {JwtService} from '../../../app/jwt/jwt.service';
 
 @Component({
   selector: 'app-personal-info',
@@ -27,6 +29,7 @@ export class PersonalInfoComponent implements OnInit {
   private clienteService = inject(ClienteService);
   private viaCepService = inject(ViaCepService);
   private snackBar = inject(MatSnackBar);
+  private jwtService = inject(JwtService);
 
   cliente?: ClienteResponseDTO;
 
@@ -73,18 +76,28 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   private carregarDadosDoCliente() {
-    // TODO: adapte essa linha para pegar o ID real do usuário logado
-    const clienteId = 1;
-    this.clienteService.getClienteById(clienteId).subscribe({
-      next: (dados) => {
-        this.cliente = dados;
-        this.formulario.patchValue(dados);
-        console.log('Dados do cliente recebidos:', this.cliente);
-      },
-      error: (erro) => {
-        console.error('Ocorreu um erro ao buscar os dados do cliente:', erro);
-      }
-    });
+    // Pega o ID síncrono do seu novo JwtService
+    const clienteId = this.jwtService.getTokenId();
+
+    // Verifica se o ID foi encontrado
+    if (clienteId !== null) {
+      // Se sim, chama o ClienteService (assíncrono) com esse ID
+      this.clienteService.getClienteById(clienteId).subscribe({
+        next: (dados) => {
+          this.cliente = dados;
+          this.formulario.patchValue(dados);
+          console.log('Dados do cliente recebidos:', this.cliente);
+        },
+        error: (erro) => {
+          console.error('Ocorreu um erro ao buscar os dados do cliente:', erro);
+          this.snackBar.open('Não foi possível carregar seus dados.', 'Fechar', { duration: 3000 });
+        }
+      });
+    } else {
+      // Se não houver ID, informa o erro
+      console.error('ID do cliente não encontrado no token.');
+      this.snackBar.open('Erro de autenticação. Tente fazer login novamente.', 'Fechar', { duration: 5000 });
+    }
   }
 
   toggleInfoEdit(): void {

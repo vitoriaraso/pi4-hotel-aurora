@@ -1,9 +1,10 @@
 <div id="sidenav">
 
   <div class="sidenav-login">
-    <a routerLink="/account/signup"
-    (click)="linkClicked.emit()">
-      <app-button label="Entrar" icon="person">
+
+    <a routerLink="{{urlBotao}}"
+       (click)="linkClicked.emit()">
+      <app-button label="{{nomeUsuario}}" icon="person">
       </app-button>
     </a>
 
@@ -55,7 +56,7 @@
       <p>Reservas</p>
     </a>
 
-    <!--  
+    <!--
     <a routerLink="/app-lazer"
          (click)="linkClicked.emit()">
         <mat-icon matListItemIcon>heat</mat-icon>

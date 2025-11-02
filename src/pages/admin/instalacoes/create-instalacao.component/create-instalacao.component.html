@@ -1,0 +1,83 @@
+<div class="page-container">
+
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/instalacoes-alugaveis" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  <div class="content-wrapper">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <div class="section-header"><h2>Cadastrar Nova Instalação Alugável</h2></div>
+        <div class="section-content">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nome">Nome</label>
+              <input id="nome" formControlName="nome" type="text">
+              @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+                <div class="error-message">Nome é obrigatório.</div>
+              }
+            </div>
+            <div class="form-field">
+              <label>Disponível</label>
+              <mat-slide-toggle formControlName="isDisponivel" color="primary"></mat-slide-toggle>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="descricao">Descrição</label>
+              <textarea id="descricao" formControlName="descricao" rows="3"></textarea>
+              @if (formulario.get('descricao')?.invalid && formulario.get('descricao')?.touched) {
+                <div class="error-message">Descrição é obrigatória.</div>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="tipo">Tipo</label>
+              <select id="tipo" formControlName="tipo">
+                <option value="" disabled>Selecione</option>
+                @for (tipo of tiposInstalacao; track tipo) {
+                  <option [value]="tipo">{{ tiposInstalacaoLabel[tipo] }}</option>
+                }
+              </select>
+              @if (formulario.get('tipo')?.invalid && formulario.get('tipo')?.touched) {
+                <div class="error-message">Tipo é obrigatório.</div>
+              }
+            </div>
+
+            <div class="form-field">
+              <label for="categoria">Categoria</label>
+              <select id="categoria" formControlName="categoria">
+                <option value="" disabled>Selecione</option>
+                @for (cat of (categoriasDisponiveis | async | keyvalue); track cat.key) {
+                  <option [value]="cat.key">{{ cat.value }}</option>
+                }
+              </select>
+              @if (categoriaControl?.invalid && categoriaControl?.touched) {
+                <div class="error-message">Categoria é obrigatória.</div>
+              }
+            </div>
+          </div>
+
+          @if (formulario.get('tipo')?.value === 'QUARTO') {
+            <div class="form-row">
+              <div class="form-field">
+                <label for="numeroQuarto">Número do Quarto</label>
+                <input id="numeroQuarto" formControlName="numeroQuarto" type="text">
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="form-actions">
+          <app-button label="Salvar Instalação" type="submit" icon="save" [disabled]="formulario.invalid" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

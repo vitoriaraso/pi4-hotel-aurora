@@ -1,73 +1,141 @@
-/* --- CONFIGURAÇÕES GLOBAIS --- */
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+/* --- Opção 1: Minimalista e Clean --- */
+
+/* Variáveis de cor para esta opção */
+:root {
+  --minimal-bg: #fdfdfd;
+  --minimal-text: #333;
+  --minimal-header-bg: #ffffff;
+  --minimal-sidebar-bg: #ffffff;
+  --minimal-border: #eee;
+  --minimal-primary: #007bff; /* Azul clássico */
+  --minimal-hover-bg: #f0f8ff; /* Azul muito claro */
+  --minimal-active-bg: #e0f2ff; /* Azul claro */
 }
 
-/* --- LAYOUT PRINCIPAL --- */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  box-sizing: border-box; /* Inclui padding na largura total */
+/* Base Layout */
+.admin-layout-minimal {
+  display: grid;
+  grid-template-columns: 220px 1fr; /* Sidebar width, Content takes rest */
+  grid-template-rows: 60px 1fr; /* Header height, Content takes rest */
+  height: 100vh;
+  background-color: var(--minimal-bg);
+  color: var(--minimal-text);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
 
+.minimal-header {
+  grid-column: 1 / -1; /* Header spans all columns */
+  grid-row: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 9vh;
-  padding: 0vh 3vw;
-  background-color: var(--white);
-  border-bottom: 1px solid var(--almostWhite);
+  padding: 0 25px;
+  background-color: var(--minimal-header-bg);
+  border-bottom: 1px solid var(--minimal-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  z-index: 1000;
 }
 
-.sidebar {
-  position: fixed;
-  top: 9vh; /* Altura da header */
-  left: 0;
-  bottom: 0;
-  width: 12vw;
-  z-index: 999;
-
-  display: flex;
-  border-right: 1px solid var(--almostWhite);
-  background-color: var(--white);
-}
-
-.container {
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-
-/* --- ESTILOS INTERNOS DA SIDEBAR (sem alterações) --- */
-.sidebar .links {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  text-align: center;
-}
-
-.sidebar .block {
-  flex: 0 0 auto;
-  border-bottom: 2px solid var(--almostWhite);
-}
-
-.sidebar .links a {
+.header-left {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 80px;
-  text-decoration: none;
-  padding: 0 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: background-color 0.2s ease;
+  gap: 20px;
 }
 
-.sidebar .links a:hover {
-  background-color: var(--almostWhite);
+.minimal-header .logo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--minimal-primary);
+  margin: 0;
+}
+
+.minimal-header .title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  margin: 0;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #777;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.logout-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 0, 0, 0.08);
+  color: #d32f2f;
+}
+
+.minimal-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  background-color: var(--minimal-sidebar-bg);
+  border-right: 1px solid var(--minimal-border);
+  padding: 20px 0;
+  overflow-y: auto;
+  box-shadow: 1px 0 3px rgba(0,0,0,0.03);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  gap: 15px;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border-left: 4px solid transparent; /* Para o indicador ativo */
+}
+
+.nav-item mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: #888;
+}
+
+.nav-item:hover {
+  background-color: var(--minimal-hover-bg);
+  color: var(--minimal-primary);
+  border-left-color: var(--minimal-primary);
+}
+
+.nav-item.active {
+  background-color: var(--minimal-active-bg);
+  color: var(--minimal-primary);
+  font-weight: 600;
+  border-left-color: var(--minimal-primary);
+}
+
+.nav-item.active mat-icon {
+  color: var(--minimal-primary);
+}
+
+.minimal-content {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 25px;
+  overflow-y: auto;
 }

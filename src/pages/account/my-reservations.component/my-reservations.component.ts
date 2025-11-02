@@ -1,7 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReservaService } from '../../../app/services/reserva/reserva.service';
-import { ReservaResponseDTO } from '../../../app/models/reserva/reserva.model';
+import { CommonModule } from '@angular/common'; // Importe para usar @if, @for, | currency
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+// 1. Importe os serviços e modelos corretos
+import { ClienteService } from '../../../app/services/cliente/cliente.service'; // Serviço do Cliente
+import { JwtService } from '../../../app/jwt/jwt.service';
+import { ReservaResumoDTO } from '../../../app/models/reserva/reserva.model';
 
 @Component({
   selector: 'app-my-reservations',
@@ -11,34 +15,39 @@ import { ReservaResponseDTO } from '../../../app/models/reserva/reserva.model';
   styleUrl: './my-reservations.component.css'
 })
 export class MyReservationsComponent implements OnInit {
-  private reservaService = inject(ReservaService);
+  // 2. Injete os serviços corretos
+  private clienteService = inject(ClienteService);
+  private jwtService = inject(JwtService);
+  private snackBar = inject(MatSnackBar);
 
-  reservas: ReservaResponseDTO[] = [];
+  // 3. ✅ A MUDANÇA PRINCIPAL: O array agora é do tipo Resumo
+  reservas: ReservaResumoDTO[] = [];
   isLoading = true;
   error: string | null = null;
 
   ngOnInit(): void {
-    // TODO: adapte essa linha para pegar o ID real do usuário logado
-    const clienteId = 1;
+    // 4. Pegue o ID do cliente logado
+    const clienteId = this.jwtService.getTokenId();
 
-    if (clienteId) {
-      // Chama o novo métdo que faz o trabalho pesado
-      this.reservaService.getReservasPorCliente(clienteId).subscribe({
-        next: (dados) => {
-          console.log('DADOS BRUTOS RECEBIDOS PELA API:', dados);
-          this.reservas = dados;
+    if (clienteId !== null) {
+      // 5. Chame o SERVIÇO DO CLIENTE
+      this.clienteService.getClienteById(clienteId).subscribe({
+        next: (dadosDoCliente) => {
+          // 6. ✅ ATRIBUA A LISTA DE RESERVAS QUE VEIO DENTRO DO CLIENTE
+          this.reservas = dadosDoCliente.reservas;
           this.isLoading = false;
-          console.log('Reservas do cliente carregadas:', this.reservas);
         },
         error: (err) => {
-          this.error = 'Não foi possível carregar o histórico de reservas.';
+          console.error('Erro ao buscar dados do cliente:', err);
+          this.error = 'Não foi possível carregar suas reservas.';
           this.isLoading = false;
-          console.error('Falha ao buscar reservas:', err);
+          this.snackBar.open(this.error, 'Fechar', { duration: 5000 });
         }
       });
     } else {
-      this.error = "Usuário não encontrado.";
+      this.error = 'Erro de autenticação. Não foi possível encontrar seu ID.';
       this.isLoading = false;
+      this.snackBar.open(this.error, 'Fechar', { duration: 5000 });
     }
   }
 }

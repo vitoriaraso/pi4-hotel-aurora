@@ -1,14 +1,203 @@
+/*.page-container {*/
+/*  min-height: 100vh;*/
+/*  box-sizing: border-box;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  padding: 12vh 0;*/
+/*  width: 100vw;*/
+/*  background-color: #f5f5f5;*/
+/*}*/
+
+/*.header-controls {*/
+/*  margin-bottom: 24px;*/
+/*}*/
+
+/*.back-button {*/
+/*  display: inline-flex;*/
+/*  align-items: center;*/
+/*  gap: 8px;*/
+/*  text-decoration: none;*/
+/*  color: #3f51b5; !* Cor primária do Material *!*/
+/*  font-weight: 500;*/
+/*  padding: 8px;*/
+/*  border-radius: 4px;*/
+/*  transition: background-color 0.2s;*/
+/*}*/
+
+/*.back-button:hover {*/
+/*  background-color: rgba(63, 81, 181, 0.08);*/
+/*}*/
+
+/*.content-wrapper {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 20px;*/
+/*  max-width: 900px;*/
+/*  margin: 0 auto;*/
+/*}*/
+
+/*form {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 24px;*/
+/*  width: 55vw;*/
+/*}*/
+
+/*!* --- Estilo dos Cards de Seção --- *!*/
+/*.form-section {*/
+/*  background-color: #ffffff;*/
+/*  border-radius: 8px;*/
+/*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*.section-header {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  align-items: center;*/
+/*  padding: 16px 24px;*/
+/*  border-bottom: 1px solid #e0e0e0;*/
+/*}*/
+
+/*.section-header h2 {*/
+/*  margin: 0;*/
+/*  font-size: 1.25rem;*/
+/*  font-weight: 500;*/
+/*  color: #333;*/
+/*}*/
+
+/*.section-content {*/
+/*  padding: 24px;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 20px;*/
+/*}*/
+
+/*!* --- Layout dos Campos do Formulário --- *!*/
+/*.form-row {*/
+/*  display: flex;*/
+/*  gap: 24px;*/
+/*}*/
+
+/*.form-field {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  flex: 1; !* Faz os campos dividirem o espaço igualmente *!*/
+/*  padding: 0px 15px;*/
+/*}*/
+
+/*!* Ajustes de largura para campos específicos *!*/
+/*.cep-field { flex: 0 1 200px; }*/
+/*.logradouro-field { flex: 1; }*/
+/*.numero-field { flex: 1; }*/
+/*.uf-field { flex: 1; }*/
+
+/*!* --- Estilos dos Inputs (Modo Visualização vs Edição) --- *!*/
+/*label {*/
+/*  font-size: 0.8rem;*/
+/*  color: #666;*/
+/*  margin-bottom: 4px;*/
+/*  font-weight: 500;*/
+/*}*/
+
+/*input,*/
+/*select {*/
+/*  font-family: inherit;*/
+/*  font-size: 1rem;*/
+/*  padding: 10px 12px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 4px;*/
+/*  background-color: #fff;*/
+/*  transition: border-color 0.2s, box-shadow 0.2s;*/
+/*  !*width: 100%;*!*/
+/*}*/
+
+/*!* MODO VISUALIZAÇÃO (DISABLED) *!*/
+/*input:disabled,*/
+/*select:disabled {*/
+/*  background-color: transparent;*/
+/*  border-color: transparent;*/
+/*  color: #212121; !* Cor de texto principal *!*/
+/*  padding-left: 0;*/
+/*  cursor: default;*/
+/*  -webkit-text-fill-color: #212121; !* Garante a cor no Chrome *!*/
+/*  opacity: 1; !* Reseta a opacidade padrão do navegador *!*/
+/*}*/
+
+/*!* MODO EDIÇÃO (ENABLED) *!*/
+/*input:not(:disabled):focus,*/
+/*select:not(:disabled):focus {*/
+/*  outline: none;*/
+/*  border-color: #3f51b5;*/
+/*  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);*/
+/*}*/
+
+/*.error-message {*/
+/*  color: #f44336;*/
+/*  font-size: 0.75rem;*/
+/*  margin-top: 4px;*/
+/*}*/
+
+/*textarea {*/
+/*  font-family: inherit;*/
+/*  font-size: 1rem;*/
+/*  padding: 10px 12px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 4px;*/
+/*  width: 100%;*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+/*.form-actions {*/
+/*  display: flex;*/
+/*  justify-content: flex-end;*/
+/*  padding: 0 24px 24px;*/
+/*}*/
+
+/*.list-content {*/
+/*  padding-top: 16px;*/
+/*  padding-bottom: 16px;*/
+/*}*/
+/*.list-item {*/
+/*  padding: 12px 24px;*/
+/*  border-bottom: 1px solid #f0f0f0;*/
+/*}*/
+/*.list-item:last-child {*/
+/*  border-bottom: none;*/
+/*}*/
+/*.empty-message {*/
+/*  padding: 0 24px;*/
+/*  color: #777;*/
+/*  font-style: italic;*/
+/*}*/
+
+/*!* --- Responsividade --- *!*/
+/*@media (max-width: 768px) {*/
+/*  .form-row {*/
+/*    flex-direction: column;*/
+/*    gap: 20px;*/
+/*  }*/
+/*}*/
+
+
+/* --- Estrutura Principal da Página --- */
 .page-container {
   min-height: 100vh;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  padding: 12vh 0;
-  width: 100vw;
-  background-color: #f5f5f5;
+  justify-content: flex-start;
+  flex-direction: column; /* Garante que o .header-controls e .content-wrapper fiquem um sobre o outro */
+  align-items: center; /* Centraliza o card horizontalmente */
+  overflow-x: hidden; /* Previne rolagem horizontal */
+}
+
+.content-container {
+  width: 100%;
 }
 
 .header-controls {
+  width: 100%;
+  max-width: 900px; /* Garante que o botão de voltar alinhe com o card */
   margin-bottom: 24px;
 }
 
@@ -17,7 +206,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: #3f51b5; /* Cor primária do Material */
+  color: #3f51b5;
   font-weight: 500;
   padding: 8px;
   border-radius: 4px;
@@ -29,7 +218,11 @@
 }
 
 .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   max-width: 900px;
+  width: 100%; /* Garante que o card ocupe o espaço em telas pequenas */
   margin: 0 auto;
 }
 
@@ -37,7 +230,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 55vw;
+
+  /* ✅ CORREÇÃO 2: Removido 'width: 55vw' */
+  /* O formulário agora ocupa 100% do .content-wrapper */
+  width: 100%;
 }
 
 /* --- Estilo dos Cards de Seção --- */
@@ -80,10 +276,12 @@ form {
   display: flex;
   flex-direction: column;
   flex: 1; /* Faz os campos dividirem o espaço igualmente */
-  padding: 0px 15px;
+
+  /* ✅ CORREÇÃO (Opcional): Removido 'padding: 0px 15px;' */
+  /* O padding do .section-content já cuida do espaçamento */
 }
 
-/* Ajustes de largura para campos específicos */
+/* Seus ajustes de proporção (ótimos!) */
 .cep-field { flex: 0 1 200px; }
 .logradouro-field { flex: 1; }
 .numero-field { flex: 1; }
@@ -106,22 +304,25 @@ select {
   border-radius: 4px;
   background-color: #fff;
   transition: border-color 0.2s, box-shadow 0.2s;
-  /*width: 100%;*/
+
+  /* ✅ CORREÇÃO 3: ADICIONE ESTAS DUAS LINHAS */
+  width: 100%; /* Faz o input preencher o .form-field */
+  box-sizing: border-box; /* Garante que padding/border não quebrem o layout */
 }
 
-/* MODO VISUALIZAÇÃO (DISABLED) */
+/* MODO VISUALIZAÇÃO (DISABLED) - Seu código aqui é perfeito! */
 input:disabled,
 select:disabled {
   background-color: transparent;
   border-color: transparent;
-  color: #212121; /* Cor de texto principal */
+  color: #212121;
   padding-left: 0;
   cursor: default;
-  -webkit-text-fill-color: #212121; /* Garante a cor no Chrome */
-  opacity: 1; /* Reseta a opacidade padrão do navegador */
+  -webkit-text-fill-color: #212121;
+  opacity: 1;
 }
 
-/* MODO EDIÇÃO (ENABLED) */
+/* MODO EDIÇÃO (ENABLED) - Perfeito! */
 input:not(:disabled):focus,
 select:not(:disabled):focus {
   outline: none;
@@ -135,16 +336,13 @@ select:not(:disabled):focus {
   margin-top: 4px;
 }
 
+/* O resto do seu CSS está ótimo */
+/* ... */
+
 /* --- Responsividade --- */
 @media (max-width: 768px) {
   .form-row {
     flex-direction: column;
     gap: 20px;
   }
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 24px 24px;
 }

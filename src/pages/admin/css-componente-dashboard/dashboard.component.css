@@ -1,42 +1,104 @@
-.container {
+/*.container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  margin-top: 15vh;*/
+/*  padding-left: 50px;*/
+/*}*/
+
+/*.content-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  gap: 10px;*/
+/*}*/
+
+/*app-button {*/
+/*  display: flex;*/
+/*  justify-self: flex-end;*/
+/*}*/
+
+/*.content-container a {*/
+/*  text-decoration: none;*/
+/*}*/
+
+/*.loading-message {*/
+/*  text-align: center;*/
+/*  padding: 2rem;*/
+/*  font-style: italic;*/
+/*  color: #666;*/
+/*}*/
+
+/*.dashboard-header {*/
+/*  display: flex;*/
+/*  justify-content: flex-end;*/
+/*  align-items: center;*/
+/*  margin-bottom: 24px;*/
+/*}*/
+
+/*.dashboard-header h2 {*/
+/*  margin: 0;*/
+/*}*/
+
+
+/*
+ * Este container principal age como um "card" que
+ * preenche 100% da área de conteúdo principal.
+ */
+.clean-card {
+  width: 100%;
+
+  /* Estilos do "Minimalista e Clean" */
+  background-color: #ffffff; /* Fundo branco, diferente do fundo da página */
+  border: 1px solid #eee; /* Borda sutil */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra leve */
+
+  /* Garante que o conteúdo (tabela) não vaze */
+  overflow: hidden;
+}
+
+/* --- Cabeçalho da Dashboard --- */
+.dashboard-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between; /* Título na esquerda, botão na direita */
   align-items: center;
-  justify-content: center;
-  margin-top: 15vh;
-  padding-left: 50px;
+  padding: 1.25rem 1.5rem; /* 20px 24px */
+  border-bottom: 1px solid #eee; /* Linha divisória limpa */
 }
 
-.content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.dashboard-title {
+  margin: 0;
+  font-size: 1.5rem; /* 24px */
+  font-weight: 500;
+  color: #333;
 }
 
-app-button {
-  display: flex;
-  justify-self: flex-end;
-}
-
-.content-container a {
+.dashboard-header a {
   text-decoration: none;
+}
+
+/* --- Conteúdo da Dashboard --- */
+.dashboard-content {
+  /*
+   * A tabela do Angular Material (app-dashboard-table) já
+   * tem seu próprio padding. Não precisamos de mais aqui.
+   */
 }
 
 .loading-message {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem;
   font-style: italic;
-  color: #666;
+  font-size: 1rem;
+  color: #888;
 }
 
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+/* --- Limpa estilos antigos que não são mais necessários --- */
+/*
+.container,
+.content-container,
+app-button {
+  all: unset;
 }
-
-.dashboard-header h2 {
-  margin: 0;
-}
-
+*/

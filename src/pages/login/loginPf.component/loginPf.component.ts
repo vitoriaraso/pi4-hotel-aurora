@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
+import {Component, EventEmitter, Output, inject, signal, OnInit} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // MANTEMOS - Para Template-driven forms (ngModel)
 // REMOVEMOS ReactiveFormsModule, já que não estamos usando FormBuilder
@@ -20,7 +20,7 @@ import { AuthService } from '../../../app/auth/auth.service';
   templateUrl: './loginPf.component.html',
   styleUrl: './loginPf.component.css',
 })
-export class LoginPfComponent {
+export class LoginPfComponent implements OnInit {
   @Output() linkClicked = new EventEmitter<void>();
 
   // Injeção de dependência moderna com inject()
@@ -58,5 +58,9 @@ export class LoginPfComponent {
 
   loginComGoogle() {
     window.location.href = 'http://localhost:8081/oauth2/authorization/google';
+  }
+
+  ngOnInit() {
+    localStorage.removeItem('token');
   }
 }
