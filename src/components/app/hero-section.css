@@ -43,7 +43,7 @@
 
 .hero-content h1 {
     color: rgba(255, 255, 255, 0.243);
-    font-family: 'montreal-regular';
+    font-family: var(--montrealr);
     font-size: 8rem;
     letter-spacing: -12px;
     filter: blur(12px);
@@ -105,11 +105,13 @@
 .container-content .title h1 {
     font-size: 3.25em;
     font-weight: 300;
+    line-height: 1;
     text-align: center;
 }
 
 .container-content .description {
-    width: 700px;
+    max-width: 700px;
+    padding: 0px 15px;
 }
 
 .container-content .description p {
@@ -120,7 +122,7 @@
 
 .description-second {
     width: 100vw;
-    height: 50vh;
+    height: 45vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,6 +131,8 @@
 .description-second p {
     font-size: 1.1rem;
     line-height: 2;
+    
+    padding: 40px 15px;
     text-align: center;
     max-width: 700px;
 }
@@ -139,3 +143,45 @@
     text-align: center;
     font-style: italic;
 }
+
+
+@media (max-width: 550px) {
+  .description-second {
+    height: 100%;
+  }
+}
+
+
+@media (max-width: 550px) {
+  .hero-content h1 {
+    font-size: 7rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .hero-content h1 {
+    font-size: 6rem;
+  }
+
+  .hero-content p {
+    padding: 0 60px;
+  }
+
+  .social-proof{
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-content h1 {
+    margin-top: 40px;
+    font-size: 5rem;
+  }
+
+  .hero-content p span{
+    font-size: 1.6rem;
+  }
+}
+
+
+
