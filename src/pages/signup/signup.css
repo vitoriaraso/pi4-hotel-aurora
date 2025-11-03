@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - var(--headerHeight));
+    height: auto;
 }
 
 .container {
@@ -18,11 +18,9 @@
 #flex1 {
     flex: 75%;
     height: calc(100vh - var(--headerHeight) - 100px);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     outline: 5px solid var(--almostWhite);
     outline-offset: -5px;
 }
@@ -53,7 +51,7 @@
 .title {
     font-family: var(--montrealt);
     color: white;
-    font-size: 65px;
+    font-size: 4rem;
     font-weight: 500;
     text-align: right;
     line-height: 1;
@@ -61,7 +59,7 @@
 }
 
 .subtitle {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     width: 80%;
     text-align: center;
@@ -78,4 +76,55 @@
 .buttons a {
     text-decoration: none;
 }
+
+
+@media (max-width: 1124px) {
+    .container {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 4rem;
+        padding: 100px 10px;
+    }
+
+
+    #flex2 {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 20px 0px;
+        width: 80vw;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        width: 100%;
+        text-align: start;
+    }
+}
+
+@media (max-width: 548px) {
+    .title {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    #flex2 {
+        flex-direction: column;
+    }
+}
+
 

@@ -5,7 +5,8 @@
     background-size: cover;
     background-position: center;
     background-image: url("../../../assets/images/background-signup.jpg");
-    height: calc(100vh - var(--headerHeight));
+    height: auto;
+    padding: 50px 0px;
 }
 
 
@@ -118,4 +119,16 @@ a {
 a:hover {
   color: var(--cor-hover);
   text-decoration: underline;
+}
+
+@media (max-width: 425px) {
+  .form_login {
+    width: 280px; 
+  }
+}
+
+@media (max-width: 330px) {
+  .form_login {
+    width: 250px; 
+  } 
 }
