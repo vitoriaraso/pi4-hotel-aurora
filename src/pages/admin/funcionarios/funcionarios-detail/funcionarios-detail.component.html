@@ -1,0 +1,177 @@
+<!--<div class="page-container">-->
+<!--  <div class="content-container">-->
+<!--  <div class="header-controls">-->
+<!--    <a routerLink="/admin/dashboard/funcionarios" class="back-button">-->
+<!--      <mat-icon>arrow_back</mat-icon>-->
+<!--      Voltar para a lista-->
+<!--    </a>-->
+<!--  </div>-->
+
+<!--  @if (funcionario) {-->
+<!--    <div class="content-wrapper">-->
+<!--      <form [formGroup]="formulario">-->
+<!--        <div class="form-section">-->
+<!--          <div class="section-header">-->
+<!--            <h2>Detalhes do Funcionário</h2>-->
+<!--            <app-button-->
+<!--              [label]="editButtonLabel"-->
+<!--              (click)="toggleInfoEdit()"-->
+<!--              [icon]="icon"-->
+<!--              [disabled]="isEditing && formulario.invalid"-->
+<!--            />-->
+<!--          </div>-->
+
+<!--          <div class="section-content">-->
+<!--            <div class="form-row">-->
+<!--              <div class="form-field">-->
+<!--                <label for="nome">Nome Completo</label>-->
+<!--                <input formControlName="nome" type="text" id="nome">-->
+<!--              </div>-->
+<!--                <div class="form-field uf-field">-->
+<!--                  <label for="uf">Cargo</label>-->
+<!--                  <select formControlName="cargo" id="cargo" required>-->
+<!--                    <option value="">Selecione</option>-->
+
+<!--                    &lt;!&ndash; Alta Gestão &ndash;&gt;-->
+<!--                    <optgroup label="Alta Gestão">-->
+<!--                      <option value="GERENTE_GERAL">Gerente Geral</option>-->
+<!--                      <option value="DIRETOR_FINANCEIRO">Diretor Financeiro</option>-->
+<!--                      <option value="DIRETOR_OPERACOES">Diretor de Operações</option>-->
+<!--                    </optgroup>-->
+
+<!--                    &lt;!&ndash; Gerência Média &ndash;&gt;-->
+<!--                    <optgroup label="Gerência Média">-->
+<!--                      <option value="GERENTE_HOSPEDAGEM">Gerente de Hospedagem</option>-->
+<!--                      <option value="GERENTE_RECEPCAO">Gerente de Recepção</option>-->
+<!--                      <option value="GERENTE_RESERVAS">Gerente de Reservas</option>-->
+<!--                      <option value="GERENTE_EVENTOS">Gerente de Eventos</option>-->
+<!--                      <option value="GERENTE_AB">Gerente A&B</option>-->
+<!--                      <option value="GOVERNANTA_EXECUTIVA">Governanta Executiva</option>-->
+<!--                      <option value="CHEFE_MANUTENCAO">Chefe de Manutenção</option>-->
+<!--                      <option value="CHEF_EXECUTIVO">Chef Executivo</option>-->
+<!--                      <option value="CHEF_SEGURANCA">Chefe de Segurança</option>-->
+<!--                    </optgroup>-->
+
+<!--                    &lt;!&ndash; Supervisão &ndash;&gt;-->
+<!--                    <optgroup label="Supervisão">-->
+<!--                      <option value="SUPERVISOR_RECEPCAO">Supervisor de Recepção</option>-->
+<!--                      <option value="AUDITOR_NOTURNO">Auditor Noturno</option>-->
+<!--                      <option value="COORDENADOR_EVENTOS">Coordenador de Eventos</option>-->
+<!--                      <option value="MAITRE">Maître</option>-->
+<!--                    </optgroup>-->
+
+<!--                    &lt;!&ndash; Operacional &ndash;&gt;-->
+<!--                    <optgroup label="Operacional">-->
+<!--                      <option value="RECEPCIONISTA">Recepcionista</option>-->
+<!--                      <option value="ANALISTA_RESERVAS">Analista de Reservas</option>-->
+<!--                      <option value="CONCIERGE">Concierge</option>-->
+<!--                      <option value="ANALISTA_FINANCEIRO">Analista Financeiro</option>-->
+<!--                      <option value="COMPRADOR">Comprador</option>-->
+<!--                    </optgroup>-->
+<!--                  </select>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="form-row">-->
+<!--              <div class="form-field">-->
+<!--                <label for="email">E-mail</label>-->
+<!--                <input formControlName="email" type="email" id="email">-->
+<!--              </div>-->
+<!--              <div class="form-field">-->
+<!--                <label for="telefone">Telefone</label>-->
+<!--                <input formControlName="telefone" mask="(00) 00000-0000" type="tel" id="telefone">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="form-row">-->
+<!--              <div class="form-field">-->
+<!--                <label>Data de Cadastro</label>-->
+<!--                <input [value]="funcionario.dataCadastro.split(' ')[0]" disabled>-->
+<!--              </div>-->
+<!--              <div class="form-field">-->
+<!--                <label>Hotel</label>-->
+<!--                <input [value]="funcionario.hotel.nome" disabled>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  } @else {-->
+<!--    <p class="loading-message">Carregando dados do funcionário...</p>-->
+<!--  }-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="page-container">
+
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/funcionarios" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  @if (funcionario) {
+    <div class="content-wrapper">
+      <form [formGroup]="formulario">
+        <div class="form-section">
+          <div class="section-header">
+            <h2>Detalhes do Funcionário</h2>
+            <app-button
+              [label]="editButtonLabel"
+              (click)="toggleInfoEdit()"
+              [icon]="icon"
+              [disabled]="isEditing && formulario.invalid"
+            />
+          </div>
+
+          <div class="section-content">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="nome">Nome Completo</label>
+                <input formControlName="nome" type="text" id="nome">
+              </div>
+
+              <div class="form-field">
+                <label for="cargo">Cargo</label>
+                <select formControlName="cargo" id="cargo" required>
+                  <option value="" disabled>Selecione um cargo</option>
+                  @for (cargo of cargos; track cargo) {
+                    <option [value]="cargo">{{ cargoLabels[cargo] }}</option>
+                  }
+                </select>
+                @if (cargo?.invalid && cargo?.touched) {
+                  <div class="error-message">Cargo é obrigatório.</div>
+                }
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">E-mail</label>
+                <input formControlName="email" type="email" id="email">
+              </div>
+              <div class="form-field">
+                <label for="telefone">Telefone</label>
+                <input formControlName="telefone" mask="(00) 00000-0000" type="tel" id="telefone">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Data de Cadastro</label>
+                <input [value]="funcionario.dataCadastro.split(' ')[0]" disabled>
+              </div>
+              <div class="form-field">
+                <label>Hotel</label>
+                <input [value]="funcionario.hotel.nome" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <p class="loading-message">Carregando dados do funcionário...</p>
+  }
+</div>

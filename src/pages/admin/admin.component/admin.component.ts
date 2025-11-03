@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmationDialogComponent } from '../../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-admin',
@@ -7,11 +11,27 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   imports: [
     RouterOutlet,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatIconModule,
+    MatDialogModule
   ],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
+  constructor(private router: Router) { }
+  private dialog = inject(MatDialog);
 
+  logout(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: `Tem certeza que deseja sair?` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        localStorage.removeItem('token');
+        this.router.navigate(['/auth/login/admin']);
+      }
+    });
+  }
 }

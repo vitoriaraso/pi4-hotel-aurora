@@ -2,12 +2,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 
-
+// TODO: mudar para logout
 @Component({
   selector: 'app-cart-sidenav',
   standalone: true,
   imports: [
-    MatDividerModule, 
+    MatDividerModule,
     MatIconModule
   ],
   templateUrl: './cart-sidenav.component.html',

@@ -1,6 +1,5 @@
 /**
- * Enum para os tipos de espaços disponíveis no hotel.
- * Corresponde diretamente ao enum `TipoEspacos` do backend.
+ * Enum para os tipos de espaços, correspondendo ao backend.
  */
 export enum TipoEspacos {
   PISCINA = 'PISCINA',
@@ -17,6 +16,26 @@ export enum TipoEspacos {
   TERRACO = 'TERRACO',
   CINEMA = 'CINEMA'
 }
+
+/**
+ * Dicionário (Record) para mapear os valores do enum
+ * para nomes de exibição amigáveis (labels).
+ */
+export const TipoEspacosLabel: Record<TipoEspacos, string> = {
+  [TipoEspacos.PISCINA]: 'Piscina',
+  [TipoEspacos.REFEITORIO]: 'Refeitório',
+  [TipoEspacos.LOBBY]: 'Lobby',
+  [TipoEspacos.SALADEJOGOS]: 'Sala de Jogos',
+  [TipoEspacos.SALAODETV]: 'Salão de TV',
+  [TipoEspacos.ACADEMIA]: 'Academia',
+  [TipoEspacos.JARDIM]: 'Jardim',
+  [TipoEspacos.PLAYGROUND]: 'Playground',
+  [TipoEspacos.QUADRAPOLIESPORTIVA]: 'Quadra Poliesportiva',
+  [TipoEspacos.SALADELEITURA]: 'Sala de Leitura',
+  [TipoEspacos.ESPACOKIDS]: 'Espaço Kids',
+  [TipoEspacos.TERRACO]: 'Terraço',
+  [TipoEspacos.CINEMA]: 'Cinema'
+};
 
 /**
  * Interface que representa o payload para criar um novo espaço.

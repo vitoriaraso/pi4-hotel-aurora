@@ -1,47 +1,32 @@
 <div class="container">
   <div class="reservations-container">
-    <h2>Meu Histórico de Reservas</h2>
+    <h2>Minhas Reservas</h2>
 
     @if (isLoading) {
-      <div class="loading-spinner">
-        <p>Carregando suas reservas...</p>
-      </div>
+      <p class="loading-message">Carregando suas reservas...</p>
     }
 
     @if (error) {
-      <div class="alert error">
-        <p>{{ error }}</p>
-      </div>
+      <p class="error-message">{{ error }}</p>
     }
 
     @if (!isLoading && !error) {
-
       @if (reservas.length === 0) {
-        <div class="alert info">
-          <p>Você ainda não fez nenhuma reserva.</p>
-        </div>
+        <p class="empty-message">Você ainda não possui nenhuma reserva.</p>
       } @else {
         <div class="reservations-list">
           @for (reserva of reservas; track reserva.id) {
-            <!-- TODO: estilizar cards de reserva do cliente -->
             <div class="reservation-card">
-              <div class="card-header">
-                <h3>{{ reserva.instalacaoAlugavel.nome }}</h3>
-              </div>
-            <div class="card-body">
-              <!-- slipt usado para coletar somente a data, e não a hora. se quiser a hora só tirar o split -->
+              <h3>Reserva #{{ reserva.id }}</h3>
+
               <p><strong>Check-in:</strong> {{ reserva.checkIn.split(' ')[0] }}</p>
               <p><strong>Check-out:</strong> {{ reserva.checkOut.split(' ')[0] }}</p>
-                <p><strong>Pagamento:</strong> {{ reserva.tipoPagamento }}</p>
-              </div>
-              <div class="card-footer">
-                <strong>Valor Total: {{ reserva.valorTotal | currency:'BRL' }}</strong>
-              </div>
+
+              <p class="valor"><strong>Valor Total:</strong> {{ reserva.valorTotal | currency:'BRL' }}</p>
             </div>
           }
         </div>
       }
     }
   </div>
-
 </div>

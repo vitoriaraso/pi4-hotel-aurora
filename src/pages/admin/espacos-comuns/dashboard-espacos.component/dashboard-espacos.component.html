@@ -1,0 +1,27 @@
+<div class="clean-card">
+
+  <div class="dashboard-header">
+    <h2 class="dashboard-title">Painel de Espaços Comuns</h2>
+
+    <a routerLink="/admin/dashboard/espacos-comuns/novo">
+      <app-button label="Adicionar Novo Espaço" icon="add"></app-button>
+    </a>
+  </div>
+
+  <div class="dashboard-content">
+    @if (isLoading) {
+      <p class="loading-message">Carregando painel de espaços...</p>
+    } @else {
+      <app-dashboard-table
+        [data]="listaDeEspacos"
+        [visibleColumns]="colunasVisiveis"
+        [columnNames]="nomesDasColunas"
+        [showActions]="true"
+        [showEditAction]="false"
+        (editAction)="handleView($event)"
+        (deleteAction)="handleDelete($event)">
+      </app-dashboard-table>
+    }
+  </div>
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
+import { Component, EventEmitter, Output, inject, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // MANTEMOS - Para Template-driven forms (ngModel)
 // REMOVEMOS ReactiveFormsModule, já que não estamos usando FormBuilder
@@ -18,7 +18,7 @@ import { AuthService } from '../../../app/auth/auth.service';
   templateUrl: './login-admin.html',
   styleUrl: './login-admin.css',
 })
-export class loginAdminComponent {
+export class loginAdminComponent implements OnInit {
   @Output() linkClicked = new EventEmitter<void>();
 
   // Injeção de dependência moderna com inject()
@@ -54,5 +54,9 @@ export class loginAdminComponent {
 
   loginComGoogle() {
     window.location.href = 'http://localhost:8081/oauth2/authorization/google';
+  }
+
+  ngOnInit(): void {
+    localStorage.removeItem('token');
   }
 }

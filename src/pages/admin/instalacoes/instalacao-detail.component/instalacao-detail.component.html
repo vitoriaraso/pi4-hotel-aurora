@@ -1,0 +1,63 @@
+<div class="page-container">
+
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/instalacoes-alugaveis" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  @if (instalacao) {
+    <div class="content-wrapper">
+      <form [formGroup]="formulario">
+        <div class="form-section">
+          <div class="section-header">
+            <h2>Detalhes do Item: {{ instalacao.nome }}</h2>
+            <app-button [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" />
+          </div>
+          <div class="section-content">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Disponibilidade</label>
+                <mat-slide-toggle formControlName="isDisponivel" color="primary">
+                  {{ formulario.get('isDisponivel')?.value ? 'Disponível' : 'Indisponível' }}
+                </mat-slide-toggle>
+              </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-row">
+              <div class="form-field">
+                <label>Tipo</label>
+                <input [value]="instalacao.tipo" disabled>
+              </div>
+              <div class="form-field">
+                <label>Nº Quarto (se aplicável)</label>
+                <input [value]="instalacao.numeroQuarto || 'N/A'" disabled>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Descrição</label>
+                <textarea [value]="instalacao.descricao" rows="3" disabled></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Data de Cadastro</label>
+                <input [value]="instalacao.dataCadastro.split(' ')[0]" disabled>
+              </div>
+              <div class="form-field">
+                <label>Hotel</label>
+                <input [value]="instalacao.hotel.nome" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <p class="loading-message">Carregando dados do item...</p>
+  }
+</div>

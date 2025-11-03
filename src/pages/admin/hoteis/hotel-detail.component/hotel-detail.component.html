@@ -1,0 +1,62 @@
+<div class="page-container">
+
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/hoteis" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  @if (hotel) {
+    <div class="content-wrapper">
+      <form [formGroup]="formulario">
+        <div class="form-section">
+          <div class="section-header">
+            <h2>Detalhes do Hotel</h2>
+            <app-button [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" [disabled]="isEditing && formulario.invalid" />
+          </div>
+          <div class="section-content">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="nome">Nome do Hotel</label>
+                <input id="nome" formControlName="nome" type="text">
+                @if (formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+                  <div class="error-message">Nome é obrigatório (mín. 3 caracteres).</div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="form-section">
+        <div class="section-header">
+          <h2>Espaços Comuns ({{ hotel.espacos.length }})</h2>
+        </div>
+        <div class="section-content list-content">
+          @for (espaco of hotel.espacos; track espaco.id) {
+            <div class="list-item">{{ espaco.tipoEspacos }} - {{ espaco.descricao }}</div>
+          } @empty {
+            <p class="empty-message">Nenhum espaço comum cadastrado para este hotel.</p>
+          }
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-header">
+          <h2>Itens Alugáveis ({{ hotel.instalacaoAlugaveis.length }})</h2>
+        </div>
+        <div class="section-content list-content">
+          @for (item of hotel.instalacaoAlugaveis; track item.id) {
+            <div class="list-item">{{ item.tipo }}: {{ item.nome }} ({{ item.isDisponivel ? 'Disponível' : 'Indisponível' }})</div>
+          } @empty {
+            <p class="empty-message">Nenhum item alugável cadastrado para este hotel.</p>
+          }
+        </div>
+      </div>
+
+    </div>
+  } @else {
+    <p class="loading-message">Carregando dados do hotel...</p>
+  }
+</div>

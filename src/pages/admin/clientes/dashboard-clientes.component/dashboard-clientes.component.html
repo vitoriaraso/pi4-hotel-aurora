@@ -1,18 +1,45 @@
-<div class="container">
+<!--<div class="container">-->
 
-  @if (isLoading) {
-    <p class="loading-message">Carregando painel de clientes...</p>
-  } @else {
-    <app-dashboard-table
-      title="Painel de Clientes"
-      [data]="listaDeClientes"
-      [visibleColumns]="colunasVisiveisParaAdmin"
-      [columnNames]="nomesDasColunas"
-      [showActions]="true"
-      (editAction)="handleEdit($event)"
-      (deleteAction)="handleDelete($event)">
-    </app-dashboard-table>
-  }
+<!--  @if (isLoading) {-->
+<!--    <p class="loading-message">Carregando painel de clientes...</p>-->
+<!--  } @else {-->
+<!--    <app-dashboard-table-->
+<!--      title="Painel de Clientes"-->
+<!--      [data]="listaDeClientes"-->
+<!--      [visibleColumns]="colunasVisiveisParaAdmin"-->
+<!--      [columnNames]="nomesDasColunas"-->
+<!--      [showActions]="true"-->
+<!--      (editAction)="handleEdit($event)"-->
+<!--      (deleteAction)="handleDelete($event)">-->
+<!--    </app-dashboard-table>-->
+<!--  }-->
 
+
+<!--</div>-->
+
+<div class="clean-card">
+
+  <div class="dashboard-header">
+    <h2 class="dashboard-title">Painel de Clientes</h2>
+
+<!--    <a routerLink="/admin/dashboard/clientes/novo">-->
+<!--      <app-button label="Cadastrar Novo Cliente" icon="add"></app-button>-->
+<!--    </a>-->
+  </div>
+
+  <div class="dashboard-content">
+    @if (isLoading) {
+      <p class="loading-message">Carregando painel de clientes...</p>
+    } @else {
+      <app-dashboard-table
+        [data]="listaDeClientes"
+        [visibleColumns]="colunasVisiveisParaAdmin"
+        [columnNames]="nomesDasColunas"
+        [showActions]="true"
+        (editAction)="handleEdit($event)"
+        (deleteAction)="handleDelete($event)">
+      </app-dashboard-table>
+    }
+  </div>
 
 </div>

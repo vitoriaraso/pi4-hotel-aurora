@@ -7,13 +7,13 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  background-color: var(--neve);  
+  background-color: var(--neve);
 }
 
 
 .titulo {
   position: relative;
-  
+
   width: 100%;
   max-width: 100%;
 }
@@ -131,7 +131,7 @@
 @media (max-width: 800px) {
   .text-image-row {
     margin-top: 50px;
-    flex-direction: column-reverse; 
+    flex-direction: column-reverse;
   }
 
   .reverse{
@@ -146,7 +146,7 @@
 }
 
 @media (max-width: 425px) {
-    
+
   .card {
       margin: 20px 0px;
   }

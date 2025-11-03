@@ -1,0 +1,51 @@
+<div class="page-container">
+  <div class="content-container">
+  <div class="header-controls">
+    <a routerLink="/admin/dashboard/espacos-comuns" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a lista
+    </a>
+  </div>
+
+  @if (espaco) {
+    <div class="content-wrapper">
+      <form [formGroup]="formulario">
+        <div class="form-section">
+          <div class="section-header">
+            <h2>Detalhes do Espaço</h2>
+<!--            <app-button [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" [disabled]="isEditing && formulario.invalid" />-->
+          </div>
+          <div class="section-content">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Tipo de Espaço</label>
+                <select formControlName="tipoEspacos">
+                  @for(tipo of tiposDeEspaco; track tipo){ <option [value]="tipo">{{tipo}}</option> }
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Descrição</label>
+                <textarea formControlName="descricao" rows="4"></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Data de Cadastro</label>
+                <input [value]="espaco.dataCadastro.split(' ')[0]" disabled>
+              </div>
+              <div class="form-field">
+                <label>Hotel</label>
+                <input [value]="espaco.hotel.nome" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <p class="loading-message">Carregando dados do espaço...</p>
+  }
+</div>
+</div>
