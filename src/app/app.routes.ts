@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HeroSection } from '../components/app/hero-section';
-import { HomeComponent } from '../pages/home/home.component/home.component';
+//import { HomeComponent } from '../pages/home/home.component/home.component';
 
 import { AuditoriumComponent } from '../pages/espacos-alugaveis/auditorium.component/auditorium.component';
 import { ConferenceRoomComponent } from '../pages/espacos-alugaveis/conference-room.component/conference-room.component';

@@ -1,3 +1,4 @@
+/*
 import { Component, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import Swiper from 'swiper';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -62,3 +63,4 @@ export class HomeComponent implements AfterViewInit {
     }
   }
 }
+*/

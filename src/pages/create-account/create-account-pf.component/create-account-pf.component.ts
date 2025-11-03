@@ -10,7 +10,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ClienteService, ClienteFisicoRequest } from '../../../app/services/cliente/cliente.service';
@@ -95,7 +95,7 @@ export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): V
     CommonModule,
     ButtonComponent,
     InputTextComponent,
-    RouterLink,
+    //RouterLink,
   ],
   styleUrls: ['./create-account-pf.component.css']
 })
