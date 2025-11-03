@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import 'animate.css';
 
 @font-face {
     font-family: 'csamerta-regular';
@@ -41,7 +42,7 @@
 
 :root {
     --white: #ffffff;
-    --neve: #FFFAFA;
+    --neve: #f8f8f8;
     --lightGray: #c0c0c0;
     --mediumGray: #404040;
     --headerHeight: 75px;

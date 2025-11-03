@@ -5,9 +5,9 @@
     position: fixed;
     height: var(--headerHeight);
     width: 100vw;
-    background: linear-gradient(to bottom, var(--white), var(--veryLightBrown)); /*estava branco*/
+    background: var(--white);
     z-index: 9999;
-    /*border-bottom: 1px solid var(--almostWhite);*/
+    border-bottom: 1px solid var(--almostWhite);
 }
 
 .header-content {

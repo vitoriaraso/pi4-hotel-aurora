@@ -11,6 +11,19 @@
   padding: 15px;
 }
 
+.botao-container {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.botao-limitado {
+  display: inline-block;
+  max-width: 230px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .sidenav-heading {
   padding-left: 10px;
 }
@@ -61,29 +74,6 @@
   text-decoration: none;
 }
 
-/* .login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 110px;
-  gap: 10px;
-  background-color: var(--white);
-  border: 1px solid var(--lightGray);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.login p {
-  font-size: 1.1em;
-  font-weight: 600;
-  color: var(--mediumGray);
-}
-
-.login:hover {
-  background-color: var(--almostWhite);
-} */
-
 .close {
   display: flex;
   align-items: center;
@@ -99,9 +89,6 @@
 @media (max-width: 330px) {
   
     .sidenav-login {
-      justify-content: space-around;
-      gap: 80px;
-    } 
-
-  
+      padding-right: 50px;
+    }   
 }

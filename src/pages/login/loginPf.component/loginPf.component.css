@@ -1,12 +1,11 @@
 .background {
+    background-image: url("../../../assets/images/background-signup.jpg");
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-size: cover;
-    background-position: center;
-    background-image: url("../../../assets/images/background-signup.jpg");
-    height: auto;
-    padding: 50px 0px;
+    height: calc(100vh - var(--headerHeight));
 }
 
 

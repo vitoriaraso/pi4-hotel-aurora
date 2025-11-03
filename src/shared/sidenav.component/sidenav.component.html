@@ -3,8 +3,8 @@
   <div class="sidenav-login">
 
     <a routerLink="{{urlBotao}}"
-       (click)="linkClicked.emit()">
-      <app-button label="{{nomeUsuario}}" icon="person">
+       (click)="linkClicked.emit()" class="botao-container">
+      <app-button label="{{nomeUsuario}}" icon="person" class="botao-limitado">
       </app-button>
     </a>
 

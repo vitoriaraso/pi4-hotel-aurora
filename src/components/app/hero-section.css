@@ -57,9 +57,15 @@
     filter: blur(0px);
 }
 
-.hero-content p span{
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
+.hero-content .slogan{
+    font-family: var(--csamerta);
+    font-size: 1rem;
+    padding-top: 10px;
+}
+
+.hero-content .descricao{
+  font-size: 1rem;
+  margin-top: -10px;
 }
 
 .hero-content p {
@@ -126,12 +132,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--white);
 }
 
 .description-second p {
     font-size: 1.1rem;
     line-height: 2;
-    
     padding: 40px 15px;
     text-align: center;
     max-width: 700px;
