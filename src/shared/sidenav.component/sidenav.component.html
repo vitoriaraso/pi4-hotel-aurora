@@ -26,19 +26,19 @@
       <p>Home</p>
     </a>
 
-      <a routerLink="/app-dependencies"
+      <a routerLink="/dependencies"
          (click)="linkClicked.emit()">
         <mat-icon matListItemIcon>room_service</mat-icon>
         <p>Dependências do Hotel</p>
       </a>
 
-      <a routerLink="/app-rooms"
+      <a routerLink="/accommodations"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>bed</mat-icon>
       <p>Hospedagem</p>
     </a>
 
-      <a routerLink="/app-conference-room"
+      <a routerLink="/conference-rooms"
       (click)="linkClicked.emit()">
       <mat-icon matListItemIcon>meeting_room</mat-icon>
       <p>Salas de Conferência</p>
@@ -50,11 +50,10 @@
         <p>Auditórios</p>
       </a>-->
 
-      <a routerLink="/app-reserve"
-     (click)="linkClicked.emit()">
-      <mat-icon matListItemIcon>spa</mat-icon>
-      <p>Reservas</p>
-    </a>
+      <a (click)="irParaReserva(); linkClicked.emit()" style="cursor:pointer;">
+        <mat-icon matListItemIcon>spa</mat-icon>
+        <p>Reservas</p>
+      </a>
 
     <!--
     <a routerLink="/app-lazer"

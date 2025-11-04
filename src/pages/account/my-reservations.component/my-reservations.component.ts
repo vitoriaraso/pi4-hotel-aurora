@@ -33,7 +33,6 @@ export class MyReservationsComponent implements OnInit {
       // 5. Chame o SERVIÇO DO CLIENTE
       this.clienteService.getClienteById(clienteId).subscribe({
         next: (dadosDoCliente) => {
-          // 6. ✅ ATRIBUA A LISTA DE RESERVAS QUE VEIO DENTRO DO CLIENTE
           this.reservas = dadosDoCliente.reservas;
           this.isLoading = false;
         },

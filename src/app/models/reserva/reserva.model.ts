@@ -1,41 +1,69 @@
-export interface ReservaResumoDTO {
-  id: number;
-  checkIn: string;
-  checkOut: string;
-  valorTotal: number;
+// --- Enums ---
+export enum TipoPagamento {
+  PIX = 'PIX',
+  CREDITO = 'CREDITO',
+  DEBITO = 'DEBITO',
+  DINHEIRO = 'DINHEIRO'
 }
 
+export enum StatusReserva {
+  CONFIRMADA = 'CONFIRMADA',
+  PENDENTE = 'PENDENTE',
+  CANCELADA = 'CANCELADA',
+  ATIVA = 'ATIVA',
+  FINALIZADA = 'FINALIZADA'
+}
+
+// --- Interfaces de Resumo (DTOs Aninhadas) ---
+export interface ClienteResumoDTO {
+  id: number;
+  nome: string;
+  email: string;
+}
+
+export interface FuncionarioResumoDTO {
+  id: number;
+  nome: string;
+  email: string;
+  telefone: string;
+  cargo: string;
+}
+
+export interface InstalacaoResumoDTO {
+  id: number;
+  nome: string;
+  descricao: string;
+}
+
+// --- Interfaces Principais ---
+
+// Corresponde ao seu ReservaResponseDTO (o que recebemos da API)
 export interface ReservaResponseDTO {
   id: number;
-  tipoPagamento: string;
+  tipoPagamento: TipoPagamento;
   valorTotal: number;
-  statusReserva: string;
-  checkIn: string;
+  statusReserva: StatusReserva;
+  checkIn: string; // Vem como "dd/MM/yyyy HH:mm:ss"
   checkOut: string;
   dataCadastro: string;
-  cliente: { id: number; nome: string; };
-  funcionario: { id: number; nome: string; };
-  instalacaoAlugavel: { id: number; nome: string; };
+  cliente: ClienteResumoDTO;
+  funcionario: FuncionarioResumoDTO;
+  instalacaoAlugavel: InstalacaoResumoDTO;
 }
 
 export interface ReservaRequest {
   tipoPagamento: TipoPagamento;
-  statusReserva: StatusReserva;
-  checkIn: string; // Enviar como string no formato ISO (ex: "2025-10-22T14:00:00")
+  checkIn: string;
   checkOut: string;
   clienteId: number;
-  funcionarioId: number;
+  funcionarioId: number | null;
   instalacaoAlugavelId: number;
 }
 
-export enum TipoPagamento {
-  CREDITO = 'CREDITO',
-  DEBITO = 'DEBITO',
-  PIX = 'PIX',
-  DINHEIRO = 'DINHEIRO',
-}
-export enum StatusReserva {
-  ATIVA = 'ATIVA',
-  CANCELADA = 'CANCELADA',
-  FINALIZADA = 'FINALIZADA',
+export interface ReservaResumoDTO {
+  id: number;
+  checkIn: string;
+  checkOut: string;
+  statusReserva: StatusReserva;
+  valorTotal: number;
 }

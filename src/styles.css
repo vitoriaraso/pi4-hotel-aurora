@@ -41,11 +41,34 @@
 
 
 :root {
+    /* Cores Primárias (Baseado no Material Indigo) */
+    --color-primary: #3f51b5;
+    --color-primary-light: rgba(63, 81, 181, 0.08); /* Fundo de ícone, hover */
+    --color-primary-text: #ffffff; /* Texto sobre a cor primária */
+
+    /* Cores Neutras (Superfície e Fundo) */
+    --color-bg-page: #f8f9fa; /* Fundo principal da página (cinza bem claro) */
+    --color-surface: #ffffff;   /* Fundo dos cards e tabelas */
+    --color-surface-header: #fafafa; /* Fundo de cabeçalhos (seções, tabela) */
+
+    /* Cores de Texto */
+    --color-text-primary: #222;    /* Títulos principais (H1, H2) */
+    --color-text-secondary: #555;  /* Texto de parágrafo, descrições */
+    --color-text-muted: #888;      /* Texto de loading, placeholders */
+
+    /* Bordas e Sombras */
+    --color-border-subtle: #e0e0e0; /* Linhas divisórias, bordas */
+    --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.08);
+    --border-radius-base: 8px;
+    --border-radius-large: 12px;
+
     --white: #ffffff;
     --neve: #f8f8f8;
     --lightGray: #c0c0c0;
     --mediumGray: #404040;
-    --headerHeight: 75px;
+    --color-warn: red;
+
 
     --lightGreen: #b3b792;
     --mediumGreen: #809671;
@@ -54,10 +77,10 @@
     --lightBrown: #e5d2b8;
     --veryLightBrown: #e5e0d8;
     --almostWhite: #faf7f2;
-    
+
     --componentOdd: #fcf9f5;
 
-
+    --headerHeight: 75px;
     --fontSizeButton: 15px;
 
     --csamerta: 'csamerta-regular';

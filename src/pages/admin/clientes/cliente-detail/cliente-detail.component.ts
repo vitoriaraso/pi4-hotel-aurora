@@ -12,6 +12,7 @@ import {
   ClienteUpdateRequest
 } from '../../../../app/services/cliente/cliente.service';
 import { ViaCepService } from '../../../../app/services/viacep/viacep.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client-detail',
@@ -77,19 +78,37 @@ export class ClienteDetailComponent implements OnInit {
   }
 
   private carregarDadosDoCliente() {
-    // Pega o parâmetro 'id' da URL atual
+    // 1. Pega o ID (parâmetro da rota)
     const clienteIdString = this.route.snapshot.paramMap.get('id');
+
+    // 2. Pega o Status (parâmetro de consulta)
+    const status = this.route.snapshot.queryParamMap.get('status');
 
     if (clienteIdString) {
       const clienteId = Number(clienteIdString);
-      this.clienteService.getClienteById(clienteId).subscribe({
+
+      // 3. Define qual Observable (chamada de API) será usado
+      let observable: Observable<ClienteResponseDTO>;
+
+      if (status === 'inativo') {
+        // Se a URL for "...?status=inativo"
+        console.log(`Buscando cliente INATIVO com ID: ${clienteId}`);
+        observable = this.clienteService.getInativoById(clienteId);
+      } else {
+        // Se a URL for "...?status=ativo" ou não tiver parâmetro
+        console.log(`Buscando cliente ATIVO com ID: ${clienteId}`);
+        observable = this.clienteService.getClienteById(clienteId);
+      }
+
+      // 4. Se inscreve no Observable que foi escolhido
+      observable.subscribe({
         next: (dados) => {
           this.cliente = dados;
           this.formulario.patchValue(dados);
         },
         error: (erro) => {
           console.error('Ocorreu um erro ao buscar os dados do cliente:', erro);
-          this.snackBar.open('Cliente não encontrado.', 'Fechar', { duration: 5000 });
+          this.snackBar.open('Cliente não encontrado (ativo ou inativo).', 'Fechar', { duration: 5000 });
         }
       });
     }

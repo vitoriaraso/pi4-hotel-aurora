@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet, Router } from '@angular/rou
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationDialogComponent } from '../../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
+import { AuthService } from '../../../app/auth/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +21,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 export class AdminComponent {
   constructor(private router: Router) { }
   private dialog = inject(MatDialog);
+  private authService = inject(AuthService);
 
   logout(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -29,8 +30,8 @@ export class AdminComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        localStorage.removeItem('token');
-        this.router.navigate(['/auth/login/admin']);
+        this.authService.logout();
+        this.router.navigate(['/auth/login']);
       }
     });
   }

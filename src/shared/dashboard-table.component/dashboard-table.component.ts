@@ -45,10 +45,12 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
   @Input() showActions: boolean = false;
   @Input() showEditAction: boolean = true;
   @Input() showDeleteAction: boolean = true;
+  @Input() showReactivateAction: boolean = false;
 
   // ✅ 2. NOVOS @Output's PARA EMITIR EVENTOS
   @Output() editAction = new EventEmitter<T>();
   @Output() deleteAction = new EventEmitter<T>();
+  @Output() reactivateAction = new EventEmitter<T>();
 
   // --- LÓGICA INTERNA ---
   displayedColumns: string[] = [];
@@ -67,40 +69,12 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
       if (this.showActions && columns.length > 0 && !columns.includes('actions')) {
         columns.push('actions');
       }
-      console.log('Colunas que a tabela vai tentar renderizar:', this.displayedColumns);
+
       this.displayedColumns = columns;
-
-      // ✅ ADICIONE ESTA LINHA PARA DEPURAR
-
+      console.log('Colunas que a tabela vai tentar renderizar:', this.displayedColumns);
     }
   }
 
-  // ✅ LOG 3: "GRAMPEAR" A FUNÇÃO QUE BUSCA O VALOR
-  public getNestedValue(item: any, path: string): any {
-    // Adicionamos um log especial APENAS para a coluna que está falhando
-    if (path === 'funcionario.nome') {
-      console.log(`[FILHO - getNestedValue] Buscando pelo caminho: "${path}" no item:`, item);
-    }
-
-    if (!path) return '';
-    const keys = path.split('.');
-
-    let result = item;
-    for (const key of keys) {
-      if (result === null || typeof result === 'undefined') {
-        if (path === 'funcionario.nome') console.warn(`[FILHO - getNestedValue] Parou! Objeto intermediário é nulo ou indefinido ao tentar ler a chave: "${key}"`);
-        return '';
-      }
-      result = result[key];
-    }
-
-    if (path === 'funcionario.nome') {
-      console.log(`[FILHO - getNestedValue] Resultado final para "${path}":`, result);
-    }
-    return result;
-  }
-
-  // ✅ 4. MÉTODOS PÚBLICOS PARA SEREM CHAMADOS PELO HTML
   public onEdit(item: T): void {
     this.editAction.emit(item);
   }
@@ -109,8 +83,11 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
     this.deleteAction.emit(item);
   }
 
+  public onReactivate(item: T): void {
+    this.reactivateAction.emit(item);
+  }
+
   public getColumnHeader(columnKey: string): string {
-    // A lógica que você já tem está perfeita.
     return this.columnNames[columnKey] || this.titleCasePipe.transform(columnKey);
   }
 

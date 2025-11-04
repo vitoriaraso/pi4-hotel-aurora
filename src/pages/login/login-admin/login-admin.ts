@@ -42,7 +42,7 @@ export class loginAdminComponent implements OnInit {
       next: (response) => {
         if (response.token) {
           this.authService.saveToken(response.token);
-          this.router.navigate(['/admin']); // Redireciona para a home ou dashboard
+          this.router.navigate(['/admin/dashboard']); // Redireciona para a home ou dashboard
         }
       },
       error: (err) => {
@@ -57,6 +57,6 @@ export class loginAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 }

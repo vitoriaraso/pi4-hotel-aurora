@@ -122,12 +122,12 @@ a:hover {
 
 @media (max-width: 425px) {
   .form_login {
-    width: 280px; 
+    width: 280px;
   }
 }
 
 @media (max-width: 330px) {
   .form_login {
-    width: 250px; 
-  } 
+    width: 250px;
+  }
 }

@@ -1,30 +1,12 @@
-<!--<div class="container">-->
-
-<!--  @if (isLoading) {-->
-<!--    <p class="loading-message">Carregando painel de clientes...</p>-->
-<!--  } @else {-->
-<!--    <app-dashboard-table-->
-<!--      title="Painel de Clientes"-->
-<!--      [data]="listaDeClientes"-->
-<!--      [visibleColumns]="colunasVisiveisParaAdmin"-->
-<!--      [columnNames]="nomesDasColunas"-->
-<!--      [showActions]="true"-->
-<!--      (editAction)="handleEdit($event)"-->
-<!--      (deleteAction)="handleDelete($event)">-->
-<!--    </app-dashboard-table>-->
-<!--  }-->
-
-
-<!--</div>-->
-
 <div class="clean-card">
 
   <div class="dashboard-header">
     <h2 class="dashboard-title">Painel de Clientes</h2>
 
-<!--    <a routerLink="/admin/dashboard/clientes/novo">-->
-<!--      <app-button label="Cadastrar Novo Cliente" icon="add"></app-button>-->
-<!--    </a>-->
+    <mat-button-toggle-group [value]="mostrando" (change)="mudarFiltro($event.value)">
+      <mat-button-toggle value="ativos">Ativos</mat-button-toggle>
+      <mat-button-toggle value="inativos">Inativos</mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 
   <div class="dashboard-content">
@@ -36,8 +18,14 @@
         [visibleColumns]="colunasVisiveisParaAdmin"
         [columnNames]="nomesDasColunas"
         [showActions]="true"
+
+        [showEditAction]="true"
+        [showDeleteAction]="mostrando === 'ativos'"
+        [showReactivateAction]="mostrando === 'inativos'"
+
         (editAction)="handleEdit($event)"
-        (deleteAction)="handleDelete($event)">
+        (deleteAction)="handleDesativar($event)"
+        (reactivateAction)="handleReativar($event)">
       </app-dashboard-table>
     }
   </div>

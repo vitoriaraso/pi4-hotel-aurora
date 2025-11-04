@@ -1,6 +1,8 @@
 .container {
-  padding: 20px 100px;
-  width: 75%;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 24px;
 }
 
  .infos input,
@@ -31,7 +33,7 @@
 .personal-info .name-and-edit #name {
   font-size: 2em;
   font-weight: bold;
-  width: 220px;
+  width: 300px;
 }
 
 .personal-info .tel-and-email > div,

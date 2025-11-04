@@ -2,17 +2,19 @@ import {Component, inject, OnInit} from '@angular/core';
 // Importe o seu componente de tabela reutilizável
 import { DashboardTableComponent } from '../../../../shared/dashboard-table.component/dashboard-table.component'; // Ajuste o caminho
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 // Use apenas o DTO que a API retorna
 import { ClienteResponseDTO } from '../../../../app/models/cliente/cliente.model';
 import { ClienteService } from '../../../../app/services/cliente/cliente.service';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {EditClientComponent} from '../../../../shared/dialogs/edit-client/edit-client';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { EditClientComponent } from '../../../../shared/dialogs/edit-client/edit-client';
 import {
   ConfirmationDialogComponent
 } from '../../../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ButtonComponent } from '../../../../shared/button.component/button.component';
 
 @Component({
   selector: 'app-dashboard-clientes',
@@ -20,7 +22,10 @@ import {
   imports: [
     CommonModule,
     DashboardTableComponent,
-    MatDialogModule
+    MatDialogModule,
+    ButtonComponent,
+    RouterLink,
+    MatButtonToggleModule,
   ],
   templateUrl: './dashboard-clientes.component.html',
   styleUrl: '../../css-componente-dashboard/dashboard.component.css'
@@ -32,9 +37,12 @@ export class DashboardClientesComponent implements OnInit {
   private dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
+  mostrando: 'ativos' | 'inativos' = 'ativos';
+
   // Propriedades para a tabela
   listaDeClientes: ClienteResponseDTO[] = [];
   isLoading = true;
+
   colunasVisiveisParaAdmin: string[] = ['id', 'nome', 'email', 'tipoCliente', 'dataCadastro'];
   nomesDasColunas: Record<string, string> = {
     id: 'Código',
@@ -49,9 +57,18 @@ export class DashboardClientesComponent implements OnInit {
   }
 
   carregarClientes(): void {
-    this.clienteService.getClientes().subscribe({
+    this.isLoading = true;
+
+    const observable = this.mostrando === 'ativos'
+      ? this.clienteService.getClientes()
+      : this.clienteService.getInativos();
+
+    observable.subscribe({
       next: (dados) => {
-        this.listaDeClientes = dados;
+        this.listaDeClientes = dados.map(cliente => ({
+          ...cliente,
+          ativoTexto: cliente.ativo ? 'Ativo' : 'Inativo'
+        }));
         this.isLoading = false;
       },
       error: (err) => {
@@ -61,46 +78,58 @@ export class DashboardClientesComponent implements OnInit {
     });
   }
 
-  // ✅ 3. ESTA É A FUNÇÃO QUE FAZ A MÁGICA
+  mudarFiltro(novoFiltro: 'ativos' | 'inativos'): void {
+    this.mostrando = novoFiltro;
+    this.carregarClientes();
+  }
+
   /**
    * É chamada quando o evento (editAction) é emitido pela tabela.
    * Navega para a página de detalhes do cliente selecionado.
    * @param cliente O objeto do cliente recebido do evento ($event).
    */
-  handleEdit(cliente: ClienteResponseDTO): void {
-    console.log('Navegando para os detalhes do cliente com ID:', cliente.id);
+  handleEdit(cliente: ClienteResponseDTO): void { // O tipo pode ser ClienteResponseDTO (ou any)
+    // 1. Determina o status com base na propriedade booleana 'ativo'
+    const status = cliente.ativo ? 'ativo' : 'inativo';
 
-    // Usa o router para navegar para a rota dinâmica que criamos,
-    // passando o ID do cliente como parâmetro.
-    this.router.navigate(['/admin/dashboard/clientes', cliente.id]);
+    console.log(`Navegando para detalhes do ID: ${cliente.id} (Status: ${status})`);
+
+    // 2. Navega para a URL de detalhes, adicionando o queryParams
+    this.router.navigate(
+      ['/admin/dashboard/clientes', cliente.id], // A rota principal (ex: /admin/dashboard/clientes/123)
+      { queryParams: { status: status } } // O parâmetro (ex: ?status=inativo)
+    );
   }
 
-  /**
-   * É chamado quando o evento (deleteAction) é emitido pela tabela.
-   * Abre um dialog de confirmação antes de excluir.
-   * @param cliente O objeto do cliente a ser excluído.
-   */
-  handleDelete(cliente: ClienteResponseDTO): void {
-    // 1. Abre o dialog de confirmação
+  handleDesativar(cliente: ClienteResponseDTO): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { message: `Tem certeza que deseja excluir o cliente "${cliente.nome}"? Esta ação não pode ser desfeita.` }
+      data: { message: `Tem certeza que deseja DESATIVAR o cliente "${cliente.nome}"?` }
     });
-
-    // 2. Ouve a resposta do dialog
     dialogRef.afterClosed().subscribe(result => {
-      // 3. Se o usuário clicou em "Confirmar" (result === true)
       if (result === true) {
-        // 4. Chama o serviço para deletar o cliente
-        this.clienteService.deleteCliente(cliente.id).subscribe({
+        this.clienteService.desativarCliente(cliente.id).subscribe({
           next: () => {
-            this.snackBar.open('Cliente excluído com sucesso!', 'Fechar', { duration: 3000 });
-            // 5. Recarrega a lista para remover o item da tabela
-            this.carregarClientes();
+            this.snackBar.open('Cliente desativado com sucesso!', 'Fechar', { duration: 3000 });
+            this.carregarClientes(); // Recarrega a lista
           },
-          error: (err) => {
-            console.error('Erro ao excluir cliente:', err);
-            this.snackBar.open('Erro ao excluir o cliente. Tente novamente.', 'Fechar', { duration: 5000 });
-          }
+          error: (err) => this.snackBar.open('Erro ao desativar o cliente.', 'Fechar', { duration: 5000 })
+        });
+      }
+    });
+  }
+
+  handleReativar(cliente: ClienteResponseDTO): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: `Tem certeza que deseja REATIVAR o cliente "${cliente.nome}"?` }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.clienteService.reativarCliente(cliente.id).subscribe({
+          next: () => {
+            this.snackBar.open('Cliente reativado com sucesso!', 'Fechar', { duration: 3000 });
+            this.carregarClientes(); // Recarrega a lista
+          },
+          error: (err) => this.snackBar.open('Erro ao reativar o cliente.', 'Fechar', { duration: 5000 })
         });
       }
     });

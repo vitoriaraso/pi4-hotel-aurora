@@ -1,0 +1,35 @@
+<div class="dashboard-home-container">
+
+  <div class="welcome-header">
+    <h1>Olá, {{ adminName }}!</h1>
+    <p>Bem-vindo(a) ao seu Painel de Administração. Use o menu à esquerda ou os atalhos abaixo para começar.</p>
+  </div>
+
+  <div class="quick-links-grid">
+
+    <a [routerLink]="['/admin/dashboard/clientes']" class="quick-link-card">
+      <mat-icon>group</mat-icon>
+      <h3>Gerenciar Clientes</h3>
+      <p>Visualizar, editar e desativar contas de clientes.</p>
+    </a>
+
+    <a [routerLink]="['/admin/dashboard/funcionarios']" class="quick-link-card">
+      <mat-icon>badge</mat-icon>
+      <h3>Gerenciar Funcionários</h3>
+      <p>Cadastrar, editar e gerenciar permissões da equipe.</p>
+    </a>
+
+    <a [routerLink]="['/admin/dashboard/reservas']" class="quick-link-card">
+      <mat-icon>book_online</mat-icon>
+      <h3>Ver Reservas</h3>
+      <p>Consultar o histórico de reservas e status de pagamento.</p>
+    </a>
+
+    <a [routerLink]="['/admin/dashboard/instalacoes-alugaveis']" class="quick-link-card">
+      <mat-icon>store</mat-icon>
+      <h3>Itens Alugáveis</h3>
+      <p>Adicionar ou editar quartos, saunas, salas de evento, etc.</p>
+    </a>
+
+  </div>
+</div>

@@ -13,13 +13,13 @@ export class DependenciesComponent {
         id: 1,
         titulo: 'Piscina Coberta',
         descricao: 'Mergulhe no luxo, em nosso ambiente climatizado. Piscinas elegantes com design de borda infinita, perfeitas para relaxar em qualquer estação.',
-        imagemUrl: '/assets/images/lazer/piscina.jpg' 
+        imagemUrl: '/assets/images/lazer/piscina.jpg'
       },
       {
         id: 2,
         titulo: 'Piscina Descoberta',
         descricao: 'Mergulhe no luxo, seja sob o sol ou em nosso ambiente climatizado. Piscinas elegantes com design de borda infinita, perfeitas para relaxar em qualquer estação.',
-        imagemUrl: '/assets/images/lazer/piscinadescoberta.jpg' 
+        imagemUrl: '/assets/images/lazer/piscinadescoberta.jpg'
       },
       {
         id: 3,
@@ -57,8 +57,8 @@ export class DependenciesComponent {
         descricao: 'Desperte com uma experiência gastronômica. Produtos frescos, orgânicos e pães de fermentação natural, servidos em um salão com vista panorâmica.',
         imagemUrl: 'assets/images/lazer/cafe.jpg'
       }
-      
-      
+
+
     ];
 }
 

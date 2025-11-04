@@ -59,14 +59,21 @@ export class ClienteService {
   }
 
   /**
-   * Busca a lista de todos os clientes.
+   * Busca a lista de todos os clientes ativos.
    */
   getClientes(): Observable<ClienteResponseDTO[]> {
     return this.http.get<ClienteResponseDTO[]>(this.apiUrl);
   }
 
   /**
-   * Busca um cliente específico pelo seu ID.
+   * Busca a lista de todos os clientes INATIVOS.
+   */
+  getInativos(): Observable<ClienteResponseDTO[]> {
+    return this.http.get<ClienteResponseDTO[]>(`${this.apiUrl}/inativos`);
+  }
+
+  /**
+   * Busca um cliente ativo específico pelo seu ID.
    * @param id O ID do cliente.
    */
   getClienteById(id: number): Observable<ClienteResponseDTO> {
@@ -75,13 +82,28 @@ export class ClienteService {
   }
 
   /**
-   * Exclui um cliente específico pelo seu ID.
-   * @param id O ID do cliente a ser excluído.
-   * @returns Um Observable<void> que completa quando a exclusão é bem-sucedida.
+   * Busca um cliente INATIVO específico pelo seu ID.
+   * (Útil para a página de detalhes, se necessário)
    */
-  deleteCliente(id: number): Observable<void> {
+  getInativoById(id: number): Observable<ClienteResponseDTO> {
+    const url = `${this.apiUrl}/inativos/${id}`;
+    return this.http.get<ClienteResponseDTO>(url);
+  }
+
+  /**
+   * Desativa um cliente específico pelo seu ID (soft-delete).
+   */
+  desativarCliente(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
+  }
+
+  /**
+   * Reativa um cliente inativo.
+   */
+  reativarCliente(id: number): Observable<void> {
+    const url = `${this.apiUrl}/reativar/${id}`;
+    return this.http.patch<void>(url, null); // Requisição PATCH sem corpo
   }
 }
 

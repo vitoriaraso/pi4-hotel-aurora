@@ -1,57 +1,107 @@
-.container {
-  padding: 20px 100px;
-  width: 75%;
+.reservations-container {
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-.reservations-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.reservations-container h2 {
+  font-size: 1.8rem;
+  color: var(--color-text-primary); /* Seu marrom escuro */
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 16px;
 }
 
 .loading-message,
 .error-message,
 .empty-message {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem;
   font-style: italic;
   font-size: 1.1rem;
-  color: #666;
+  color: var(--color-text-muted); /* Seu cinza claro */
 }
 
 .error-message {
-  color: #f44336;
+  color: var(--color-warn); /* Seu vermelho */
 }
 
+/* --- A Grade de Cards --- */
 .reservations-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
 }
 
+/* --- O Card "Elegante e Soft" --- */
 .reservation-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  background-color: #fff;
+  /* Fundo branco "flutuando" sobre o fundo da página */
+  background-color: var(--color-surface);
+
+  /* Borda e sombra sutis da sua paleta */
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-light);
+
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
 }
 
+/*.reservation-card:hover {*/
+/*  transform: translateY(-4px);*/
+/*  box-shadow: var(--shadow-hover);*/
+/*}*/
+
+/* Título do Card */
 .reservation-card h3 {
   margin-top: 0;
-  margin-bottom: 12px;
-  color: #3f51b5; /* Cor primária */
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary); /* Seu marrom escuro */
+}
+
+/* Detalhes (Check-in/out) */
+.reservation-details {
+  flex-grow: 1; /* Empurra o valor total para baixo */
 }
 
 .reservation-card p {
-  margin: 4px 0;
-  color: #333;
+  margin: 6px 0;
+  color: var(--color-text-secondary); /* Seu cinza médio */
+  line-height: 1.5;
 }
 
+.reservation-card p strong {
+  color: #333; /* Destaque leve para os rótulos */
+}
+
+/* Linha Divisória */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border-subtle); /* Borda sutil */
+  margin: 16px 0;
+}
+
+/* Seção do Valor Total */
 .reservation-card .valor {
-  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
   font-size: 1.1rem;
-  margin-top: 16px;
-  text-align: right;
-  color: #00796b; /* Cor de destaque */
+}
+
+.reservation-card .valor span {
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.reservation-card .valor strong {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-accent); /* Seu verde médio */
 }

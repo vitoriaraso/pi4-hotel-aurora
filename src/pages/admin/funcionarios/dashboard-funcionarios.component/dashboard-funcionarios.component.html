@@ -1,31 +1,12 @@
-<!--<div class="container">-->
-<!--  <div class="content-container">-->
-<!--    <a routerLink="/admin/dashboard/funcionarios/novo">-->
-<!--      <app-button label="Cadastrar Novo Funcionário" icon="add"></app-button>-->
-<!--    </a>-->
-
-
-<!--  @if (isLoading) {-->
-<!--    <p class="loading-message">Carregando...</p>-->
-<!--  } @else {-->
-<!--    <app-dashboard-table-->
-<!--      title="Painel de Funcionários"-->
-<!--      [data]="listaDeFuncionarios"-->
-<!--      [visibleColumns]="colunasVisiveis"-->
-<!--      [columnNames]="nomesDasColunas"-->
-<!--      [showActions]="true"-->
-<!--      (editAction)="handleView($event)"-->
-<!--      (deleteAction)="handleDelete($event)">-->
-<!--    </app-dashboard-table>-->
-<!--  }-->
-<!--</div>-->
-<!--</div>-->
-
-
 <div class="clean-card">
 
   <div class="dashboard-header">
     <h2 class="dashboard-title">Painel de Funcionários</h2>
+
+    <mat-button-toggle-group [value]="mostrando" (change)="mudarFiltro($event.value)">
+      <mat-button-toggle value="ativos">Ativos</mat-button-toggle>
+      <mat-button-toggle value="inativos">Inativos</mat-button-toggle>
+    </mat-button-toggle-group>
 
     <a routerLink="/admin/dashboard/funcionarios/novo">
       <app-button label="Cadastrar Novo Funcionário" icon="add"></app-button>
@@ -41,8 +22,13 @@
         [visibleColumns]="colunasVisiveis"
         [columnNames]="nomesDasColunas"
         [showActions]="true"
+
+        [showEditAction]="true" [showDeleteAction]="mostrando === 'ativos'"
+        [showReactivateAction]="mostrando === 'inativos'"
+
         (editAction)="handleView($event)"
-        (deleteAction)="handleDelete($event)">
+        (deleteAction)="handleDesativar($event)"
+        (reactivateAction)="handleReativar($event)">
       </app-dashboard-table>
     }
   </div>

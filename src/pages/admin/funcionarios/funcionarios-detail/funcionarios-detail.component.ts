@@ -5,6 +5,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxMaskDirective } from 'ngx-mask';
+import { Observable } from 'rxjs';
 
 import { ButtonComponent } from '../../../../shared/button.component/button.component';
 import {
@@ -60,19 +61,34 @@ export class FuncionariosDetailComponent implements OnInit {
     this.formulario.disable();
   }
 
+  /**
+   * Lê o ID (paramMap) e o status (queryParamMap) para chamar o serviço correto.
+   */
   private carregarDadosDoFuncionario() {
+    // 1. Pega o ID da rota
     const funcionarioIdString = this.route.snapshot.paramMap.get('id');
+    // 2. Pega o Status da URL
+    const status = this.route.snapshot.queryParamMap.get('status');
+
     if (funcionarioIdString) {
       const funcionarioId = Number(funcionarioIdString);
-      this.funcionarioService.getFuncionarioById(funcionarioId).subscribe({
+
+      // 3. Define qual Observable (chamada de API) será usado
+      let observable: Observable<FuncionarioResponseDTO>;
+
+      if (status === 'inativo') {
+        observable = this.funcionarioService.getInativoById(funcionarioId);
+      } else {
+        observable = this.funcionarioService.getAtivoById(funcionarioId);
+      }
+
+      // 4. Se inscreve no Observable escolhido
+      observable.subscribe({
         next: (dados) => {
           this.funcionario = dados;
           this.formulario.patchValue(dados);
         },
-        error: (erro) => {
-          console.error('Erro ao buscar funcionário:', erro);
-          this.snackBar.open('Funcionário não encontrado.', 'Fechar', { duration: 5000 });
-        }
+        error: (erro) => this.snackBar.open('Funcionário não encontrado.', 'Fechar', { duration: 5000 })
       });
     }
   }

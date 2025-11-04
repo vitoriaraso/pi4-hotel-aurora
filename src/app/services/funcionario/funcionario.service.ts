@@ -17,18 +17,49 @@ export class FuncionarioService {
   private apiUrl = 'http://localhost:8081/api/funcionario'; // Ajuste se for diferente
 
   /**
-   * Busca a lista completa de todos os funcionários.
+   * Busca a lista de todos os funcionários ATIVOS.
    */
-  getFuncionarios(): Observable<FuncionarioResponseDTO[]> {
+  getAtivos(): Observable<FuncionarioResponseDTO[]> {
     return this.http.get<FuncionarioResponseDTO[]>(this.apiUrl);
   }
 
   /**
-   * Busca um funcionário específico pelo seu ID.
+   * Busca a lista de todos os funcionários INATIVOS.
    */
-  getFuncionarioById(id: number): Observable<FuncionarioResponseDTO> {
+  getInativos(): Observable<FuncionarioResponseDTO[]> {
+    return this.http.get<FuncionarioResponseDTO[]>(`${this.apiUrl}/inativos`);
+  }
+
+  /**
+   * Busca um funcionário ATIVO específico pelo seu ID.
+   */
+  getAtivoById(id: number): Observable<FuncionarioResponseDTO> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<FuncionarioResponseDTO>(url);
+  }
+
+  /**
+   * Busca um funcionário INATIVO específico pelo seu ID.
+   */
+  getInativoById(id: number): Observable<FuncionarioResponseDTO> {
+    const url = `${this.apiUrl}/inativos/${id}`;
+    return this.http.get<FuncionarioResponseDTO>(url);
+  }
+
+  /**
+   * Faz o soft-delete (desativa) do funcionário.
+   */
+  desativarFuncionario(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+
+  /**
+   * Reativa um funcionário inativo.
+   */
+  reativarFuncionario(id: number): Observable<void> {
+    const url = `${this.apiUrl}/reativar/${id}`;
+    return this.http.patch<void>(url, null); // Requisição PATCH sem corpo
   }
 
   /**
@@ -40,17 +71,9 @@ export class FuncionarioService {
   }
 
   /**
-   * Exclui um funcionário pelo seu ID.
+   * Cadastra um novo funcionário (requisição POST).
    */
-  deleteFuncionario(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
-  }
-
-  /**
-   * Cadastra um novo funcionário.
-   */
-  cadastrarFuncionario(data: FuncionarioRequest): Observable<FuncionarioResponseDTO> {
-    return this.http.post<FuncionarioResponseDTO>(this.apiUrl, data);
+  cadastrarFuncionario(data: FuncionarioRequest): Observable<any> { // O retorno é void (201)
+    return this.http.post(this.apiUrl, data);
   }
 }

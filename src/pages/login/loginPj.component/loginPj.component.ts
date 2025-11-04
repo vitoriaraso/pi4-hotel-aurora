@@ -59,6 +59,6 @@ export class LoginPjComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 }

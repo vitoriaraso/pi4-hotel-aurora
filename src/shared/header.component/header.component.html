@@ -10,10 +10,16 @@
             <mat-icon>hotel_class</mat-icon>
         </button>
 
-        <button (click)="onCartClick()" aria-label="Carrinho de compras">
-            <mat-icon></mat-icon>
+      @if (isLoggedIn) {
+        <button (click)="onCartClick()" aria-label="Sair">
+          <mat-icon>logout</mat-icon>
         </button>
+      } @else {
+        <button style="cursor: default">
+          <mat-icon></mat-icon>
+        </button>
+      }
 
     </div>
-    
+
 </div>

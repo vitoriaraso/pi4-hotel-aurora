@@ -1,26 +1,19 @@
 <div class="clean-card">
-
   <div class="dashboard-header">
     <h2 class="dashboard-title">Painel de Reservas</h2>
-
-<!--    <a routerLink="/admin/dashboard/reservas/novo">-->
-<!--      <app-button label="Criar Nova Reserva" icon="add"></app-button>-->
-<!--    </a>-->
+    <a routerLink="/admin/dashboard/reservas/novo">
+      <app-button label="Criar Nova Reserva" icon="add"></app-button>
+    </a>
   </div>
-
   <div class="dashboard-content">
     @if (isLoading) {
-      <p class="loading-message">Carregando painel de reservas...</p>
+      <p class="loading-message">Carregando...</p>
     } @else {
       <app-dashboard-table
         [data]="listaDeReservas"
         [visibleColumns]="colunasVisiveis"
         [columnNames]="nomesDasColunas"
-        [showActions]="false"
-        [showDeleteAction]="false"
-        [showEditAction]="false">
-      </app-dashboard-table>
+        [showActions]="false"> </app-dashboard-table>
     }
   </div>
-
 </div>

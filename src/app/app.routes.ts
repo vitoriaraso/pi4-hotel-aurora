@@ -61,6 +61,10 @@ import {
 import {CreateHotelComponent} from '../pages/admin/hoteis/create-hotel.component/create-hotel.component';
 import {HotelDetailComponent} from '../pages/admin/hoteis/hotel-detail.component/hotel-detail.component';
 import {DashboardHoteisComponent} from '../pages/admin/hoteis/dashboard-hoteis.component/dashboard-hoteis.component';
+import {CreateReservaComponent} from '../pages/admin/reservas/create-reserva.component/create-reserva.component';
+import {
+  CustomerReservationComponent
+} from '../pages/reserve/customer-reservation.component/customer-reservation.component';
 
 export const routes: Routes = [
   /////////////////////////////////////////// Login OAUTH
@@ -90,11 +94,11 @@ export const routes: Routes = [
   //  component: AuditoriumComponent,
   //},
   {
-    path: 'app-conference-room',
+    path: 'conference-rooms',
     component: ConferenceRoomComponent,
   },
   {
-    path: 'app-rooms',
+    path: 'accommodations',
     component: RoomsComponent,
   },
   //{
@@ -103,8 +107,8 @@ export const routes: Routes = [
   //},
 
   {
-    path: 'app-reserve',
-    component: ReserveComponent,
+    path: 'reserve',
+    component: CustomerReservationComponent,
   },
   ///////  ///////  ///////  ///////  ///////    ESPAÇOS COMUNS (FACILITIES)
   //{
@@ -112,7 +116,7 @@ export const routes: Routes = [
   //  component: FacilitiesComponent,
   //},
   {
-    path: 'app-dependencies',
+    path: 'dependencies',
     component: DependenciesComponent,
   },
   ///////  ///////  ///////  ///////  ///////    CADASTRO
@@ -188,7 +192,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
-        path: 'admin/dashboard',
+        path: 'dashboard',
         component: DashboardComponent,
         data: { showFooter: false, showHeader: false },
       },
@@ -220,6 +224,11 @@ export const routes: Routes = [
       {
         path: 'dashboard/reservas',
         component: DashboardReservasComponent,
+        data: { showFooter: false, showHeader: false },
+      },
+      {
+        path: 'dashboard/reservas/novo',
+        component: CreateReservaComponent,
         data: { showFooter: false, showHeader: false },
       },
       {
@@ -267,11 +276,11 @@ export const routes: Routes = [
         component: HotelDetailComponent,
         data: { showFooter: false, showHeader: false },
       },
-      {
-        path: 'dashboard/configuracoes',
-        component: DashboardConfiguracoesComponent,
-        data: { showFooter: false, showHeader: false },
-      },
+      // {
+      //   path: 'dashboard/configuracoes',
+      //   component: DashboardConfiguracoesComponent,
+      //   data: { showFooter: false, showHeader: false },
+      // },
     ],
   },
 ];

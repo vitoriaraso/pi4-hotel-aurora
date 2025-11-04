@@ -1,32 +1,37 @@
-<div class="container">
-  <div class="reservations-container">
-    <h2>Minhas Reservas</h2>
+<div class="reservations-container">
+  <h2>Minhas Reservas</h2>
 
-    @if (isLoading) {
-      <p class="loading-message">Carregando suas reservas...</p>
-    }
+  @if (isLoading) {
+    <p class="loading-message">Carregando suas reservas...</p>
+  }
 
-    @if (error) {
-      <p class="error-message">{{ error }}</p>
-    }
+  @if (error) {
+    <p class="error-message">{{ error }}</p>
+  }
 
-    @if (!isLoading && !error) {
-      @if (reservas.length === 0) {
-        <p class="empty-message">Você ainda não possui nenhuma reserva.</p>
-      } @else {
-        <div class="reservations-list">
-          @for (reserva of reservas; track reserva.id) {
-            <div class="reservation-card">
-              <h3>Reserva #{{ reserva.id }}</h3>
+  @if (!isLoading && !error) {
+    @if (reservas.length === 0) {
+      <p class="empty-message">Você ainda não possui nenhuma reserva.</p>
+    } @else {
+      <div class="reservations-list">
+        @for (reserva of reservas; track reserva.id; let i = $index) {
+          <div class="reservation-card">
+            <h3>Reserva #{{ i + 1 }}</h3>
 
+            <div class="reservation-details">
               <p><strong>Check-in:</strong> {{ reserva.checkIn.split(' ')[0] }}</p>
               <p><strong>Check-out:</strong> {{ reserva.checkOut.split(' ')[0] }}</p>
-
-              <p class="valor"><strong>Valor Total:</strong> {{ reserva.valorTotal | currency:'BRL' }}</p>
             </div>
-          }
-        </div>
-      }
+
+            <hr class="divider">
+
+            <p class="valor">
+              <span>Valor Total:</span>
+              <strong>{{ reserva.valorTotal | currency:'BRL' }}</strong>
+            </p>
+          </div>
+        }
+      </div>
     }
-  </div>
+  }
 </div>

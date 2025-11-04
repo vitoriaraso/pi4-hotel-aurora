@@ -1,0 +1,36 @@
+<div class="page-container">
+  <div class="content-wrapper">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <div class="section-header"><h2>Fazer uma Reserva</h2></div>
+        <div class="section-content">
+          <div class="form-row">
+            <div class="form-field">
+              <label>ID da Instalação (Ex: Quarto, SPA)</label>
+              <input formControlName="instalacaoAlugavelId" type="number">
+            </div>
+            <div class="form-field">
+              <label>Tipo de Pagamento</label>
+              <select formControlName="tipoPagamento">
+                @for(tipo of tiposPagamento; track tipo){ <option [value]="tipo">{{tipo}}</option> }
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Data de Check-in</label>
+              <input formControlName="checkIn" type="datetime-local">
+            </div>
+            <div class="form-field">
+              <label>Data de Check-out</label>
+              <input formControlName="checkOut" type="datetime-local">
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <app-button label="Confirmar Reserva" type="submit" icon="save" [disabled]="formulario.invalid" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

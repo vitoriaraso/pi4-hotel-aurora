@@ -61,6 +61,7 @@ export interface ClienteResponseDTO {
   tipoCliente: TipoCliente;
   dataCadastro: string;
   reservas: ReservaResumoDTO[];
+  ativo: boolean;
 }
 
 export interface ClienteResponseDTOAdmin1 {

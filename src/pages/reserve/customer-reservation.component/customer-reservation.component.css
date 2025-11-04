@@ -1,0 +1,132 @@
+/*
+ * O .page-container é o wrapper principal.
+ * Ele centraliza o card na tela.
+ */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o card horizontalmente */
+  width: 100%;
+  box-sizing: border-box;
+  /* * Adicionamos um padding generoso em cima e embaixo
+   * para dar "respiro" ao card.
+   */
+  padding: 4rem 24px;
+}
+
+/* * O .content-container que você tinha não é necessário.
+ * O .content-wrapper é o seu card principal.
+ */
+.content-wrapper {
+  width: 100%;
+  max-width: 800px; /* Um card um pouco mais estreito */
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%; /* O formulário ocupa 100% do card */
+}
+
+/* --- Estilo dos Cards de Seção --- */
+.form-section {
+  background-color: var(--color-surface); /* Fundo branco */
+  border: 1px solid var(--color-border-subtle); /* Borda (veryLightBrown) */
+  border-radius: var(--border-radius-base); /* 8px */
+  box-shadow: var(--shadow-light); /* Sombra leve */
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--color-surface-header); /* Fundo (componentOdd) */
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-text-primary); /* Seu darkBrown */
+}
+
+.section-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Espaço entre as linhas do formulário */
+}
+
+/* --- Layout dos Campos do Formulário --- */
+.form-row {
+  display: flex;
+  gap: 24px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Regra padrão: dividir espaço */
+}
+
+/* --- Estilos dos Inputs (Modo Edição) --- */
+label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary); /* Seu mediumGray */
+  margin-bottom: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Estilo base para inputs e selects */
+input,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-subtle); /* Borda mais suave */
+  border-radius: 5px;
+  background-color: var(--color-surface);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Garante que o input de data/hora pegue a fonte correta */
+input[type="datetime-local"] {
+  font-family: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary); /* Foco no seu darkBrown */
+  box-shadow: 0 0 0 3px var(--color-primary-light); /* Sombra de foco sutil */
+}
+
+.error-message {
+  color: var(--color-warn); /* Vermelho */
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+
+/* Ações do formulário (botão Salvar) */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px 24px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

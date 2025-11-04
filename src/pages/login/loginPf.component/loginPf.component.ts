@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Output, inject, signal, OnInit} from '@angular/core';
+import { Component, EventEmitter, Output, inject, signal, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // MANTEMOS - Para Template-driven forms (ngModel)
-// REMOVEMOS ReactiveFormsModule, já que não estamos usando FormBuilder
+import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ButtonComponent } from '../../../shared/button.component/button.component';
 import { InputTextComponent } from '../../../shared/input-text.component/input-text.component';
 import { AuthService } from '../../../app/auth/auth.service';
+import { JwtService } from '../../../app/jwt/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +25,7 @@ export class LoginPfComponent implements OnInit {
 
   // Injeção de dependência moderna com inject()
   private authService = inject(AuthService);
+  private jwtService = inject(JwtService);
   private router = inject(Router);
 
   // Propriedades para o two-way data binding com ngModel
@@ -45,6 +46,26 @@ export class LoginPfComponent implements OnInit {
         if (response.token) {
           this.authService.saveToken(response.token);
           this.router.navigate(['/']); // Redireciona para a home ou dashboard
+
+          // --- ✅ A LÓGICA DE REDIRECIONAMENTO COM localStorage ---
+
+          // 1. Tenta ler a URL guardada do localStorage
+          const returnUrl = localStorage.getItem('returnUrl');
+
+          if (returnUrl) {
+            // 2. Se achou uma URL, remove ela do storage (para não usar de novo)
+            localStorage.removeItem('returnUrl');
+
+            // 3. Navega o usuário de volta para onde ele queria ir
+            this.router.navigateByUrl(returnUrl);
+          } else {
+            // 4. Se não achou nada, faz o login padrão (Admin ou Cliente)
+            if (this.jwtService.isAdmin()) {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['/account/personal-info']);
+            }
+          }
         }
       },
       error: (err) => {
@@ -61,6 +82,6 @@ export class LoginPfComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 }
