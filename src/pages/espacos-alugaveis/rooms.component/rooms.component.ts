@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'; // ✅ Adiciona OnInit e OnDestroy
+import { Component, OnInit, OnDestroy } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';

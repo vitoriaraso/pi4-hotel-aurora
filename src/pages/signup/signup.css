@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
+    height: calc(100vh - var(--headerHeight));
 }
 
 .container {
