@@ -209,16 +209,20 @@
         </div>
       </div>
 
-      <!--<div class="buttons">
-        <a routerLink="/account/register/pf"><app-button label="Login"></app-button></a>
-        <a routerLink="/account/register/pf">
-          <app-button type="submit" label="Finalizar" [disabled]="formulario.invalid"></app-button>
-        </a>
-      </div>-->
-
       <div class="buttons">
+                <a routerLink="/account/register/pf">
+        </a> 
+
+                <app-button 
+          type="submit" 
+          label="Finalizar" 
+          [disabled]="formulario.invalid"
+        ></app-button>
+      </div>
+
+      <!--<div class="buttons">
         <app-button type="submit" label="Finalizar" [disabled]="formulario.invalid" />
-      </div>
+      </div>-->
     </form>
   </div>
 </div>
