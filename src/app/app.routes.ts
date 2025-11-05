@@ -2,10 +2,8 @@ import { Routes } from '@angular/router';
 import { HeroSection } from '../components/app/hero-section';
 //import { HomeComponent } from '../pages/home/home.component/home.component';
 
-import { AuditoriumComponent } from '../pages/espacos-alugaveis/auditorium.component/auditorium.component';
 import { ConferenceRoomComponent } from '../pages/espacos-alugaveis/conference-room.component/conference-room.component';
 import { RoomsComponent } from '../pages/espacos-alugaveis/rooms.component/rooms.component';
-import { SalaoEventosComponent } from '../pages/espacos-alugaveis/salao-eventos.component/salao-eventos.component';
 import { ReserveComponent } from '../pages/espacos-alugaveis/reserve.component/reserve.component';
 
 import { FacilitiesComponent } from '../pages/espacos-comuns/facilities.component/facilities.component';

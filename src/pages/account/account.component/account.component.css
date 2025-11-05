@@ -6,7 +6,7 @@
 .sidebar {
   display: flex;
   flex: 25%;
-  height: calc(100vh - var(--headerHeight));
+  height: auto;
   background-color: var(--almostWhite);
   justify-content: center;
 }

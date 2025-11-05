@@ -7,12 +7,11 @@
 
     <div class="hero-content">
       <h1>AURORA</h1>
-      <!-- <p> -->
+      
         <span class="slogan animate__animated animate__fadeInUp"> Respire. Sinta. Viva.</span><br /><br />
         <span class="descricao animate__animated animate__fadeInUp">No Aurora, cada amanhecer é uma promessa de<br />
         momentos inesquecíveis em harmonia com a natureza.</span>
-      <!-- </p> -->
-      <!--<p><a routerLink="/home">HOME</a></p>-->
+      
     </div>
   </div>
 
@@ -32,11 +31,13 @@
       <div class="social-proof">
         <p>
           Atendimento elogiado por 95% dos hóspedes, segundo avaliações recentes do
-          <a href="http://a.com"></a>TripAdvisor
+          <a href="https://www.tripadvisor.com.br/"></a>TripAdvisor
         </p>
       </div>
     </div>
   </div>
+
+  <div class="image-container"></div>
 
   <div class="description-second">
     <p>
@@ -46,4 +47,16 @@
       à contemplação. E quando o silêncio se mistura ao conforto, você percebe: chegou ao seu lugar.
     </p>
   </div>
-</section>
+  
+  <div class="depoimento-section">
+    <h2>O que nossos hóspedes dizem</h2>
+    <div class="depoimento-cards-container">
+      <mat-card class="depoimento-card" *ngFor="let depoimento of Depoimentos">
+        <mat-card-content>
+          <p class="feedback-text">"{{ depoimento.feedback }}"</p>
+          <p class="reviewer-name">— {{ depoimento.name }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  </section>

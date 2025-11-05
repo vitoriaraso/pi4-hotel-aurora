@@ -1,21 +1,24 @@
 <section class="dependencies-section">
   <div class="header-content">
-    <h2 class="animate__animated animate__fadeInUp">Conforto e Requinte: Nossas Experiências de Lazer</h2>
+    <h2 class="animate__animated animate__fadeInUp">
+      Conforto e Requinte: Nossas Experiências de Lazer
+    </h2>
     <p>Criamos um refúgio onde o luxo se encontra com a natureza.</p>
   </div>
 
-  <div class="dependencies-container-lista">
+  <div class="dependencies-grid-mosaico">
     <article
-      class="dependencies-card"
+      class="dependencies-card-mosaic"
       *ngFor="let item of itemsDependencies; let i = index"
-      [class.alternado]="i % 2 !== 0"
+      [attr.data-id]="i + 1"
     >
       <div class="imagem-wrapper">
         <img [src]="item.imagemUrl" [alt]="item.titulo" />
+        <div class="image-overlay"></div>
       </div>
       <div class="conteudo-wrapper">
-        <h3>{{ item.titulo }}</h3>
-        <p>{{ item.descricao }}</p>
+        <h3 class="card-titulo">{{ item.titulo }}</h3>
+        <p class="card-descricao">{{ item.descricao }}</p>
       </div>
     </article>
   </div>

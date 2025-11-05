@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonComponent } from '../../../shared/button.component/button.component';
@@ -14,7 +14,6 @@ import { JwtService } from '../../../app/jwt/jwt.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterLink,
     MatIconModule,
     ButtonComponent
   ],

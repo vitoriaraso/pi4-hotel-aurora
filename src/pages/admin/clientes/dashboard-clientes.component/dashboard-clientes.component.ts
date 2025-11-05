@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 // Importe o seu componente de tabela reutilizável
 import { DashboardTableComponent } from '../../../../shared/dashboard-table.component/dashboard-table.component'; // Ajuste o caminho
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 // Use apenas o DTO que a API retorna
 import { ClienteResponseDTO } from '../../../../app/models/cliente/cliente.model';
@@ -10,11 +10,11 @@ import { ClienteService } from '../../../../app/services/cliente/cliente.service
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { EditClientComponent } from '../../../../shared/dialogs/edit-client/edit-client';
+
 import {
   ConfirmationDialogComponent
 } from '../../../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
-import { ButtonComponent } from '../../../../shared/button.component/button.component';
+
 
 @Component({
   selector: 'app-dashboard-clientes',
@@ -23,8 +23,6 @@ import { ButtonComponent } from '../../../../shared/button.component/button.comp
     CommonModule,
     DashboardTableComponent,
     MatDialogModule,
-    ButtonComponent,
-    RouterLink,
     MatButtonToggleModule,
   ],
   templateUrl: './dashboard-clientes.component.html',
