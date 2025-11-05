@@ -126,6 +126,21 @@
     text-align: center;
 }
 
+.image-container {
+    width: 100vw; 
+    background-image: url('../../assets/images/restaurante.jpg');
+    background-position: bottom;
+    background-size: cover;
+    height: 60vh;
+}
+
+.image {
+    width: 100%; 
+    height: auto; 
+    display: block;
+    object-fit: cover;
+}
+
 .description-second {
     width: 100vw;
     height: 45vh;
@@ -150,11 +165,82 @@
     font-style: italic;
 }
 
+.depoimento-section {
+    background-color: var(--componentOdd); 
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.depoimento-section h2 {
+    font-size: 2.5em;
+    line-height: 1.2;
+    font-weight: 300;
+    margin-bottom: 40px;
+    font-family: var(--montrealr); 
+}
+
+.depoimento-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.depoimento-card {
+    width: 300px;
+    text-align: center;
+    background-color: var(--white) !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.3s ease;
+}
+
+.depoimento-card:hover {
+    transform: translateY(-5px);
+}
+
+.depoimento-card mat-card-content {
+    padding: 0 !important; 
+}
+
+.depoimento-card .feedback-text {
+    font-style: italic;
+    font-size: 1.0rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.depoimento-card .reviewer-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #725c3a; 
+}
+
+@media (max-width: 768px) {
+    .depoimento-cards-container {
+        gap: 20px;
+    }
+    .depoimento-card {
+        width: 85%; 
+        max-width: 350px;
+    }
+}
 
 @media (max-width: 550px) {
   .description-second {
     height: 100%;
   }
+
+  .depoimento-section h2 {
+        font-size: 2em;
+    }
+    .depoimento-card {
+        width: 100%; 
+    }
 }
 
 

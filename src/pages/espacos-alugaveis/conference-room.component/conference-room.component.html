@@ -1,8 +1,8 @@
 <section class="conference-section">
   <div class="titulo">
     <div class="h1-container">
-    <h1 class="animate__animated animate__fadeInUp">Sala de Conferência</h1>
-  </div>
+      <h1 class="animate__animated animate__fadeInUp">Sala de Conferência</h1>
+    </div>
 
     <div class="imagem-destaque">
       <img
@@ -12,99 +12,38 @@
     </div>
   </div>
 
-  <!-- Cards -->
-  <div class="card-container">
-    <div class="card">
-      <img
-        src="assets/images/conference-room/cardamerica.webp"
-        alt="Imagem sala de conferência américa"
-      />
-      <h3>Sala de Conferência Serena</h3>
-      <p>
-        As salas Serena do Norte e Serena do Sul, quando unidas, formam o maior espaço para eventos
-        do hotel, com 452 m² e capacidade para até 550 pessoas em estilo cinema ou 500 em recepções
-        com coquetéis. Separadas, acomodam até 150 pessoas em banquetes ou 110 em formato sala de
-        aula.
-      </p>
-    </div>
-
-    <div class="card">
-      <img
-        src="assets/images/conference-room/cardsalareuniao.webp"
-        alt="Imagem sala de reunião Aurora"
-      />
-      <h3>Sala de Reunião Horizonte</h3>
-      <p>
-        Um ambiente ideal para eventos criativos e de tecnologia, nossa sala de reunião Horizonte
-        oferece iluminação natural e mais de 90 metros quadrados de espaço. Planeje sua pequena
-        conferência, uma recepção com coquetéis ou um banquete íntimo neste ambiente elegante.
-      </p>
-    </div>
-
-    <div class="card">
-      <img
-        src="assets/images/conference-room/cardsaladiretoria.webp"
-        alt="Imagem sala de reunião Aurora Max"
-      />
-      <h3>Sala de Reunião Alvorada</h3>
-      <p>
-        Pense em algo diferente do seu próprio espaço e use nossa elegante sala de diretoria Aurora
-        Max para a sua próxima reunião executiva. Será fácil manter suas apresentações impecáveis e
-        a criatividade rolando com a tecnologia de ponta e os serviços intuitivos disponíveis neste
-        ambiente impressionante.
-      </p>
+  <div class="background-row bg-white-full-width">
+    <div class="card-container content-wrapper">
+      <mat-card class="card" *ngFor="let card of conferenceCards">
+        <img mat-card-image [src]="card.imageSrc" [alt]="card.imageAlt" />
+        <mat-card-content>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 
-  <!-- Texto à esquerda, imagem à direita -->
-  <div class="text-image-row">
-    <div class="text">
-      <h4>Inspire seus participantes</h4>
-      <p>
-        Não importa o tamanho ou a finalidade do seu grupo, uma equipe de eventos dedicada combina o
-        conhecimento sobre a região com o estilo inspirado de cada espaço, incrível serviço de
-        buffet com produtos de origem local e pausas sociais prontas para inspirar e motivar o
-        networking entre seus convidados.
-      </p>
+  <ng-container *ngFor="let section of contentSections; let i = index">
+    <div
+      class="background-row"
+      [ngClass]="{
+        'bg-odd-full-width': i % 2 === 0,
+        'bg-white-full-width': i % 2 !== 0
+      }"
+    >
+      <div
+        class="text-image-row content-wrapper"
+        [ngClass]="{ 'is-reverse': section.reverseLayout }"
+      >
+        <div class="text">
+          <h4>{{ section.title }}</h4>
+          <p>{{ section.text }}</p>
+        </div>
+        <div class="image">
+          <img [src]="section.imageSrc" [alt]="section.imageAlt" />
+        </div>
+      </div>
     </div>
-    <div class="image">
-      <img src="assets/images/conference-room/salareuniaodiretoria.webp" alt="Imagem experiência" />
-    </div>
-  </div>
-
-  <!-- Imagem à esquerda, texto à direita -->
-  <div class="text-image-row reverse">
-    <div class="image">
-      <img
-        src="assets/images/conference-room/salareuniaodiretoria2.webp"
-        alt="Imagem gastronomia"
-      />
-    </div>
-    <div class="text">
-      <h4>Internet segura e estável</h4>
-      <p>
-        Para que uma reunião on-line aconteça com excelência, uma boa conexão com a internet é
-        essencial e precisa funcionar corretamente. Conheça nosso Wi-Fi simplificado: servidor de
-        internet exclusivo para o espaço da sala de reuniões, garantindo a conexão de internet que
-        você precisa. Conexão dedicada de acesso à internet de até 100 Mbps. Modo full-duplex,
-        velocidade de download e upload iguais de até 100 Mbps. Conexão de internet segura e
-        estável, com 2 provedores de internet distintos para permitir redundância.
-      </p>
-    </div>
-  </div>
-
-  <!-- Auditório -->
-  <div class="text-image-row">
-    <div class="text">
-      <h4>Auditório Abram Szajman</h4>
-      <p>
-        Espaço sofisticado e acolhedor, projetado para eventos memoráveis. À frente, um palco amplo
-        e bem iluminado se destaca, com cortinas elegantes e equipamentos audiovisuais de última
-        geração. O ambiente é climatizado, com iluminação suave que reforça a atmosfera refinada.
-      </p>
-    </div>
-    <div class="image">
-      <img src="assets/images/conference-room/auditorio.webp" alt="Imagem auditório" />
-    </div>
-  </div>
+  </ng-container>
 </section>

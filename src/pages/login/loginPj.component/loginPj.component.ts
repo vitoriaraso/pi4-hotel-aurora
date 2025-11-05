@@ -44,7 +44,7 @@ export class LoginPjComponent implements OnInit {
       next: (response) => {
         if (response.token) {
           this.authService.saveToken(response.token);
-          this.router.navigate(['/']); // Redireciona para a home ou dashboard
+          this.router.navigate(['/account/personal-info']); // Redireciona para a dashboard
         }
       },
       error: (err) => {

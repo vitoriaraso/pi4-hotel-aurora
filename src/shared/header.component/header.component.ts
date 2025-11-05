@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     } else {
       // Se está deslogado
-      this.profileUrl = '/auth/login';
+      this.profileUrl = '/account/signup';
     }
   }
 
@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.authService.logout();
-        this.router.navigate(['auth/login']);
+        this.router.navigate(['']);
       }
     });
   }

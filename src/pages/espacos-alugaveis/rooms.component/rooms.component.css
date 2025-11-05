@@ -1,132 +1,192 @@
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--neve);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--neve);
 }
 
-
 .description {
-    text-align: center;
-    width: 100%;
-    height: 100vh;
-    font-weight: 500;
-    line-height: 30px;
-    box-sizing: border-box;
-    background-image: url('/assets/images/suites/banner.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    color: black; 
-    padding: 0; 
-    display: flex;
-    justify-content: center; 
-    align-items: flex-start; 
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  font-weight: 500;
+  line-height: 30px;
+  box-sizing: border-box;
+  background-image: url('/assets/images/suites/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-text-primary);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .titulo {
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 100%;
-    padding: 0px 20px; 
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  padding: 20px;
 }
 
 h1 {
-    font-family: var(--montrealr);
-    margin-top: 40px; 
+  font-family: var(--montrealr);
+  margin-top: 40px;
 }
 
 p {
-    font-size: 1.1rem;
-    padding: 30px 50px;
+  font-size: 1.1rem;
+  padding: 30px 50px;
 }
 
-/* ------- Sessão dos Cards ------- */
-.roomsCards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: center;
-    margin: 50px 0px 50px 0px;
+.dependencies-container-lista {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 60px 0px;
 }
 
-mat-card {
-    width: 430px;
-    align-items: center;
-    transition: transform 0.5s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: var(--neve);
+.dependencies-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
 }
 
-mat-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+.dependencies-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-
-mat-card-title {
-    font-family: var(--montrealr);
-    font-size: 1.5rem;
-    font-weight: 700;
+.imagem-wrapper {
+  height: 300px;
+  overflow: hidden;
 }
 
-mat-card-content {
-    width: 100%;
-    font-size: 1rem;
-    text-align: center;
+.imagem-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-.card-description {
-    margin: 10px 0px -30px 0px;
-    line-height: 30px;
-    font-weight: 500;
+.dependencies-card:hover img {
+  transform: scale(1.03);
 }
 
-.group-icons {
-    width: 100%;
-    display: flex;
-    justify-content: right;
+.conteudo-wrapper {
+  padding: 30px;
 }
 
-mat-card img {
-    width: 100%;
+.conteudo-wrapper h3 {
+  font-size: 1.6em;
+  color: var(--color-text-primary);
+  line-height: 25px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: var(--montrealr);
+  text-transform: uppercase;
+}
+
+.conteudo-wrapper p {
+  font-size: 1.2em;
+  color: var(--color-text-secondary);
+  margin-top: 10px;
+  line-height: 25px;
+  padding: 0;
+}
+
+@media (max-width: 1224px) {
+  .dependencies-container-lista {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 992px) {
+  .imagem-wrapper,
+  .conteudo-wrapper {
+    flex: 1 1 50%;
     height: auto;
+  }
+
+  .dependencies-card:not(.alternado) {
+    flex-direction: row;
+  }
+
+  .dependencies-card.alternado {
+    flex-direction: row-reverse;
+  }
+
+  .conteudo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    text-align: left;
+  }
 }
 
-@media (max-width: 1440px) {
-    .roomsCards {
-        gap: 80px;
-    }
+@media (max-width: 991px) {
+  .dependencies-card {
+    flex-direction: column;
+  }
+
+  .imagem-wrapper {
+    height: 250px;
+  }
+
+  .conteudo-wrapper {
+    padding: 20px 150px;
+  }
+
+  .conteudo-wrapper h3 {
+    font-size: 1.4em;
+  }
+  .conteudo-wrapper p {
+    font-size: 1.1em;
+  }
+
+  .dependencies-container-lista .conteudo-wrapper {
+    text-align: center;
+  }
+
+  .dependencies-container-lista .conteudo-wrapper h3,
+  .dependencies-container-lista .conteudo-wrapper p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .dependencies-container-lista {
+    padding: 0 20px;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 
-@media (max-width: 960px) {
-    .roomsCards {
-        gap: 60px;
-    }
+@media (max-width: 850px) {
+  .conteudo-wrapper {
+    padding: 20px 100px;
+  }
 }
 
-@media (max-width: 960px) {
-    mat-card {
-        width: 400px;
-    }
+@media (max-width: 768px) {
+  .conteudo-wrapper {
+    padding: 20px 50px;
+  }
 }
 
-@media (max-width: 426px) {
-    mat-card {
-        width: 290px;
-    }
-
-    .titulo p{
-        padding: 30px 10px;
-    }
-
-    .card-description p {
-        padding: 30px 10px;
-    }
-
+@media (max-width: 425px) {
+  .conteudo-wrapper {
+    padding: 20px 10px;
+  }
 }
-

@@ -191,15 +191,24 @@ export class CreateAccountPjComponent implements OnInit {
 
     this.clienteService.cadastrarClienteJuridico(requestData).subscribe({
       next: (msg: any) => {
-        this.snackBar.open('Cadastro realizado com sucesso! Redirecionando para a página de login...', 'Fechar', { duration: 3000 });
+        
+        this.snackBar.open(
+          'Cadastro realizado com sucesso! Redirecionando para a página de login...',
+          'Fechar',
+          { duration: 2000 }
+        );
         setTimeout(() => {
           this.router.navigate(['/auth/login/pj']);
-        }, 5000);
+        }, 3000);
       },
       error: (err) => {
-        // console.error('Erro no cadastro:', err.error.message);
-        this.snackBar.open('Ops! Parece que há um problema com algumas informações. Revise os dados e tente novamente.', 'Fechar', { duration: 10000 });
-      }
+        console.error('Erro no cadastro:', err.error.message);
+        this.snackBar.open(
+          'Ops! Parece que há um problema com algumas informações. Revise os dados e tente novamente.',
+          'Fechar',
+          { duration: 3000 }
+        );
+      },
     });
 
 

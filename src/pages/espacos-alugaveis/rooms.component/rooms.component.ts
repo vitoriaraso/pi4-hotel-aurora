@@ -1,78 +1,42 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'; 
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
-
-// Imports Angular Material
-// import { MatButton } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-rooms',
   standalone: true,
-  imports: [MatIconModule, MatCardModule, CommonModule],
+  imports: [CommonModule],
   templateUrl: './rooms.component.html',
-  styleUrl: './rooms.component.css'
+  styleUrls: ['./rooms.component.css'],
 })
-export class RoomsComponent implements OnInit, OnDestroy {
-
-  show = true;
-  private sub!: Subscription;
-
-  constructor(private router: Router) {}
-
-  // Arrays dos Objetos Cards PRESIDENCIAL, DELUXE, EXECUTIVO, STANDARD
+export class RoomsComponent {
   Cards = [
     {
-      imagePath: 'assets/images/suites/standard.jpg',
-      title: 'Standard',
-      description: 'Suíte aconchegante e funcional, ideal para quem busca conforto com praticidade em um ambiente sofisticado.',
-      oneIncluded: 'null',
-      twoIncluded: 'null',
-      threeIncluded: 'wifi'
+      id: 1,
+      titulo: 'Standard',
+      descricao:
+        'Suíte aconchegante e funcional, ideal para quem busca conforto com praticidade em um ambiente sofisticado.',
+      imagemUrl: 'assets/images/suites/standard.jpg',
     },
     {
-      imagePath: 'assets/images/suites/executivo.jpg',
-      title: 'Executivo',
-      description: 'Espaço moderno e bem equipado, perfeito para hóspedes em viagem de negócios que valorizam eficiência e estilo.',
-      oneIncluded: 'null',
-      twoIncluded: 'coffee',
-      threeIncluded: 'wifi'
+      id: 2,
+      titulo: 'Executivo',
+      descricao:
+        'Espaço moderno e bem equipado, perfeito para hóspedes em viagem de negócios que valorizam eficiência e estilo.',
+      imagemUrl: 'assets/images/suites/executivo.jpg',
     },
     {
-      imagePath: 'assets/images/suites/deluxe.jpg',
-      title: 'Deluxe',
-      description: 'Suíte espaçosa com decoração refinada, oferecendo comodidades premium e uma experiência de hospedagem superior.',
-      oneIncluded: 'local_dining',
-      twoIncluded: 'coffee',
-      threeIncluded: 'wifi'
+      id: 3,
+      titulo: 'Deluxe',
+      descricao:
+        'Suíte espaçosa com decoração refinada, oferecendo comodidades premium e uma experiência de hospedagem superior.',
+      imagemUrl: 'assets/images/suites/deluxe.jpg',
     },
     {
-      imagePath: 'assets/images/suites/presidencial.jpg',
-      title: 'Presidencial',
-      description: 'O ápice do luxo e exclusividade: ambientes amplos, serviço personalizado e vista privilegiada para uma estadia inesquecível.',
-      oneIncluded: 'null',
-      twoIncluded: 'local_dining',
-      threeIncluded: 'wifi'
-    }
+      id: 4,
+      titulo: 'Presidencial',
+      descricao:
+        'O ápice do luxo e exclusividade: ambientes amplos, serviço personalizado e vista privilegiada para uma estadia inesquecível.',
+      imagemUrl: 'assets/images/suites/presidencial.jpg',
+    },
   ];
-
-  // Página de reserva
-  reservation() {
-    this.router.navigate(['/app-reservation']);
-  }
-
-  ngOnInit() {
-    this.sub = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.show = false;
-        setTimeout(() => this.show = true, 0); // força recriação
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe(); // ✅ Libera o recurso ao destruir o componente
-  }
 }

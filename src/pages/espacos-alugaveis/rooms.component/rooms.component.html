@@ -11,43 +11,38 @@
     </div>
   </section>
 
-  <section class="roomsCards">
+  <div class="dependencies-container-lista">
+    <article
+      class="dependencies-card"
+      *ngFor="let item of Cards; let i = index"
+      [class.alternado]="i % 2 !== 0"
+    >
+      <div class="imagem-wrapper">
+        <img [src]="item.imagemUrl" [alt]="item.titulo" />
+      </div>
+      <div class="conteudo-wrapper">
+        <h3>{{ item.titulo }}</h3>
+        <p>{{ item.descricao }}</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- <section class="roomsCards">
     <mat-card *ngFor="let card of Cards">
-      <!-- Imagem -->
+      
       <img mat-card-image [src]="card.imagePath" alt="{{ card.description }}" />
 
-      <!-- Título -->
+      
       <mat-card-header>
         <mat-card-title>{{ card.title }}</mat-card-title>
       </mat-card-header>
 
-      <!-- Descrição -->
+      
       <mat-card-content>
         <div class="card-description">
           <p>{{ card.description }}</p>
         </div>
-
-        <div class="group-icons">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="{{ card.oneIncluded }}"
-          ></mat-icon>
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="{{ card.twoIncluded }}"
-          ></mat-icon>
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="{{ card.threeIncluded }}"
-          ></mat-icon>
-        </div>
       </mat-card-content>
-
-      <!-- Botão -->
-      <!--<button mat-button class="reservation-button" (click)="reservation()">Reservar</button>-->
     </mat-card>
-  </section>
+  </section> -->
 </body>

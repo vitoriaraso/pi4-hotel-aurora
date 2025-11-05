@@ -4,13 +4,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { ButtonComponent } from '../../../../shared/button.component/button.component';
 import { EspacosResponseDTO, EspacosService, TipoEspacos } from '../../../../app/services/espacos/espacos.service';
 
 @Component({
   selector: 'app-espaco-detail',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatIconModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatIconModule],
   templateUrl: './espaco-detail.component.html',
   styleUrl: '../../css-componente-detail/detail.component.css'
 })
