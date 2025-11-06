@@ -43,6 +43,9 @@ export class ClienteDetailComponent implements OnInit {
   icon = 'edit';
   private initialFormValue: string = '';
   formulario!: FormGroup;
+  status!: string | null;
+
+
 
   constructor() {
     // Criação do formulário (lógica idêntica à do PersonalInfoComponent)
@@ -75,6 +78,8 @@ export class ClienteDetailComponent implements OnInit {
   ngOnInit() {
     this.carregarDadosDoCliente();
     this.formulario.disable(); // O formulário começa em modo de visualização
+
+    this.status = this.route.snapshot.queryParamMap.get('status');
   }
 
   private carregarDadosDoCliente() {

@@ -2,7 +2,9 @@
   width: 100%;
   max-width: 80%;
   margin: 0 auto;
-  padding: 24px;
+  padding-top: 4vh;
+  height: calc(100vh - 4vh - 8vh - var(--headerHeight));
+  
 }
 
 .reservations-container h2 {

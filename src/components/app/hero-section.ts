@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 
@@ -14,7 +14,7 @@ interface Depoimento {
   templateUrl: './hero-section.html',
   styleUrls: ['./hero-section.css']
 })
-export class HeroSection {
+export class HeroSection implements OnInit {
   
   ImgRestaurante: { src: string, alt: string } = {
     src: '/assets/images/restaurante.jpg', 
@@ -36,4 +36,16 @@ export class HeroSection {
       feedback: 'Cada detalhe do design convida à contemplação. Os momentos inesquecíveis em harmonia com a natureza são reais. Voltarei com certeza!',
     },
   ];
+
+  
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  ngOnInit(): void {
+    this.scrollToTop();
+  }
 }

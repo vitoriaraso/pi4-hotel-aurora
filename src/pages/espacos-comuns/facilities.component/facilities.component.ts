@@ -22,6 +22,7 @@ export class FacilitiesComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
+    this.scrollToTop();
     this.espacosService.getEspacos().subscribe({
       next: (dados) => {
         // came uma nova função para processar os dados recebidos
@@ -54,5 +55,13 @@ export class FacilitiesComponent implements OnInit {
         espacos: espacosDaSecao
       };
     }).filter(secao => secao.espacos.length > 0); // remove seções que ficaram vazias
+  }
+
+  
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }

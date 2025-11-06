@@ -24,10 +24,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatListModule,
     MatDividerModule,
     MatIconModule,
-    ButtonComponent
+    ButtonComponent,
   ],
   templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.css'
+  styleUrl: './sidenav.component.css',
 })
 export class SidenavComponent implements OnInit, OnDestroy {
   @Output() linkClicked = new EventEmitter<void>();
@@ -41,13 +41,13 @@ export class SidenavComponent implements OnInit, OnDestroy {
   protected isLogado: boolean = false;
   protected urlBotao: string = '';
   protected nomeUsuario: string | null | undefined;
+  protected partesNome: string[] = [];
 
   private authSubscription: Subscription | undefined;
 
   ngOnInit(): void {
     // Nós "ouvimos" o canal isLoggedIn$ do AuthService.
-    this.authSubscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
-
+    this.authSubscription = this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLogado = isLoggedIn;
 
       if (isLoggedIn) {
@@ -62,8 +62,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
         }
 
         // O nome do usuário é definido independentemente da rota
-        this.nomeUsuario = usuarioName || 'Meu Perfil'; // Fallback caso o nome seja nulo
-
+        this.nomeUsuario = usuarioName ?? 'Perfil'; // Fallback caso o nome seja nulo
+        this.partesNome = this.nomeUsuario.split(' ');
+        this.nomeUsuario = this.partesNome[0];
       } else {
         // Se está deslogado
         this.urlBotao = '/account/signup';
@@ -92,7 +93,11 @@ export class SidenavComponent implements OnInit, OnDestroy {
       this.router.navigate(['/reserve']); // (Use a URL correta da sua página de reserva)
     } else {
       // Se NÃO ESTÁ logado:
-      this.snackBar.open('Você não está logado para efetuar uma reserva. Faça login ou registre-se.', 'Fechar', { duration: 3000 });
+      this.snackBar.open(
+        'Você não está logado para efetuar uma reserva. Faça login ou registre-se.',
+        'Fechar',
+        { duration: 3000 }
+      );
       console.log('Usuário deslogado. Guardando /reservar e indo para o login...');
 
       // Salva a URL de retorno no localStorage
