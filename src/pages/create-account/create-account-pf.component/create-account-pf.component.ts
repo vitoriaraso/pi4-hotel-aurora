@@ -114,6 +114,7 @@ export class CreateAccountPfComponent implements OnInit {
   formulario!: FormGroup;
 
   ngOnInit(): void {
+    this.scrollToTop();
     this.formulario = this.fb.group(
       {
         nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
@@ -238,6 +239,14 @@ export class CreateAccountPfComponent implements OnInit {
           { duration: 3000 }
         );
       },
+    });
+  }
+
+  
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 }

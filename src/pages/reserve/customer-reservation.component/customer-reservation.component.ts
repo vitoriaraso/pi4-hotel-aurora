@@ -34,6 +34,7 @@ export class CustomerReservationComponent implements OnInit {
   private clienteLogadoId = this.jwtService.getTokenId();
 
   ngOnInit(): void {
+    this.scrollToTop();
     this.formulario = this.fb.group({
       checkIn: ['', Validators.required],
       checkOut: ['', Validators.required],
@@ -65,6 +66,13 @@ export class CustomerReservationComponent implements OnInit {
         const errorMsg = err.error?.message || 'Erro ao criar reserva.';
         this.snackBar.open(errorMsg, 'Fechar', { duration: 7000 });
       }
+    });
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 }

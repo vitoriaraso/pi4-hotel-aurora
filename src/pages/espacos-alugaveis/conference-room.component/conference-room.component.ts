@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 
@@ -24,7 +24,7 @@ interface ContentSection {
   templateUrl: './conference-room.component.html',
   styleUrl: './conference-room.component.css',
 })
-export class ConferenceRoomComponent {
+export class ConferenceRoomComponent implements OnInit {
   conferenceCards: ConferenceCard[] = [
     {
       imageSrc: 'assets/images/conference-room/cardamerica.webp',
@@ -73,4 +73,16 @@ export class ConferenceRoomComponent {
       reverseLayout: false, // padrão
     },
   ];
+
+  
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+    ngOnInit(): void {
+      this.scrollToTop();
+    }
 }

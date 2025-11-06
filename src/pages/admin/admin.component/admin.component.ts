@@ -31,7 +31,7 @@ export class AdminComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.authService.logout();
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['']);
       }
     });
   }

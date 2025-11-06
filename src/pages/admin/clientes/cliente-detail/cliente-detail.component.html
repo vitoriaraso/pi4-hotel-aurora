@@ -13,13 +13,15 @@
           <div class="form-section">
             <div class="section-header">
               <h2>Informações Pessoais</h2>
-              <app-button
-                id="edit-save-btn"
-                [label]="editButtonLabel"
-                (click)="toggleInfoEdit()"
-                [icon]="icon"
-                [disabled]="isEditing && (formulario.invalid || !formulario.dirty)"
-              />
+              @if (status !== 'inativo') {
+                <app-button
+                  id="edit-save-btn"
+                  [label]="editButtonLabel"
+                  (click)="toggleInfoEdit()"
+                  [icon]="icon"
+                  [disabled]="isEditing && (formulario.invalid || !formulario.dirty)"
+                />
+              }
             </div>
 
             <div class="section-content">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dependencies.component.html',
   styleUrls: ['./dependencies.component.css'],
 })
-export class DependenciesComponent {
+export class DependenciesComponent implements OnInit {
   itemsDependencies = [
     {
       id: 1,
@@ -66,4 +66,15 @@ export class DependenciesComponent {
       imagemUrl: 'assets/images/lazer/cafe.jpg',
     },
   ];
+
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+    ngOnInit(): void {
+      this.scrollToTop();
+    }
 }

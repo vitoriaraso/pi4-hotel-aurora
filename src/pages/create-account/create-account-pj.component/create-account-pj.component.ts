@@ -121,6 +121,7 @@ export class CreateAccountPjComponent implements OnInit {
   formulario!: FormGroup;
 
   ngOnInit(): void {
+    this.scrollToTop();
     this.formulario = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
       cnpj: ['', [Validators.required, cnpjValidator()]],
@@ -212,6 +213,14 @@ export class CreateAccountPjComponent implements OnInit {
     });
 
 
+  }
+
+  
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }
 

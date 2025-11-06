@@ -100,3 +100,34 @@ app-button[disabled] {
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
 }
+
+@media (max-width: 426px) {
+  .personal-info .name-and-edit {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .personal-info .name-and-edit .name {
+    margin-top: 15px;
+  }
+
+  .address-info .address-elements .two-inputs-one-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .address-info .address-elements .uf {
+    width: 330px;
+  }       
+
+  .personal-info .tel-and-email > div > label,
+  .address-info .address-elements > div > label,
+  .address-info .address-elements .two-inputs-one-row label {
+    font-size: 14px;
+  }
+
+   .infos input,
+  .infos select {
+    font-size: 15px;
+  }
+}
