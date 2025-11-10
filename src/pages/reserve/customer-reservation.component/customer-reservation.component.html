@@ -5,30 +5,68 @@
         <div class="section-header"><h2>Fazer uma Reserva</h2></div>
         <div class="section-content">
           <div class="form-row">
-            <div class="form-field">
+            <!-- <div class="form-field">
               <label>ID da Instalação (Ex: Quarto, SPA)</label>
               <input formControlName="instalacaoAlugavelId" type="number">
-            </div>
+            </div> -->
             <div class="form-field">
-              <label>Tipo de Pagamento</label>
-              <select formControlName="tipoPagamento">
-                @for(tipo of tiposPagamento; track tipo){ <option [value]="tipo">{{tipo}}</option> }
+              <label for="tipo">Espaço</label>
+              <select id="tipo" formControlName="tipo">
+                <option value="" disabled>Selecione</option>
+                @for (tipo of tiposInstalacao; track tipo) {
+                <option [value]="tipo">{{ tiposInstalacaoLabel[tipo] }}</option>
+                }
               </select>
+              @if (formulario.get('tipo')?.invalid && formulario.get('tipo')?.touched) {
+              <div class="error-message">Tipo é obrigatório.</div>
+              }
             </div>
+
+            <div class="form-field">
+              <label for="categoria">Categoria</label>
+              <select id="categoria" formControlName="categoria">
+                <option value="" disabled>Selecione</option>
+                @for (cat of (categoriasDisponiveis | async | keyvalue); track cat.key) {
+                <option [value]="cat.key">{{ cat.value }}</option>
+                }
+              </select>
+              @if (categoriaControl?.invalid && categoriaControl?.touched) {
+              <div class="error-message">Categoria é obrigatória.</div>
+              }
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Tipo de Pagamento</label>
+            <select formControlName="tipoPagamento">
+              @for(tipo of tiposPagamento; track tipo){
+              <option [value]="tipo">{{ tipo }}</option>
+              }
+            </select>
           </div>
           <div class="form-row">
             <div class="form-field">
               <label>Data de Check-in</label>
-              <input formControlName="checkIn" type="datetime-local">
+              <input formControlName="checkIn" type="datetime-local" />
             </div>
             <div class="form-field">
               <label>Data de Check-out</label>
-              <input formControlName="checkOut" type="datetime-local">
+              <input formControlName="checkOut" type="datetime-local" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Orçamento</label>
+              <input formControlName="orcamento" />
             </div>
           </div>
         </div>
         <div class="form-actions">
-          <app-button label="Confirmar Reserva" type="submit" icon="save" [disabled]="formulario.invalid" />
+          <app-button
+            label="Confirmar Reserva"
+            type="submit"
+            icon="save"
+            [disabled]="formulario.invalid"
+          />
         </div>
       </div>
     </form>
