@@ -21,6 +21,7 @@ import {
   CategoriaPorTipo,
 } from '../../../app/models/instalacao/instalacao.model/instalacao.model';
 import { switchMap, tap, filter } from 'rxjs/operators'; // Adicionar operadores
+import { calcularOrcamento } from '../../../app/models/orcamento/orcamento.model';
 
 @Component({
   selector: 'app-customer-reservation',
@@ -58,14 +59,20 @@ export class CustomerReservationComponent implements OnInit {
       checkOut: ['', Validators.required],
       tipoPagamento: [TipoPagamento.PIX, Validators.required],
       instalacaoAlugavelId: [null, [Validators.required, Validators.min(1)]],
-      orcamento: [null, { disabled: true }],
+      orcamento: [{ value: null, disabled: false }],
     });
 
-    // Inicia a escuta para carregar as categorias e o orçamento
+    // 🔥 ativa streams imediatamente
     this.escutarMudancasDeTipo();
-    this.escutarMudancasDeCategoria(); // Novo método
-  }
+    this.escutarMudancasDeCategoria();
 
+    // dispara o valorChanges manualmente ao iniciar
+    this.formulario.get('tipo')!.updateValueAndValidity({ emitEvent: true });
+    this.formulario.get('categoria')!.updateValueAndValidity({ emitEvent: true });
+    this.formulario.get('checkIn')!.updateValueAndValidity({ emitEvent: true });
+    this.formulario.get('checkOut')!.updateValueAndValidity({ emitEvent: true });
+  }
+  
   // Getters para facilitar o acesso
   get tipoControl() {
     return this.formulario.get('tipo');
@@ -75,6 +82,10 @@ export class CustomerReservationComponent implements OnInit {
   }
   get orcamento() {
     return this.formulario.get('orcamento');
+  }
+  get tipoSelecionado(): TipoInstalacao | null {
+    const valor = this.formulario.get('tipo')?.value;
+    return valor ? (valor as TipoInstalacao) : null;
   }
 
   private escutarMudancasDeTipo(): void {
@@ -104,31 +115,49 @@ export class CustomerReservationComponent implements OnInit {
    * sempre que 'tipo' e 'categoria' estiverem preenchidos.
    */
   private escutarMudancasDeCategoria(): void {
-    this.categoriaControl?.valueChanges
-      .pipe(
-        // Garante que ambos os campos estão preenchidos
-        filter(() => this.tipoControl?.value && this.categoriaControl?.value),
-        // Usa switchMap para cancelar chamadas antigas se uma nova começar
-        tap(() => this.orcamento?.setValue('Carregando...')), // Feedback de carregamento
-        switchMap((novaCategoria: string) => {
-          const tipo = this.tipoControl?.value;
-          // Chama o serviço de orçamento
-          return this.instalacaoService.simularOrcamento(tipo, novaCategoria);
-        })
-      )
-      .subscribe({
-        next: (orcamentoResponse) => {
-          // Atualiza o campo 'orcamento' com o valor retornado
-          this.orcamento?.setValue(orcamentoResponse.valorFinal);
-        },
-        error: (err) => {
-          console.error('Erro ao simular orçamento:', err);
-          this.orcamento?.setValue('Erro ao calcular');
-          this.snackBar.open('Não foi possível simular o orçamento.', 'Fechar', { duration: 5000 });
-        },
-      });
-  }
+  // Escuta mudanças em tipo, categoria, checkIn e checkOut
+  combineLatest([
+    this.formulario.get('tipo')!.valueChanges,
+    this.formulario.get('categoria')!.valueChanges,
+    this.formulario.get('checkIn')!.valueChanges,
+    this.formulario.get('checkOut')!.valueChanges,
+  ])
+    .pipe(
+      tap(() => {
+        this.orcamento?.setValue('Carregando...');
+      }),
+      // só calcula quando todos os campos tiverem valor
+      filter(([tipo, categoria, checkIn, checkOut]) => !!(tipo && categoria && checkIn && checkOut)),
+    )
+    .subscribe({
+      next: ([tipo, categoria, checkIn, checkOut]) => {
+        try {
+          const valorFinal = calcularOrcamento(
+            tipo as TipoInstalacao,
+            categoria as string,
+            checkIn,
+            checkOut
+          );
 
+          const valorFormatado = valorFinal.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          });
+
+          this.orcamento?.setValue(valorFormatado);
+        } catch (err) {
+          console.error('Erro ao calcular orçamento:', err);
+          this.orcamento?.setValue('Erro ao calcular');
+          this.snackBar.open('Erro ao calcular orçamento.', 'Fechar', { duration: 5000 });
+        }
+      },
+      error: (err) => {
+        console.error('Erro no fluxo de orçamento:', err);
+      },
+    });
+}
+
+  
   onSubmit(): void {
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched(); // Marca todos como 'touched' para exibir erros

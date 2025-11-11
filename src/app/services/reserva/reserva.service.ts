@@ -50,6 +50,4 @@ export class ReservaService {
       })
     );
   }
-
-  // Seus DTOs não incluem DELETE ou PUT, então esses métodos não serão adicionados.
 }

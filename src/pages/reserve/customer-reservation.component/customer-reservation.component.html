@@ -44,19 +44,27 @@
             </select>
           </div>
           <div class="form-row">
-            <div class="form-field">
-              <label>Data de Check-in</label>
-              <input formControlName="checkIn" type="datetime-local" />
-            </div>
-            <div class="form-field">
-              <label>Data de Check-out</label>
-              <input formControlName="checkOut" type="datetime-local" />
-            </div>
+              <div class="form-field">
+                <label>Data de Check-in</label>
+                @if (tipoSelecionado && tiposInstalacaoLabel[tipoSelecionado] === 'Quarto') {
+                  <input formControlName="checkIn" type="date" />
+                } @else {
+                  <input formControlName="checkIn" type="datetime-local" />
+                }
+              </div>
+              <div class="form-field">
+                <label>Data de Check-out</label>
+                @if (tipoSelecionado && tiposInstalacaoLabel[tipoSelecionado] === 'Quarto') {
+                  <input formControlName="checkOut" type="date" />
+                } @else {
+                  <input formControlName="checkOut" type="datetime-local" />
+                }
+              </div>
           </div>
           <div class="form-row">
             <div class="form-field">
               <label>Orçamento</label>
-              <input formControlName="orcamento" />
+              <input formControlName="orcamento" readonly />
             </div>
           </div>
         </div>
