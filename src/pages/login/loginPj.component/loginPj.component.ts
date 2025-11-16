@@ -49,7 +49,7 @@ export class LoginPjComponent implements OnInit {
       },
       error: (err) => {
         // Define o sinal com a nova mensagem de erro
-        this.errorMessage.set(err.error?.message || 'Falha no login. Verifique suas credenciais.');
+        this.errorMessage.set('Falha no login. Verifique suas credenciais.');
       },
     });
   }

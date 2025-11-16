@@ -53,22 +53,13 @@ app-input-text {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.field-error {
-  display: inline-flex; 
-  flex-direction: column;
+.field-error span {
   color: #000;
-  color: #ff4d4f;
+  background-color: rgba(255, 0, 0, 0.5);
   font-size: 12px;
   font-weight: bold;
   padding: 2px 8px;
-  margin-top: 4px;
   border-radius: 4px;
-  background: rgba(255, 0, 0, 0.5);
-  background: rgba(255, 0, 0, 0.02);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  max-width: max-content; 
-  white-space: nowrap; 
 }
 
 app-button {
@@ -131,12 +122,12 @@ a:hover {
 
 @media (max-width: 425px) {
   .form_login {
-    width: 280px; 
+    width: 280px;
   }
 }
 
 @media (max-width: 330px) {
   .form_login {
-    width: 250px; 
-  } 
+    width: 250px;
+  }
 }

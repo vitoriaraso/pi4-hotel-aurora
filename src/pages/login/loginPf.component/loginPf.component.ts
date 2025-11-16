@@ -71,7 +71,7 @@ export class LoginPfComponent implements OnInit {
       error: (err) => {
         // Define o sinal com a nova mensagem de erro
         this.errorMessage.set(
-          err.error?.message || 'Falha no login. Verifique suas credenciais.'
+          'Falha no login. Verifique suas credenciais.'
         );
       },
     });

@@ -4,10 +4,6 @@
       <form class="form_login" (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <h1>Login</h1>
 
-        @if (errorMessage()) {
-          <div class="error-message">{{ errorMessage() }}</div>
-        }
-
         <div class="content">
           <label for="email">E-mail</label>
           <app-input-text
@@ -17,7 +13,7 @@
             name="email"
             required
             email
-            #emailInput="ngModel" 
+            #emailInput="ngModel"
           ></app-input-text>
 
            @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
@@ -52,11 +48,17 @@
            }
         </div>
 
+        @if (errorMessage()) {
+          <div class="field-error" style="display: flex; justify-content: center;" >
+            <span>{{ errorMessage() }}</span>
+          </div>
+        }
+
+        <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
+
         <app-button label="Entrar com Google" (click)="loginComGoogle()">
           <i class="fa-brands fa-google"></i>
         </app-button>
-
-        <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
 
         <div class="links">
           <a routerLink="/forgot/password">Esqueceu sua senha?</a>
