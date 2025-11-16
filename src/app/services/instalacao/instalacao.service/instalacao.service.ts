@@ -42,8 +42,8 @@ export class InstalacaoService {
   // Método para o endpoint de orçamento
   simularOrcamento(tipo: string, classe: string): Observable<OrcamentoResponseDTO> {
     const params = new HttpParams()
-      .set('tipo', tipo)
-      .set('classe', classe);
+    .set('classe', classe)
+    .set('tipo', tipo);
     const url = `${this.apiUrl}/orcamento`;
     return this.http.get<OrcamentoResponseDTO>(url, { params });
   }
