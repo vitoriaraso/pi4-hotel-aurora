@@ -1,73 +1,128 @@
 <div class="page-container">
   <div class="content-wrapper">
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
       <div class="form-section">
-        <div class="section-header"><h2>Fazer uma Reserva</h2></div>
+        <div class="section-header">
+          <h2>Fazer uma Reserva</h2>
+        </div>
+
         <div class="section-content">
+
           <div class="form-row">
-            <!-- <div class="form-field">
-              <label>ID da Instalação (Ex: Quarto, SPA)</label>
-              <input formControlName="instalacaoAlugavelId" type="number">
-            </div> -->
             <div class="form-field">
-              <label for="tipo">Espaço</label>
+              <label for="tipo">1. O que você deseja reservar?</label>
               <select id="tipo" formControlName="tipo">
-                <option value="" disabled>Selecione</option>
+                <option value="" disabled>Selecione o Tipo</option>
                 @for (tipo of tiposInstalacao; track tipo) {
-                <option [value]="tipo">{{ tiposInstalacaoLabel[tipo] }}</option>
+                  <option [value]="tipo">{{ tiposInstalacaoLabel[tipo] }}</option>
                 }
               </select>
-              @if (formulario.get('tipo')?.invalid && formulario.get('tipo')?.touched) {
-              <div class="error-message">Tipo é obrigatório.</div>
+              @if (tipoControl?.invalid && tipoControl?.touched) {
+                <div class="error-message">Tipo é obrigatório.</div>
               }
             </div>
 
             <div class="form-field">
-              <label for="categoria">Categoria</label>
+              <label for="categoria">2. Qual a categoria?</label>
               <select id="categoria" formControlName="categoria">
-                <option value="" disabled>Selecione</option>
-                @for (cat of (categoriasDisponiveis | async | keyvalue); track cat.key) {
-                <option [value]="cat.key">{{ cat.value }}</option>
+                <option value="" disabled>Selecione a Categoria</option>
+                @for (cat of (categoriasDisponiveis$ | async | keyvalue); track cat.key) {
+                  <option [value]="cat.key">{{ cat.value }}</option>
                 }
               </select>
               @if (categoriaControl?.invalid && categoriaControl?.touched) {
-              <div class="error-message">Categoria é obrigatória.</div>
+                <div class="error-message">Categoria é obrigatória (define o preço).</div>
               }
             </div>
           </div>
-          <div class="form-field">
-            <label>Tipo de Pagamento</label>
-            <select formControlName="tipoPagamento">
-              @for(tipo of tiposPagamento; track tipo){
-              <option [value]="tipo">{{ tipo }}</option>
-              }
-            </select>
-          </div>
-          <div class="form-row">
-              <div class="form-field">
-                <label>Data de Check-in</label>
-                @if (tipoSelecionado && tiposInstalacaoLabel[tipoSelecionado] === 'Quarto') {
-                  <input formControlName="checkIn" type="date" />
-                } @else {
-                  <input formControlName="checkIn" type="datetime-local" />
-                }
-              </div>
-              <div class="form-field">
-                <label>Data de Check-out</label>
-                @if (tipoSelecionado && tiposInstalacaoLabel[tipoSelecionado] === 'Quarto') {
-                  <input formControlName="checkOut" type="date" />
-                } @else {
-                  <input formControlName="checkOut" type="datetime-local" />
-                }
-              </div>
-          </div>
+
           <div class="form-row">
             <div class="form-field">
-              <label>Orçamento</label>
-              <input formControlName="orcamento" readonly />
+              <label for="item">3. Escolha a unidade disponível</label>
+              <select id="item" formControlName="instalacaoAlugavelId">
+                <option value="" disabled>Selecione a Unidade</option>
+                @for (item of (alugaveisFiltrados$ | async); track item.id) {
+                  <option [value]="item.id">
+                    {{ item.nome }} {{ item.numeroQuarto ? '(Nº ' + item.numeroQuarto + ')' : '' }}
+                  </option>
+                }
+              </select>
+
+              @if (tipoControl?.value && (alugaveisFiltrados$ | async)?.length === 0) {
+                <small style="color: #f44336; margin-top: 4px;">Indisponível no momento.</small>
+              }
+
+              @if (instalacaoControl?.invalid && instalacaoControl?.touched) {
+                <div class="error-message">Você deve selecionar uma unidade.</div>
+              }
             </div>
           </div>
+
+          <hr class="divider">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="checkIn">
+                4. Check-in
+                {{ tipoControl?.value === 'QUARTO' ? '(Dia)' : '(Dia e Hora)' }}
+              </label>
+
+              <input
+                id="checkIn"
+                formControlName="checkIn"
+                [type]="tipoControl?.value === 'QUARTO' ? 'date' : 'datetime-local'"
+              />
+
+              @if (formulario.get('checkIn')?.invalid && formulario.get('checkIn')?.touched) {
+                <div class="error-message">Data obrigatória.</div>
+              }
+            </div>
+
+            <div class="form-field">
+              <label for="checkOut">
+                5. Check-out
+                {{ tipoControl?.value === 'QUARTO' ? '(Dia)' : '(Dia e Hora)' }}
+              </label>
+
+              <input
+                id="checkOut"
+                formControlName="checkOut"
+                [type]="tipoControl?.value === 'QUARTO' ? 'date' : 'datetime-local'"
+              />
+
+              @if (formulario.get('checkOut')?.invalid && formulario.get('checkOut')?.touched) {
+                <div class="error-message">Data obrigatória.</div>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="pagamento">6. Tipo de Pagamento</label>
+              <select id="pagamento" formControlName="tipoPagamento">
+                @for(tipo of tiposPagamento; track tipo){
+                  <option [value]="tipo">{{ tipo }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="orcamento">Orçamento Estimado</label>
+              <input
+                id="orcamento"
+                formControlName="orcamento"
+                readonly
+                class="input-orcamento"
+              />
+              <small style="color: #777; margin-top: 4px;">*O valor final é calculado com base na categoria e duração.</small>
+            </div>
+          </div>
+
         </div>
+
         <div class="form-actions">
           <app-button
             label="Confirmar Reserva"

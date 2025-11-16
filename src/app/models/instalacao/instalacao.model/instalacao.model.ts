@@ -5,7 +5,7 @@ export interface HotelResumoDTO {
 }
 
 // Corresponde ao seu InstalacaoResponseDTO
-export interface InstalacaoResponseDTO {
+  export interface InstalacaoResponseDTO {
   id: number;
   nome: string;
   isDisponivel: boolean;

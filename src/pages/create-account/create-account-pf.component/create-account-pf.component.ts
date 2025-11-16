@@ -221,7 +221,7 @@ export class CreateAccountPfComponent implements OnInit {
 
     this.clienteService.cadastrarClienteFisico(requestData).subscribe({
       next: (msg: any) => {
-        
+
         this.snackBar.open(
           'Cadastro realizado com sucesso! Redirecionando para a página de login...',
           'Fechar',
@@ -242,7 +242,7 @@ export class CreateAccountPfComponent implements OnInit {
     });
   }
 
-  
+
   scrollToTop(): void {
     window.scrollTo({
       top: 0,

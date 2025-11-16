@@ -95,7 +95,7 @@ a{
 }
 
 .error-message {
-  display: inline-flex; 
+  display: inline-flex;
   flex-direction: column;
   color: #000;
   color: #ff4d4f;
@@ -108,8 +108,8 @@ a{
   background: rgba(255, 0, 0, 0.02);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  max-width: max-content; 
-  white-space: nowrap; 
+  max-width: max-content;
+  white-space: nowrap;
 }
 
 #uf{
@@ -124,19 +124,19 @@ a{
 
     .group-item {
         width: 100%;
-    }   
+    }
 }
 
 @media (max-width: 500px){
     .container {
         width: 300px;
         padding: 30px 10px;
-    }   
+    }
 }
 
 @media (max-width: 400px){
     .container {
         width: 230px;
-    }   
+    }
 }
 
