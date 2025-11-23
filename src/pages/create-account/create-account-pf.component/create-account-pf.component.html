@@ -114,7 +114,9 @@
         ></app-input-text>
         @if (cep?.invalid && (cep?.touched || cep?.dirty)) {
           <div class="error-message">
-            CEP inválido.
+            @if (cep?.errors?.['required']) { <span>O CEP é obrigatório.</span> }
+            @if (cep?.errors?.['pattern']) { <span>O CEP deve conter 8 dígitos.</span> }
+            @if (cep?.errors?.['cepInvalido']) { <span>CEP não encontrado.</span> }
           </div>
         }
       </div>

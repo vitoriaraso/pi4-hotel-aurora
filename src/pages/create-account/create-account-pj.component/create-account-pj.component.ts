@@ -136,7 +136,7 @@ export class CreateAccountPjComponent implements OnInit {
       cep: [
         '',
         [Validators.required, Validators.pattern(/^[0-9]{8}$/)], // Validadores síncronos
-        [this.viaCepService.cepValidator()] // Validador assíncrono
+        [this.viaCepService.cepValidator()], // Validador assíncrono
       ],
       logradouro: [{ value: '', disabled: true }, [Validators.required]],
       numero: ['', [Validators.required]],
@@ -163,7 +163,9 @@ export class CreateAccountPjComponent implements OnInit {
 
   consultarCep(): void {
     const cepControl = this.cep;
-    if (!cepControl || cepControl.invalid || !cepControl) { return; }
+    if (!cepControl || cepControl.invalid || !cepControl) {
+      return;
+    }
 
     const cep = cepControl.value;
 
@@ -174,10 +176,10 @@ export class CreateAccountPjComponent implements OnInit {
             logradouro: dados.logradouro,
             bairro: dados.bairro,
             localidade: dados.localidade,
-            uf: dados.uf
+            uf: dados.uf,
           });
         }
-      }
+      },
     });
   }
 
@@ -192,7 +194,7 @@ export class CreateAccountPjComponent implements OnInit {
 
     this.clienteService.cadastrarClienteJuridico(requestData).subscribe({
       next: (msg: any) => {
-        
+
         this.snackBar.open(
           'Cadastro realizado com sucesso! Redirecionando para a página de login...',
           'Fechar',
@@ -215,7 +217,7 @@ export class CreateAccountPjComponent implements OnInit {
 
   }
 
-  
+
   scrollToTop(): void {
     window.scrollTo({
       top: 0,
