@@ -208,8 +208,23 @@ export class CustomerReservationComponent implements OnInit {
       funcionarioId: null,
     };
 
-    requestData.checkIn = new Date(this.formulario.value.checkIn).toISOString();
-    requestData.checkOut = new Date(this.formulario.value.checkOut).toISOString();
+    const checkInValue = this.formulario.value.checkIn;
+    const checkOutValue = this.formulario.value.checkOut;
+
+    const checkInUTC: string = checkInValue.length === 10
+      ? `${checkInValue}T00:00:00.000Z`
+      : `${checkInValue}:00.000Z`;
+
+    const checkOutUTC: string = checkOutValue.length === 10
+      ? `${checkOutValue}T00:00:00.000Z`
+      : `${checkOutValue}:00.000Z`;
+
+    // 3. Atribui a string ISO-UTC diretamente. 
+    requestData.checkIn = checkInUTC;
+    requestData.checkOut = checkOutUTC;
+
+    //requestData.checkIn = new Date(this.formulario.value.checkIn).toISOString();
+    //requestData.checkOut = new Date(this.formulario.value.checkOut).toISOString();
 
     this.reservaService.cadastrarReserva(requestData).subscribe({
       next: () => {
