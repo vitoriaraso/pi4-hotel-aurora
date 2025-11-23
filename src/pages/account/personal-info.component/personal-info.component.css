@@ -20,6 +20,12 @@
   white-space: nowrap;
 }
 
+ .personal-info {
+   display: flex;
+   flex-direction: column;
+   gap: 14px;
+ }
+
 .personal-info .name-and-edit,
 .address-info .address-and-edit {
   display: flex;
@@ -35,7 +41,7 @@
   width: 300px;
 }
 
-.personal-info .tel-and-email > div,
+.personal-info .two-inputs-one-row > div,
 .address-info .address-elements > div {
   display: flex;
   flex-direction: column;
@@ -53,7 +59,8 @@
   flex-direction: column;
 }
 
-.personal-info .tel-and-email > div > label,
+.personal-info .two-inputs-one-row > div > label,
+.personal-info .cpfCnpj-and-edit > div > label,
 .address-info .address-elements > div > label,
 .address-info .address-elements .two-inputs-one-row label {
   display: flex;
@@ -62,7 +69,8 @@
   font-weight: 500;
 }
 
-.personal-info .tel-and-email > div > label mat-icon,
+.personal-info .two-inputs-one-row > div > label mat-icon,
+.personal-info .cpfCnpj-and-edit > div > label mat-icon,
 .address-info .address-elements > div > label mat-icon,
 .address-info .address-elements .two-inputs-one-row label mat-icon {
   display: none;
@@ -77,6 +85,13 @@
   padding-left: 5px;
 }
 
+.personal-info .tel, .personal-info .email,
+.personal-info .cpfCnpj {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-info .two-inputs-one-row,
 .address-info .address-elements .two-inputs-one-row {
   display: flex;
   flex-direction: row;
@@ -111,6 +126,11 @@ app-button[disabled] {
     margin-top: 15px;
   }
 
+  .personal-info .two-inputs-one-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .address-info .address-elements .two-inputs-one-row {
     flex-direction: column;
     gap: 20px;
@@ -118,9 +138,9 @@ app-button[disabled] {
 
   .address-info .address-elements .uf {
     width: 330px;
-  }       
+  }
 
-  .personal-info .tel-and-email > div > label,
+  .personal-info .two-inputs-one-row > div > label,
   .address-info .address-elements > div > label,
   .address-info .address-elements .two-inputs-one-row label {
     font-size: 14px;

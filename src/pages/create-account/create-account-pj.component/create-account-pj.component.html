@@ -27,8 +27,8 @@
           ></app-input-text>
           @if (cnpj?.invalid && (cnpj?.touched || cnpj?.dirty)) {
           <div class="error-message">
-            @if (cnpj?.errors?.['required']) { <span>O cnpj é obrigatório.</span> } @if
-            (cnpj?.errors?.['cnpjInvalido']) { <span>O cnpj informado é inválido.</span> }
+            @if (cnpj?.errors?.['required']) { <span>O CNPJ é obrigatório.</span> } @if
+            (cnpj?.errors?.['cnpjInvalido']) { <span>O CNPJ informado é inválido.</span> }
           </div>
           }
         </div>

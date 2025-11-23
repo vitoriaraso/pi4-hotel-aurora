@@ -19,7 +19,35 @@
               <app-button id="personal-info-edit-save-btn" [label]="editButtonLabel" (click)="toggleInfoEdit()" [icon]="icon" [disabled]="isEditing && (formulario.invalid || !formulario.dirty)" />
             </div>
           </div>
-          <div class="tel-and-email">
+          <div class="cpfCnpj-and-edit">
+            <div class="cpfCnpj">
+              <label for="cpfCnpj">
+                @if (isPessoaFisica) { CPF } @else { CNPJ }
+                <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
+              </label>
+              <input
+                formControlName="cpfCnpj"
+                mask="{{ cpfCnpjMask }}"
+                [dropSpecialCharacters]="true"
+                type="text"
+                id="cpfCnpj"
+                name="cpfCnpj"
+                class="user-info"
+                required>
+              @if (cpfCnpj?.invalid && (cpfCnpj?.touched || cpfCnpj?.dirty)) {
+                <div class="error-message">
+                  @if (cpfCnpj?.errors?.['required']) { <span>Este campo é obrigatório.</span> }
+                  @if (cpfCnpj?.errors?.['tamanhoInvalido']) {
+                    @if (isPessoaFisica) { <span>O CPF deve ter 11 dígitos.</span> }
+                    @else { <span>O CNPJ deve ter 14 dígitos.</span> }
+                  }
+                  @if (cpfCnpj?.errors?.['cpfInvalido']) { <span>O CPF informado é inválido.</span> }
+                  @if (cpfCnpj?.errors?.['cnpjInvalido']) { <span>O CNPJ informado é inválido.</span> }
+                </div>
+              }
+            </div>
+          </div>
+          <div class="two-inputs-one-row">
             <div class="tel">
               <label for="telefone">Telefone
                 <mat-icon class="edit-icon" [style.display]="isEditing ? 'flex' : 'none'">edit</mat-icon>
@@ -65,6 +93,9 @@
                 required>
 
               @if (cep?.invalid && (cep?.touched || cep?.dirty)) {
+                <div class="error-message">
+                  CEP inválido
+                </div>
               }
             </div>
             <div class="two-inputs-one-row">
@@ -120,7 +151,6 @@
               </div>
               <div class="uf">
                 <label for="uf">Estado (UF) </label>
-                <!-- colocar todos os estados -->
                 <select formControlName="uf" id="uf" name="uf" required>
                   <option value="">Selecione</option>
                   <option value="AC">Acre (AC)</option>
@@ -130,6 +160,23 @@
                   <option value="BA">Bahia (BA)</option>
                   <option value="CE">Ceará (CE)</option>
                   <option value="DF">Distrito Federal (DF)</option>
+                  <option value="ES">Espírito Santo (ES)</option>
+                  <option value="GO">Goiás (GO)</option>
+                  <option value="MA">Maranhão (MA)</option>
+                  <option value="MT">Mato Grosso (MT)</option>
+                  <option value="MS">Mato Grosso do Sul (MS)</option>
+                  <option value="MG">Minas Gerais (MG)</option>
+                  <option value="PA">Pará (PA)</option>
+                  <option value="PB">Paraíba (PB)</option>
+                  <option value="PR">Paraná (PR)</option>
+                  <option value="PE">Pernambuco (PE)</option>
+                  <option value="PI">Piauí (PI)</option>
+                  <option value="RJ">Rio de Janeiro (RJ)</option>
+                  <option value="RN">Rio Grande do Norte (RN)</option>
+                  <option value="RS">Rio Grande do Sul (RS)</option>
+                  <option value="RO">Rondônia (RO)</option>
+                  <option value="RR">Roraima (RR)</option>
+                  <option value="SC">Santa Catarina (SC)</option>
                   <option value="SP">São Paulo (SP)</option>
                   <option value="SE">Sergipe (SE)</option>
                   <option value="TO">Tocantins (TO)</option>
@@ -146,5 +193,4 @@
       </div>
     </form>
   }
-
 </div>

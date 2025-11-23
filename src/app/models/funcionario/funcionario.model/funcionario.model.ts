@@ -9,6 +9,7 @@ export interface FuncionarioResponseDTO {
   id: number;
   nome: string;
   email: string;
+  cpf: string;
   telefone: string;
   cargo: string;
   dataCadastro: string; // Vem como string "dd/MM/yyyy HH:mm:ss"
@@ -30,6 +31,7 @@ export interface FuncionarioRequest {
 export interface FuncionarioUpdateRequest {
   nome: string;
   email: string;
+  cpf: string;
   telefone: string;
   cargo: string;
 }

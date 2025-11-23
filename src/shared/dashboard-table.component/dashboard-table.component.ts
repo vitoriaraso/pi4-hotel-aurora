@@ -62,7 +62,7 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
     if (changes['data'] && this.data) {
       this.dataSource.data = this.data;
 
-      console.log('[FILHO] Dados recebidos via @Input():', this.data);
+      // console.log('[FILHO] Dados recebidos via @Input():', this.data);
 
       let columns = this.visibleColumns.length > 0 ? [...this.visibleColumns] : (this.data.length > 0 ? Object.keys(this.data[0] as object) : []);
 
@@ -71,7 +71,7 @@ export class DashboardTableComponent<T> implements OnChanges, AfterViewInit {
       }
 
       this.displayedColumns = columns;
-      console.log('Colunas que a tabela vai tentar renderizar:', this.displayedColumns);
+      // console.log('Colunas que a tabela vai tentar renderizar:', this.displayedColumns);
     }
   }
 

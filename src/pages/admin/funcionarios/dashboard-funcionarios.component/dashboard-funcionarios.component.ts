@@ -4,16 +4,29 @@ import { Router, RouterLink } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-// Imports do Dialog
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
-// Seus componentes e serviços
 import { DashboardTableComponent } from '../../../../shared/dashboard-table.component/dashboard-table.component';
 import { FuncionarioResponseDTO, FuncionarioService } from '../../../../app/services/funcionario/funcionario.service';
 import {
   ConfirmationDialogComponent
 } from '../../../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { ButtonComponent } from '../../../../shared/button.component/button.component';
+
+// Define uma interface estendida para garantir a tipagem da nova coluna formatada
+interface FuncionarioTabelaDTO extends FuncionarioResponseDTO {
+  ativoTexto: string;
+  cpfFormatado: string;
+}
+
+// 💡 Função de formatação manual para CPF (substitui a necessidade de injetar o NgxMaskPipe)
+function formatCpf(cpf: string): string {
+  cpf = cpf.replace(/[^\d]/g, ''); // Remove não-dígitos
+  if (cpf.length === 11) {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+  return cpf;
+}
 
 @Component({
   selector: 'app-dashboard-funcionarios',
@@ -24,7 +37,8 @@ import { ButtonComponent } from '../../../../shared/button.component/button.comp
     MatDialogModule,
     ButtonComponent,
     RouterLink,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    // ❌ REMOVIDO: NgxMaskPipe
   ],
   templateUrl: './dashboard-funcionarios.component.html',
   styleUrls: ['../../css-componente-dashboard/dashboard.component.css']
@@ -34,21 +48,23 @@ export class DashboardFuncionariosComponent implements OnInit {
   private router = inject(Router);
   private dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
+  // ❌ REMOVIDO: private maskPipe = inject(NgxMaskPipe);
 
   mostrando: 'ativos' | 'inativos' = 'ativos';
 
-  listaDeFuncionarios: FuncionarioResponseDTO[] = [];
+  listaDeFuncionarios: FuncionarioTabelaDTO[] = [];
   isLoading = true;
 
-  // Painel de controle da tabela: quais colunas mostrar e como chamá-las
-  colunasVisiveis: string[] = ['id', 'nome', 'email', 'cargo', 'telefone', 'ativoTexto'];
+  colunasVisiveis: string[] = ['id', 'nome', 'cpfFormatado', 'email', 'cargo', 'telefone', 'ativoTexto'];
+
   nomesDasColunas: Record<string, string> = {
     id: 'ID',
     nome: 'Nome do Funcionário',
+    cpfFormatado: 'CPF', // Novo nome da coluna
     email: 'E-mail',
     cargo: 'Cargo',
     telefone: 'Telefone',
-    ativoTexto: 'Status' // Nova coluna de Status
+    ativoTexto: 'Status'
   };
 
   ngOnInit(): void {
@@ -64,27 +80,41 @@ export class DashboardFuncionariosComponent implements OnInit {
 
     observable.subscribe({
       next: (dados) => {
-        this.listaDeFuncionarios = dados.map(func => ({
-          ...func,
-          ativoTexto: this.mostrando === 'ativos' ? 'Ativo' : 'Inativo',
-          hotelNome: func.hotel.nome, // "Achata" o nome do hotel
-        }));
+        this.listaDeFuncionarios = dados.map(func => {
+          const cpf = func.cpf || '';
+          let cpfFormatado = 'N/A';
+
+          if (cpf && /^\d{11}$/.test(cpf)) {
+            // 💡 APLICAÇÃO MANUAL DA MÁSCARA (usando a função de utilidade)
+            cpfFormatado = formatCpf(cpf);
+          } else if (cpf) {
+            cpfFormatado = cpf;
+          }
+
+          return {
+            ...func,
+            ativoTexto: this.mostrando === 'ativos' ? 'Ativo' : 'Inativo',
+            cpfFormatado: cpfFormatado,
+            hotelNome: func.hotel.nome,
+          } as FuncionarioTabelaDTO;
+        });
         this.isLoading = false;
       },
       error: (err) => {
         console.error('Erro ao carregar funcionários:', err);
         this.isLoading = false;
+        this.snackBar.open('Não foi possível carregar a lista de funcionários.', 'Fechar', { duration: 5000 });
       }
     });
   }
 
+  // ... restante do componente (métodos inalterados)
   mudarFiltro(novoFiltro: 'ativos' | 'inativos'): void {
     this.mostrando = novoFiltro;
     this.carregarFuncionarios();
   }
 
-  handleView(funcionario: FuncionarioResponseDTO): void {
-    // 6. Passa o status atual pela URL (queryParams)
+  handleView(funcionario: FuncionarioTabelaDTO): void {
     const status = this.mostrando === 'ativos' ? 'ativo' : 'inativo';
     this.router.navigate(
       ['/admin/dashboard/funcionarios', funcionario.id],
@@ -92,7 +122,7 @@ export class DashboardFuncionariosComponent implements OnInit {
     );
   }
 
-  handleDesativar(funcionario: FuncionarioResponseDTO): void {
+  handleDesativar(funcionario: FuncionarioTabelaDTO): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: `Tem certeza que deseja DESATIVAR o funcionário "${funcionario.nome}"?` }
     });
@@ -109,7 +139,7 @@ export class DashboardFuncionariosComponent implements OnInit {
     });
   }
 
-  handleReativar(funcionario: FuncionarioResponseDTO): void {
+  handleReativar(funcionario: FuncionarioTabelaDTO): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: `Tem certeza que deseja REATIVAR o funcionário "${funcionario.nome}"?` }
     });

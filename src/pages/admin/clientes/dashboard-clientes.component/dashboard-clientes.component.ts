@@ -15,6 +15,30 @@ import {
   ConfirmationDialogComponent
 } from '../../../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 
+interface ClienteTabelaDTO extends ClienteResponseDTO {
+  cpfCnpj: string; // Coluna unificada
+  ativoTexto: string; // Coluna Ativo/Inativo para a tabela
+}
+
+function formatCpfCnpj(identificador: string): string {
+  // 1. Remove caracteres não numéricos
+  identificador = identificador.replace(/[^\d]/g, '');
+
+  const length = identificador.length;
+
+  if (length === 11) {
+    // 2. Formatação para CPF: 000.000.000-00
+    return identificador.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+
+  if (length === 14) {
+    // 3. Formatação para CNPJ: 00.000.000/0000-00
+    return identificador.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+  }
+
+  // 4. Retorna o original (limpo) se o tamanho for inválido para CPF/CNPJ
+  return identificador;
+}
 
 @Component({
   selector: 'app-dashboard-clientes',
@@ -38,13 +62,14 @@ export class DashboardClientesComponent implements OnInit {
   mostrando: 'ativos' | 'inativos' = 'ativos';
 
   // Propriedades para a tabela
-  listaDeClientes: ClienteResponseDTO[] = [];
+  listaDeClientes: ClienteTabelaDTO[] = [];
   isLoading = true;
 
-  colunasVisiveisParaAdmin: string[] = ['id', 'nome', 'email', 'tipoCliente', 'dataCadastro'];
+  colunasVisiveisParaAdmin: string[] = ['id', 'nome', 'cpfCnpj', 'email', 'tipoCliente', 'dataCadastro'];
   nomesDasColunas: Record<string, string> = {
     id: 'Código',
     nome: 'Nome Completo',
+    cpfCnpj: 'CPF/CNPJ', // Novo nome da coluna
     email: 'E-mail',
     tipoCliente: 'Tipo',
     dataCadastro: 'Data de Cadastro'
@@ -63,15 +88,29 @@ export class DashboardClientesComponent implements OnInit {
 
     observable.subscribe({
       next: (dados) => {
-        this.listaDeClientes = dados.map(cliente => ({
-          ...cliente,
-          ativoTexto: cliente.ativo ? 'Ativo' : 'Inativo'
-        }));
+        // 3. 🎯 Mudança: Mapear os dados para criar a coluna unificada 'cpfCnpj'
+        this.listaDeClientes = dados.map(cliente => {
+          // Determina se é PF ou PJ e pega o identificador correto
+          const identificador = cliente.cpf || cliente.cnpj || '';
+
+          let cpfCnpjFormatado = 'N/A';
+          if (identificador) {
+            // Aplica a formatação manual
+            cpfCnpjFormatado = formatCpfCnpj(identificador);
+          }
+
+          return {
+            ...cliente,
+            cpfCnpj: cpfCnpjFormatado, // Novo campo unificado
+            ativoTexto: cliente.ativo ? 'Ativo' : 'Inativo' // Mantém o status em texto
+          } as ClienteTabelaDTO;
+        });
         this.isLoading = false;
       },
       error: (err) => {
         console.error('Erro ao carregar clientes:', err);
         this.isLoading = false;
+        this.snackBar.open('Não foi possível carregar a lista de clientes.', 'Fechar', { duration: 5000 });
       }
     });
   }

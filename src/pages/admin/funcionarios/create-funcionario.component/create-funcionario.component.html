@@ -39,7 +39,14 @@
             <div class="form-field">
               <label for="cpf">CPF</label>
               <input formControlName="cpf" mask="000.000.000-00" [dropSpecialCharacters]="true" type="text" id="cpf" required>
-              @if (cpf?.invalid && cpf?.touched) { <div class="error-message">CPF inválido ou obrigatório.</div> }
+              @if (cpf?.invalid && cpf?.touched) {
+                <div class="error-message">
+                  @if (cpf?.errors?.['required']) { <span>Este campo é obrigatório.</span> }
+                  @if (cpf?.errors?.['tamanhoInvalido']) { <span>O CPF deve ter 11 dígitos.</span> }
+                  @if (cpf?.errors?.['cpfInvalido']) { <span>O CPF informado é inválido.</span> }
+                  @if (cpf?.errors?.['cnpjInvalido']) { <span>O CNPJ informado é inválido.</span> }
+                </div>
+              }
             </div>
             <div class="form-field">
               <label for="telefone">Telefone</label>

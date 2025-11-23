@@ -69,6 +69,8 @@ export interface ClienteResponseDTOAdmin1 {
   nome: string;
   email: string;
   telefone: string;
+  cpf: string | null;
+  cnpj: string | null;
   tipoCliente: TipoCliente;
   dataCadastro: string;
 }
@@ -81,6 +83,8 @@ export interface ClienteUpdateRequest {
   email: string;
   telefone: string;
   cep: string;
+  cpf?: string | null | undefined;
+  cnpj?: string | null | undefined;
   logradouro: string;
   numero: string;
   complemento?: string;
