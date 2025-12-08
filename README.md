@@ -102,7 +102,7 @@ npm install -g @angular/cli
 
   * **Estrutura de Componentes:** O projeto segue uma estrutura modular, facilitando a navegação.
   * **Boas Práticas:** Utilize o **Angular CLI** para gerar novos componentes, serviços e módulos (`ng generate component <nome>`), mantendo a consistência do código.
-  * **Estilização:** Toda a estilização primária é gerenciada pelo Angular Material. Para customizações específicas, utilize arquivos SCSS locais aos componentes.
+  * **Estilização:** Toda a estilização primária é gerenciada pelo Angular Material. Para customizações específicas, utilize arquivos CSS locais aos componentes.
   * **Backend:** Este é apenas o frontend. Certifique-se de que o **servidor backend** (onde as APIs de CRUD e autenticação residem) esteja em execução e configurado corretamente (ajustar URLs de API nos serviços, se necessário).
 
 -----
