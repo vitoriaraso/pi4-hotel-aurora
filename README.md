@@ -106,7 +106,7 @@ npm install -g @angular/cli
   * **Backend:** Este é apenas o frontend. Certifique-se de que o **servidor backend** (onde as APIs de CRUD e autenticação residem) esteja em execução e configurado corretamente (ajustar URLs de API nos serviços, se necessário).
 
 -----
------
+
 **Link para o Backend:**
 
 ➡️ **[Acessar o Repositório do Backend (Spring Boot)](https://github.com/ErickGX/api_hotel_pi_4sem)**
