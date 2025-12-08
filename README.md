@@ -117,5 +117,3 @@ npm install -g @angular/cli
 Contribuições são bem-vindas\! Se você deseja aprimorar a experiência do **Hotel Aurora**, sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
 
 -----
-
-> ✨ "Do nascer ao pôr do sol, tudo convida à contemplação." ✨
