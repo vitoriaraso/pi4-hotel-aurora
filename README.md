@@ -78,6 +78,12 @@ npm install -g @angular/cli
     git clone https://github.com/vitoriaraso/pi4-hotel-aurora
     ```
 
+
+1.1  **Link para o Backend:**
+
+➡️ **[Acessar o Repositório do Backend (Spring Boot)](https://github.com/ErickGX/api_hotel_pi_4sem)**
+
+
 2.  Instale as dependências do projeto:
 
     ```bash
