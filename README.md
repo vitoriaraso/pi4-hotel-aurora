@@ -78,12 +78,6 @@ npm install -g @angular/cli
     git clone https://github.com/vitoriaraso/pi4-hotel-aurora
     ```
 
-
-1.1  **Link para o Backend:**
-
-➡️ **[Acessar o Repositório do Backend (Spring Boot)](https://github.com/ErickGX/api_hotel_pi_4sem)**
-
-
 2.  Instale as dependências do projeto:
 
     ```bash
@@ -108,9 +102,14 @@ npm install -g @angular/cli
 
   * **Estrutura de Componentes:** O projeto segue uma estrutura modular, facilitando a navegação.
   * **Boas Práticas:** Utilize o **Angular CLI** para gerar novos componentes, serviços e módulos (`ng generate component <nome>`), mantendo a consistência do código.
-  * **Estilização:** Toda a estilização primária é gerenciada pelo Angular Material. Para customizações específicas, utilize arquivos CSS locais aos componentes.
+  * **Estilização:** Toda a estilização primária é gerencada pelo Angular Material. Para customizações específicas, utilize arquivos CSS locais aos componentes.
   * **Backend:** Este é apenas o frontend. Certifique-se de que o **servidor backend** (onde as APIs de CRUD e autenticação residem) esteja em execução e configurado corretamente (ajustar URLs de API nos serviços, se necessário).
 
+-----
+-----
+**Link para o Backend:**
+
+➡️ **[Acessar o Repositório do Backend (Spring Boot)](https://github.com/ErickGX/api_hotel_pi_4sem)**
 -----
 
 ### 🤝 Contribuição
