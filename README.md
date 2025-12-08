@@ -1,59 +1,116 @@
-# Pi4Hotel
+## 🌟 Hotel Aurora Frontend 🌟
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+Este repositório contém o código-fonte do frontend do **Hotel Aurora**, uma aplicação desenvolvida em **Angular** com foco em proporcionar uma experiência de usuário intuitiva e elegante, utilizando os componentes do **Angular Material**.
 
-## Development server
+-----
 
-To start a local development server, run:
+### 📖 Visão Geral do Projeto
+
+O Hotel Aurora é uma plataforma de gerenciamento e reservas de hotéis, projetada para refletir a **serenidade e o acolhimento** que são a essência da marca. A experiência do usuário é segmentada em três áreas principais:
+
+1.  **Área Pública (Acolhimento e Contemplação):**
+      * Destinada a qualquer visitante, apresenta o conceito do Hotel Aurora: "Aqui, a pressa não tem espaço — apenas a serenidade."
+      * Permite ao usuário conhecer o hotel, suas dependências, espaços alugáveis e a filosofia de serviço.
+2.  **Área do Cliente (Seu Lugar de Descanso):**
+      * Disponível após **login** (cadastro ou autenticação via Google).
+      * Permite que o hóspede **faça reservas** de quartos e outros espaços, gerencie suas informações e visualize o histórico.
+3.  **Área Administrativa (Gestão Completa):**
+      * Acesso restrito para funcionários do hotel.
+      * Oferece funcionalidades **CRUD (Create, Read, Update, Delete)** completas para gerenciar:
+          * **Hotéis**
+          * **Funcionários**
+          * **Clientes (Pessoa Física e Jurídica)**
+          * **Espaços Alugáveis (Quartos, Sauna, Spa, Salão de Conferência)**
+
+-----
+
+### 🔑 Funcionalidades Chave
+
+  * **Autenticação Flexível:** Login via **cadastro** tradicional ou **autenticação rápida via Google**.
+
+  * **Gestão de Entidades:** CRUD completo na área administrativa.
+
+  * **Sistema de Reservas:** Permite a reserva de quartos e espaços por clientes logados.
+
+  * **Cálculo de Pagamento Dinâmico:** O cálculo do valor da reserva é baseado na seguinte fórmula:
+
+    $$
+    \text{Valor Final} = (\text{Preço Base} \times \text{Fator Multiplicador}) \times \text{Duração}
+    $$
+
+    Onde:
+
+      * **Preço Base:** Valor padrão de **R$ 1000,00**.
+      * **Fator Multiplicador:** Definido no `enum` do espaço alugável (ex: Quarto Tipo Presidencial tem fator 5.0).
+      * **Duração:** **Número de dias** (para quartos) ou **número de horas** (para outros espaços).
+
+-----
+
+### 💻 Tecnologias Utilizadas
+
+| Tecnologia | Descrição |
+| :--- | :--- |
+| **Angular** | Framework principal para construção da Single Page Application (SPA). |
+| **Angular Material** | Biblioteca de componentes UI que implementa o Material Design. |
+| **TypeScript** | Linguagem de desenvolvimento para maior segurança e escalabilidade. |
+| **RxJS** | Utilizado para gerenciamento de estados e manipulação de eventos assíncronos. |
+
+-----
+
+### 🚀 Primeiros Passos
+
+Siga as instruções abaixo para configurar e rodar o projeto localmente.
+
+#### Pré-requisitos
+
+Certifique-se de ter o **Node.js** e o **Angular CLI** instalados em sua máquina.
 
 ```bash
-ng serve
+# Instalação global do Angular CLI, se ainda não estiver instalado
+npm install -g @angular/cli
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+#### Instalação
 
-## Code scaffolding
+1.  Clone este repositório:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+    ```bash
+    git clone https://github.com/vitoriaraso/pi4-hotel-aurora
+    ```
 
-```bash
-ng generate component component-name
-```
+2.  Instale as dependências do projeto:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+    ```bash
+    npm install
+    ```
 
-```bash
-ng generate --help
-```
+#### Executando a Aplicação
 
-## Building
+1.  Inicie o servidor de desenvolvimento do Angular:
 
-To build the project run:
+    ```bash
+    ng serve
+    ```
 
-```bash
-ng build
-```
+2.  Acesse a aplicação no seu navegador. Por padrão, ela estará disponível em:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+      * `http://localhost:4200/`
 
-## Running unit tests
+-----
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 💡 Dicas de Desenvolvimento
 
-```bash
-ng test
-```
+  * **Estrutura de Componentes:** O projeto segue uma estrutura modular, facilitando a navegação.
+  * **Boas Práticas:** Utilize o **Angular CLI** para gerar novos componentes, serviços e módulos (`ng generate component <nome>`), mantendo a consistência do código.
+  * **Estilização:** Toda a estilização primária é gerenciada pelo Angular Material. Para customizações específicas, utilize arquivos SCSS locais aos componentes.
+  * **Backend:** Este é apenas o frontend. Certifique-se de que o **servidor backend** (onde as APIs de CRUD e autenticação residem) esteja em execução e configurado corretamente (ajustar URLs de API nos serviços, se necessário).
 
-## Running end-to-end tests
+-----
 
-For end-to-end (e2e) testing, run:
+### 🤝 Contribuição
 
-```bash
-ng e2e
-```
+Contribuições são bem-vindas\! Se você deseja aprimorar a experiência do **Hotel Aurora**, sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+-----
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> ✨ "Do nascer ao pôr do sol, tudo convida à contemplação." ✨
